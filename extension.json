@@ -1,0 +1,16 @@
+{
+	"name": "CustomFooter",
+	"author": "Litwak913",
+	"url": "https://github.com/mcbbs-wiki/MW-CustomFooter",
+	"description": "Add Custom Footer",
+	"version": "1.0",
+	"license-name": "GPL-2.0-or-later",
+	"type": "other",
+	"manifest_version": 1,
+	"AutoloadClasses": {
+		"MCBBSWiki\\PageHooks": "includes/Hooks.php"
+	},
+	"Hooks": {
+		"SkinAddFooterLinks": "MCBBSWiki\\PageHooks::customFooter"
+	}
+}
