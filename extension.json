@@ -1,8 +1,8 @@
 {
-	"name": "CustomFooter",
+	"name": "MCBBSWikiUtils",
 	"author": "Litwak913",
-	"url": "https://github.com/mcbbs-wiki/MW-CustomFooter",
-	"description": "Add Custom Footer",
+	"url": "https://github.com/mcbbs-wiki/MW-Utils",
+	"description": "MCBBS Wiki Utils",
 	"version": "1.0",
 	"license-name": "GPL-2.0-or-later",
 	"type": "other",
