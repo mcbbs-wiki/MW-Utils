@@ -11,6 +11,7 @@
 		"MCBBSWiki\\PageHooks": "includes/Hooks.php"
 	},
 	"Hooks": {
-		"SkinAddFooterLinks": "MCBBSWiki\\PageHooks::customFooter"
+		"SkinAddFooterLinks": "MCBBSWiki\\PageHooks::customFooter",
+		"ParserFirstCallInit": "MCBBSWiki\\PageHooks::onParserFirstCallInit"
 	}
 }
