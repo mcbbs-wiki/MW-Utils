@@ -14,5 +14,10 @@
 	"Hooks": {
 		"SkinAddFooterLinks": "MCBBSWiki\\PageHooks::customFooter",
 		"ParserFirstCallInit": "MCBBSWiki\\PageHooks::onParserFirstCallInit"
-	}
+	},
+        "MessagesDirs": {
+            "MCBBSWikiUtils": [
+                "i18n"
+            ]
+        }
 }

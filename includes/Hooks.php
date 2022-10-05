@@ -13,6 +13,7 @@ class PageHooks {
     }
     public static function onParserFirstCallInit( Parser $parser ) {
         $parser->setHook('mcbbs-avatar',[Tags::class,'renderTagMCBBSAvatar']);
+        $parser->setHook('bilibili',[Tags::class,'renderTagBilibili']);
     }
 }
 
