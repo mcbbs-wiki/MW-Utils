@@ -3,7 +3,8 @@ namespace MCBBSWiki;
 
 use Skin;
 use Parser;
-use Tags;
+use MCBBSWiki\Tags;
+
 class PageHooks {
     public static function customFooter( Skin $skin, string $key, array &$footerlinks  ) {
         if ( $key === 'info' ) {

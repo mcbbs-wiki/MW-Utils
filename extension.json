@@ -8,7 +8,8 @@
 	"type": "other",
 	"manifest_version": 1,
 	"AutoloadClasses": {
-		"MCBBSWiki\\PageHooks": "includes/Hooks.php"
+		"MCBBSWiki\\PageHooks": "includes/Hooks.php",
+		"MCBBSWiki\\Tags": "includes/Tags.php"
 	},
 	"Hooks": {
 		"SkinAddFooterLinks": "MCBBSWiki\\PageHooks::customFooter",
