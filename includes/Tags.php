@@ -34,8 +34,8 @@ class Tags
             $bvid = htmlspecialchars($args['bv']);
             $src = "https://player.bilibili.com/player.html?bvid=$bvid&high_quality=1";
             $attr['src'] = $src;
-            $video=Html::element('iframe', $attr, '');
-            return Html::rawElement('div', ['class'=>"bilibili-video bilibili-video-$bvid"], $video);
+            $video = Html::element('iframe', $attr, '');
+            return Html::rawElement('div', ['class' => "bilibili-video bilibili-video-$bvid"], $video);
         } else {
             return Html::element('p', ['style' => 'color:red;font-size:160%'], wfMessage('bilibili-nobvid')->text());
         }
