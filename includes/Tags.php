@@ -8,7 +8,10 @@ use Html;
 class Tags {
     public static function renderTagMCBBSAvatar($input,array $args,Parser $parser,PPFrame $frame){
         $uid=isset($args['uid'])?htmlspecialchars( $args['uid'] ):'1';
-        $image = Html::element('img',['src'=>'https://www.mcbbs.net/uc_server/avatar.php?uid='.$uid.'&size=big','class'=>'mcbbs-avatar mcbbs-avatar-'.$uid],'');
+        $image = Html::element('img',[
+            'src'=>"https://www.mcbbs.net/uc_server/avatar.php?uid=$uid&size=big",
+            'class'=>"mcbbs-avatar mcbbs-avatar-$uid",
+            'style'=>'width:200px;height:200px;'],'');
         return $image;
     }
     public static function renderTagBilibili($input,array $args,Parser $parser,PPFrame $frame) {
