@@ -21,17 +21,21 @@ class Tags
     public static function renderTagBilibili($input, array $args, Parser $parser, PPFrame $frame)
     {
         $attr = [
-            'allowfullscreen' => 'allowfullscreen',
+            'allowfullscreen' => 'true',
             'frameborder' => '0',
+            'framespacing' => '0',
             'sandbox' => 'allow-top-navigation allow-same-origin allow-forms allow-scripts',
             'scrolling' => 'no',
-            'width' => isset($args['width']) ? $args['width'] : '600',
+            'border' => '0',
+            'width' => isset($args['width']) ? $args['width'] : '800',
             'height' => isset($args['height']) ? $args['height'] : '600'
         ];
         if (isset($args['bv'])) {
-            $src = 'https://player.bilibili.com/player.html?bvid=' . htmlspecialchars($args['bv']) . '&high_quality=1';
+            $bvid = htmlspecialchars($args['bv']);
+            $src = "https://player.bilibili.com/player.html?bvid=$bvid&high_quality=1";
             $attr['src'] = $src;
-            return Html::element('iframe', $attr, '');
+            $video=Html::element('iframe', $attr, '');
+            return Html::rawElement('div', ['class'=>"bilibili-video bilibili-video-$bvid"], $video);
         } else {
             return Html::element('p', ['style' => 'color:red;font-size:160%'], wfMessage('bilibili-nobvid')->text());
         }
