@@ -10,6 +10,9 @@ class Tags
 {
     public static function renderTagMCBBSAvatar($input, array $args, Parser $parser, PPFrame $frame)
     {
+        if(isset($args['mili'])){
+            return Html::element('p',['style' => 'color:pink;font-size:160%'],'迷离可爱！');
+        }
         $uid = isset($args['uid']) ? htmlspecialchars($args['uid']) : '1';
         $image = Html::element('img', [
             'src' => "https://www.mcbbs.net/uc_server/avatar.php?uid=$uid&size=big",
