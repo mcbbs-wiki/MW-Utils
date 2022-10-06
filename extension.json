@@ -1,23 +1,23 @@
 {
-	"name": "MCBBSWikiUtils",
-	"author": "Litwak913",
-	"url": "https://github.com/mcbbs-wiki/MW-Utils",
-	"description": "MCBBS Wiki Utils",
-	"version": "1.0",
-	"license-name": "GPL-2.0-or-later",
-	"type": "other",
-	"manifest_version": 1,
-	"AutoloadClasses": {
-		"MCBBSWiki\\PageHooks": "includes/Hooks.php",
-		"MCBBSWiki\\Tags": "includes/Tags.php"
-	},
-	"Hooks": {
-		"SkinAddFooterLinks": "MCBBSWiki\\PageHooks::customFooter",
-		"ParserFirstCallInit": "MCBBSWiki\\PageHooks::onParserFirstCallInit"
-	},
-        "MessagesDirs": {
-            "MCBBSWikiUtils": [
-                "i18n"
-            ]
-        }
+  "name": "MCBBSWikiUtils",
+  "author": "Litwak913",
+  "url": "https://github.com/mcbbs-wiki/MW-Utils",
+  "description": "MCBBS Wiki Utils",
+  "version": "1.0",
+  "requires": {
+    "MediaWiki": ">= 1.31.0"
+  },
+  "license-name": "GPL-2.0-or-later",
+  "type": "other",
+  "manifest_version": 1,
+  "AutoloadNamespaces": {
+    "MCBBSWiki\\": "includes/"
+  },
+  "Hooks": {
+    "SkinAddFooterLinks": "MCBBSWiki\\Hooks::customFooter",
+    "ParserFirstCallInit": "MCBBSWiki\\Hooks::onParserFirstCallInit"
+  },
+  "MessagesDirs": {
+    "MCBBSWikiUtils": ["i18n"]
+  }
 }

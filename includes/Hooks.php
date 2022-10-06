@@ -6,7 +6,7 @@ use Skin;
 use Parser;
 use MCBBSWiki\Tags;
 
-class PageHooks
+class Hooks
 {
     public static function customFooter(Skin $skin, string $key, array &$footerlinks)
     {
