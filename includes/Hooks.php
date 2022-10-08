@@ -21,5 +21,6 @@ class Hooks
     {
         $parser->setHook('mcbbs-avatar', [Tags::class, 'renderTagMCBBSAvatar']);
         $parser->setHook('bilibili', [Tags::class, 'renderTagBilibili']);
+        $parser->setHook('page-alert', [Tags::class, 'renderTagPageAlert']);
     }
 }
