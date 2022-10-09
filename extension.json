@@ -21,12 +21,15 @@
     "MCBBSWikiUtils": ["i18n"]
   },
   "ResourceModules": {
-    "ext.mcbbswikiutils.pagealert": {
-      "localBasePath": "resources/ext.mcbbswikiutils.pagealert",
-      "remoteExtPath": "MCBBSWikiUtils/resources/ext.mcbbswikiutils.pagealert",
-      "packageFiles": ["page-alert.js"],
-      "dependencies": ["oojs-ui-core", "oojs-ui-windows"],
-      "messages": ["ok"]
+    "ext.mcbbswikiutils.credit": {
+      "packageFiles": ["highcharts.js","credit.js"]
+    },
+    "ext.mcbbswikiutils.avatar": {
+      "styles": "avatar.css"
     }
-  }
+  },
+  "ResourceFileModulePaths": {
+		"localBasePath": "modules",
+		"remoteExtPath": "MCBBSWikiUtils/resources"
+	}
 }

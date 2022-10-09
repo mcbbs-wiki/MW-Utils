@@ -8,27 +8,16 @@ use Html;
 
 class Tags
 {
-    public static function renderTagPageAlert($input, array $args, Parser $parser, PPFrame $frame)
-    {
-        $parser->getOutput()->addModules('ext.mcbbswikiutils.pagealert');
-        $html = Html::element('span', [
-            'data-alert-title' => htmlspecialchars($args['title']),
-            'data-alert-ok' => htmlspecialchars($args['ok']),
-            'style' => 'display:none;',
-            'class' => 'alert-span'
-        ], htmlspecialchars($input));
-        return $html;
-    }
     public static function renderTagMCBBSAvatar($input, array $args, Parser $parser, PPFrame $frame)
     {
+        $parser->getOutput()->addModuleStyles('ext.mcbbswikiutils.avatar');
         if (isset($args['mili'])) {
-            return Html::element('p', ['style' => 'color:pink;font-size:160%'], '迷离可爱！');
+            return Html::element('p', ['class' => 'mili'], '迷离可爱！');
         }
         $uid = isset($args['uid']) ? htmlspecialchars($args['uid']) : '1';
         $image = Html::element('img', [
             'src' => "https://www.mcbbs.net/uc_server/avatar.php?uid=$uid&size=big",
-            'class' => "mcbbs-avatar mcbbs-avatar-$uid",
-            'style' => 'width:200px;height:200px;'
+            'class' => "mcbbs-avatar mcbbs-avatar-$uid"
         ], '');
         return $image;
     }
