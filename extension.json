@@ -29,7 +29,7 @@
     }
   },
   "ResourceFileModulePaths": {
-		"localBasePath": "modules",
+		"localBasePath": "resources",
 		"remoteExtPath": "MCBBSWikiUtils/resources"
 	}
 }
