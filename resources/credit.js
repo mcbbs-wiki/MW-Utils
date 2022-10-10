@@ -6,6 +6,7 @@
  */
 
 (function () {
+  var highcharts = require("./highcharts.vendor.js");
   var defaultOption = {
     chart: {
       backgroundColor: document.body.classList.contains("skin-vector-legacy")
@@ -47,6 +48,7 @@
     },
   };
   $(function () {
+    console.log("start credit");
     var uid = getUID();
     if (!uid || isNaN(+uid)) {
       console.error("未获取到MCBBS用户ID");
@@ -118,7 +120,7 @@
           },
         ],
       });
-      window.Highcharts.chart("userpie", json);
+      highcharts.chart("userpie", json);
     } catch (err) {
       console.error(err);
     }

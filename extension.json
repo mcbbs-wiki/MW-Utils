@@ -22,7 +22,7 @@
   },
   "ResourceModules": {
     "ext.mcbbswikiutils.credit": {
-      "packageFiles": ["highcharts.vendor.js","credit.js"]
+      "packageFiles": ["credit.js","highcharts.vendor.js"]
     },
     "ext.mcbbswikiutils.avatar": {
       "styles": "avatar.css"

@@ -22,6 +22,16 @@ class Tags
         ], '');
         return $image;
     }
+    public static function renderTagMCBBSCredit($input, array $args, Parser $parser, PPFrame $frame)
+    {
+        $parser->getOutput()->addModules('ext.mcbbswikiutils.credit');
+        $uid = isset($args['uid']) ? htmlspecialchars($args['uid']) : '1';
+        $credit = Html::element('div', [
+            'id' => 'userpie',
+            'data-uid' => $uid
+        ], wfMessage('mcbbs-credit-loading')->text());
+        return $credit;
+    }
     public static function renderTagBilibili($input, array $args, Parser $parser, PPFrame $frame)
     {
         $attr = [

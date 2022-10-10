@@ -20,6 +20,7 @@ class Hooks
     public static function onParserFirstCallInit(Parser $parser)
     {
         $parser->setHook('mcbbs-avatar', [Tags::class, 'renderTagMCBBSAvatar']);
+        $parser->setHook('mcbbs-credit', [Tags::class, 'renderTagMCBBSCredit']);
         $parser->setHook('bilibili', [Tags::class, 'renderTagBilibili']);
     }
 }
