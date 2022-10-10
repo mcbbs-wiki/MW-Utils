@@ -17,7 +17,8 @@ class Tags
         $uid = isset($args['uid']) ? htmlspecialchars($args['uid']) : '1';
         $image = Html::element('img', [
             'src' => "https://www.mcbbs.net/uc_server/avatar.php?uid=$uid&size=big",
-            'class' => "mcbbs-avatar mcbbs-avatar-$uid"
+            'class' => "mcbbs-avatar mcbbs-avatar-$uid",
+            'data-uid' => $uid
         ], '');
         return $image;
     }
