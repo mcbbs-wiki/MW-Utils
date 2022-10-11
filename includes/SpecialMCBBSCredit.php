@@ -16,15 +16,15 @@ class SpecialMCBBSCredit extends SpecialPage
     {
         $output = $this->getOutput();
         $request = $this->getRequest();
-        $uid = $request->getText('uid', '-1');
-        $hasuid = $uid !== '-1';
+        $uid = $request->getInt('uid');
+        $hasuid = $uid !== 0;
         $output->enableOOUI();
         $this->setHeaders();
         $action = new OOUI\ActionFieldLayout(
             new OOUI\NumberInputWidget([
                 'name' => 'uid',
                 'placeholder' => $this->msg('mcbbscredit-input-uid')->text(),
-                'value' => $hasuid ? $uid : '',
+                'value' => $uid !== 0 ? $uid : '',
                 'required' => true
             ]),
             new OOUI\ButtonInputWidget([
