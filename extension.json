@@ -22,16 +22,16 @@
   },
   "ResourceModules": {
     "ext.mcbbswikiutils.credit": {
-      "packageFiles": ["credit.js","highcharts.vendor.js"],
-      "targets":["desktop", "mobile"]
+      "packageFiles": ["credit.js", "highcharts.vendor.js"],
+      "targets": ["desktop", "mobile"]
     },
     "ext.mcbbswikiutils.avatar": {
       "styles": "avatar.css",
-      "targets":["desktop", "mobile"]
+      "targets": ["desktop", "mobile"]
     }
   },
   "ResourceFileModulePaths": {
-		"localBasePath": "resources",
-		"remoteExtPath": "MCBBSWikiUtils/resources"
-	}
+    "localBasePath": "resources",
+    "remoteExtPath": "MCBBSWikiUtils/resources"
+  }
 }
