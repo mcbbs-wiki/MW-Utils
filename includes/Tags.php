@@ -29,7 +29,7 @@ class Tags
         $credit = Html::element('div', [
             'id' => 'userpie',
             'data-uid' => $uid
-        ], wfMessage('mcbbs-credit-loading')->text());
+        ], wfMessage('mcbbscredit-loading')->text());
         return $credit;
     }
     public static function renderTagBilibili($input, array $args, Parser $parser, PPFrame $frame)

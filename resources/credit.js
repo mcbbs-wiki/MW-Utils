@@ -9,9 +9,11 @@
   var highcharts = require("./highcharts.vendor.js");
   var defaultOption = {
     chart: {
-      backgroundColor: document.body.classList.contains("skin-vector-legacy") || document.body.classList.contains("skin-minerva")
-        ? "#fbf2da"
-        : "#ffffff",
+      backgroundColor:
+        document.body.classList.contains("skin-vector-legacy") ||
+        document.body.classList.contains("skin-minerva")
+          ? "#fbf2da"
+          : "#ffffff",
       plotShadow: false,
     },
     tooltip: {
@@ -101,8 +103,8 @@
             name: "积分占比",
             data: [
               {
-                name: "\u53D1\u5E16\u6570/" + post + "\u5E16",
-                y: Math.round(post / 3),
+                name: "\u53D1\u5E16\u6570/" + (post + thread) + "\u5E16",
+                y: Math.round((post + thread) / 3),
               },
               {
                 name: "\u4E3B\u9898\u6570/" + thread + "\u5E16",

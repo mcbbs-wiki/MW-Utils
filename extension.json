@@ -20,6 +20,9 @@
   "MessagesDirs": {
     "MCBBSWikiUtils": ["i18n"]
   },
+  "SpecialPages": {
+    "MCBBSCredit": "MCBBSWiki\\SpecialMCBBSCredit"
+  },
   "ResourceModules": {
     "ext.mcbbswikiutils.credit": {
       "packageFiles": ["credit.js", "highcharts.vendor.js"],
