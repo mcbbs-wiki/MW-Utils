@@ -9,7 +9,7 @@
   var highcharts = require("./highcharts.vendor.js");
   var defaultOption = {
     chart: {
-      backgroundColor: document.body.classList.contains("skin-vector-legacy")
+      backgroundColor: document.body.classList.contains("skin-vector-legacy") || document.body.classList.contains("skin-minerva")
         ? "#fbf2da"
         : "#ffffff",
       plotShadow: false,
