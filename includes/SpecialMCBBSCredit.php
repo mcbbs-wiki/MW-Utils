@@ -24,7 +24,8 @@ class SpecialMCBBSCredit extends SpecialPage
             new OOUI\NumberInputWidget([
                 'name' => 'uid',
                 'placeholder' => $this->msg('mcbbscredit-input-uid')->text(),
-                'value' => $hasuid ? $uid : ''
+                'value' => $hasuid ? $uid : '',
+                'required' => true
             ]),
             new OOUI\ButtonInputWidget([
                 'label' => $this->msg('mcbbscredit-query')->text(),
