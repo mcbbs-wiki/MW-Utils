@@ -21,8 +21,10 @@
     "MCBBSWikiUtils": ["i18n"]
   },
   "SpecialPages": {
-    "MCBBSCredit": "MediaWiki\\Extension\\MCBBSWiki\\SpecialMCBBSCredit",
-    "VME50": "MediaWiki\\Extension\\MCBBSWiki\\SpecialVME50"
+    "MCBBSCredit": "MediaWiki\\Extension\\MCBBSWiki\\SpecialMCBBSCredit"
+  },
+  "ExtensionMessagesFiles": {
+    "MCBBSWikiUtilsAlias": "MCBBSWikiUtils.i18n.alias.php"
   },
   "ResourceModules": {
     "ext.mcbbswikiutils.credit": {
