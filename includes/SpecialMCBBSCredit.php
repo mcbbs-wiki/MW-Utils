@@ -16,14 +16,14 @@ class SpecialMCBBSCredit extends SpecialPage
     {
         $output = $this->getOutput();
         $request = $this->getRequest();
-        $uid = $request->getInt('uid');
+        $uid = $request->getInt('wpUID');
         $hasuid = $uid !== 0;
         $output->enableOOUI();
         $this->setHeaders();
         $formDescriptor = [
 			'uid' => [
 				'type' => 'number',
-				'name' => 'uid',
+				'name' => 'wpUID',
 				'exists' => true,
                 'class' => 'HTMLTextField',
 				'label-message' => 'mcbbscredit-input-uid',
