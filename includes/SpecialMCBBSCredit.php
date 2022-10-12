@@ -4,7 +4,7 @@ namespace MCBBSWiki;
 
 use SpecialPage;
 use Html;
-use OOUI;
+use HTMLForm;
 
 class SpecialMCBBSCredit extends SpecialPage
 {
@@ -20,25 +20,24 @@ class SpecialMCBBSCredit extends SpecialPage
         $hasuid = $uid !== 0;
         $output->enableOOUI();
         $this->setHeaders();
-        $action = new OOUI\ActionFieldLayout(
-            new OOUI\NumberInputWidget([
-                'name' => 'uid',
-                'placeholder' => $this->msg('mcbbscredit-input-uid')->text(),
-                'value' => $uid !== 0 ? $uid : '',
-                'required' => true
-            ]),
-            new OOUI\ButtonInputWidget([
-                'label' => $this->msg('mcbbscredit-query')->text(),
-                'type' => 'submit',
-                'flags' => ['primary', 'progressive']
-            ])
-        );
-        $form = new OOUI\FormLayout([
-            'method' => 'GET',
-            'action' => SpecialPage::getTitleFor('MCBBSCredit')->getPrefixedText(),
-            'items' => [$action]
-        ]);
-        $html = $form;
+        $formDescriptor = [
+			'uid' => [
+				'type' => 'number',
+				'name' => 'uid',
+				'exists' => true,
+                'class' => 'HTMLTextField',
+				'placeholder-message' => 'mcbbscredit-input-uid',
+				'required' => true,
+				'default' => $hasuid ? $uid : ''
+			]
+		];
+        $form = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() );
+        $form
+			->setMethod( 'get' )
+			->setSubmitTextMsg( 'mcbbscredit-query' )
+			->prepareForm()
+			->displayForm( false );
+        $html = '';
         if ($hasuid) {
             $output->addModules('ext.mcbbswikiutils.credit');
             $html .= Html::element('div', [
