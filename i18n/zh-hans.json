@@ -2,6 +2,5 @@
     "bilibili-nobvid":"错误：未指定视频的 BV 号。",
     "mcbbscredit-loading":"正在获取 MCBBS 积分信息，请稍后。",
     "mcbbscredit":"MCBBS 积分分析",
-    "mcbbscredit-input-uid":"论坛 UID",
-    "mcbbscredit-query":"查询"
+    "mcbbscredit-input-uid":"论坛 UID"
 }

@@ -1,7 +1,6 @@
 {
     "bilibili-nobvid":"Error:No specified video BV id.",
-    "mcbbs-credit-loading":"Fetching MCBBS credit information,Please wait.",
+    "mcbbscredit-loading":"Fetching MCBBS credit information,Please wait.",
     "mcbbscredit":"MCBBS Credit",
-    "mcbbscredit-input-uid":"Forum UID",
-    "mcbbscredit-query":"Query"
+    "mcbbscredit-input-uid":"Forum UID"
 }

@@ -11,17 +11,18 @@
   "type": "other",
   "manifest_version": 1,
   "AutoloadNamespaces": {
-    "MCBBSWiki\\": "includes/"
+    "MediaWiki\\Extension\\MCBBSWiki\\": "includes/"
   },
   "Hooks": {
-    "SkinAddFooterLinks": "MCBBSWiki\\Hooks::customFooter",
-    "ParserFirstCallInit": "MCBBSWiki\\Hooks::onParserFirstCallInit"
+    "SkinAddFooterLinks": "MediaWiki\\Extension\\MCBBSWiki\\Hooks::customFooter",
+    "ParserFirstCallInit": "MediaWiki\\Extension\\MCBBSWiki\\Hooks::onParserFirstCallInit"
   },
   "MessagesDirs": {
     "MCBBSWikiUtils": ["i18n"]
   },
   "SpecialPages": {
-    "MCBBSCredit": "MCBBSWiki\\SpecialMCBBSCredit"
+    "MCBBSCredit": "MediaWiki\\Extension\\MCBBSWiki\\SpecialMCBBSCredit",
+    "VME50": "MediaWiki\\Extension\\MCBBSWiki\\SpecialVME50"
   },
   "ResourceModules": {
     "ext.mcbbswikiutils.credit": {

@@ -1,10 +1,10 @@
 <?php
 
-namespace MCBBSWiki;
+namespace MediaWiki\Extension\MCBBSWiki;
 
 use Skin;
 use Parser;
-use MCBBSWiki\Tags;
+use MediaWiki\Extension\MCBBSWiki\Tags;
 
 class Hooks
 {

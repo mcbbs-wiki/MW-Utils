@@ -1,6 +1,6 @@
 <?php
 
-namespace MCBBSWiki;
+namespace MediaWiki\Extension\MCBBSWiki;
 
 use SpecialPage;
 use Html;
@@ -26,7 +26,7 @@ class SpecialMCBBSCredit extends SpecialPage
 				'name' => 'uid',
 				'exists' => true,
                 'class' => 'HTMLTextField',
-				'placeholder-message' => 'mcbbscredit-input-uid',
+				'label-message' => 'mcbbscredit-input-uid',
 				'required' => true,
 				'default' => $hasuid ? $uid : ''
 			]
@@ -34,7 +34,6 @@ class SpecialMCBBSCredit extends SpecialPage
         $form = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() );
         $form
 			->setMethod( 'get' )
-			->setSubmitTextMsg( 'mcbbscredit-query' )
 			->prepareForm()
 			->displayForm( false );
         $html = '';

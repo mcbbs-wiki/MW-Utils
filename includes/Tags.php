@@ -1,6 +1,6 @@
 <?php
 
-namespace MCBBSWiki;
+namespace MediaWiki\Extension\MCBBSWiki;
 
 use Parser;
 use PPFrame;
