@@ -57,11 +57,20 @@ class Tags
     public static function renderTagEditCredit($input, array $args, Parser $parser, PPFrame $frame)
     {
         $parser->getOutput()->addModuleStyles('ext.mcbbswikiutils.editcredit');
-        if (!is_numeric($args['debug-credit'])) {
+        $credit = $args['debug-credit'] ?? 0;
+        if (!is_numeric($credit)) {
             return '';
         }
-        $level = CreditCalc::calcLevel($args['debug-credit'] ?? 0);
-        $html = Html::element('span', ['class' => 'user-score-level ' . $level['class']], $level['level']);
+        $type = $args['type'] ?? 'level';
+        $level = CreditCalc::calcLevel($credit);
+        $display = $credit;
+        $class = 'user-score-credit ' . $level['class'];
+        if ($type === 'level') {
+            $parser->getOutput()->addModuleStyles('ext.mcbbswikiutils.editlevel');
+            $class .= ' user-score-level';
+            $display = $level['level'];
+        }
+        $html = Html::element('span', ['class' => $class], $display);
         return $html;
     }
 }

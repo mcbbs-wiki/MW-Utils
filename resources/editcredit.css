@@ -1,12 +1,4 @@
-.user-score-level:before {
-  content: "Lv.";
-  margin-left: -5px;
-  margin-right: 4px;
-  padding: 1px 3px 1px 5px;
-  background: #999;
-  border-radius: 5px 0 0 5px;
-}
-.user-score-level {
+.user-score-credit {
   color: #fff;
   background: #777;
   padding: 1px 5px 1px 5px;
@@ -16,76 +8,40 @@
   text-shadow: #777 0 0 2px;
   margin: auto 3px;
 }
-.lv00:before {
-  background: #eee;
-}
 .lv00 {
   background: #e7e7e7;
   color: #bbb;
   text-shadow: none;
 }
-.lv01:before {
-  background: #ccc;
-}
 .lv01 {
   background: #aaa;
-}
-.lv01-5:before {
-  background: #73cc65;
 }
 .lv01-5 {
   background: #449937;
 }
-.lv02:before {
-  background: #6fc2f2;
-}
 .lv02 {
   background: #4e9ecc;
-}
-.lv03:before {
-  background: #d9c75e;
 }
 .lv03 {
   background: #bfad48;
 }
-.lv04:before {
-  background: #d99447;
-}
 .lv04 {
   background: #bf7d32;
-}
-.lv05:before {
-  background: #e67252;
 }
 .lv05 {
   background: #bf5132;
 }
-.lv06:before {
-  background: #e64545;
-}
 .lv06 {
   background: #bf2727;
-}
-.lv07:before {
-  background: #f24395;
 }
 .lv07 {
   background: #cc2673;
 }
-.lv08:before {
-  background: #cd30d9;
-}
 .lv08 {
   background: #a813b2;
 }
-.lv09:before {
-  background: #9530d9;
-}
 .lv09 {
   background: #7313b2;
-}
-.lv10:before {
-  background: #555;
 }
 .lv10 {
   background: #000;

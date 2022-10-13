@@ -44,6 +44,10 @@
     "ext.mcbbswikiutils.editcredit": {
       "styles": "editcredit.css",
       "targets": ["desktop", "mobile"]
+    },
+    "ext.mcbbswikiutils.editlevel": {
+      "styles": "editlevel.css",
+      "targets": ["desktop", "mobile"]
     }
   },
   "ResourceFileModulePaths": {
