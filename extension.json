@@ -13,9 +13,15 @@
   "AutoloadNamespaces": {
     "MediaWiki\\Extension\\MCBBSWiki\\": "includes/"
   },
+  "HookHandlers": {
+    "main": {
+      "class": "MediaWiki\\Extension\\MCBBSWiki\\Hooks",
+      "services": ["UserNameUtils"]
+    }
+  },
   "Hooks": {
-    "SkinAddFooterLinks": "MediaWiki\\Extension\\MCBBSWiki\\Hooks::customFooter",
-    "ParserFirstCallInit": "MediaWiki\\Extension\\MCBBSWiki\\Hooks::onParserFirstCallInit"
+    "SkinAddFooterLinks": "main",
+    "ParserFirstCallInit": "main"
   },
   "MessagesDirs": {
     "MCBBSWikiUtils": ["i18n"]
@@ -34,6 +40,10 @@
     },
     "ext.mcbbswikiutils.avatar": {
       "styles": "avatar.css",
+      "targets": ["desktop", "mobile"]
+    },
+    "ext.mcbbswikiutils.editcredit": {
+      "styles": "editcredit.css",
       "targets": ["desktop", "mobile"]
     }
   },

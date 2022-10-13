@@ -3,12 +3,13 @@
 namespace MediaWiki\Extension\MCBBSWiki;
 
 use Skin;
-use Parser;
 use MediaWiki\Extension\MCBBSWiki\Tags;
+use MediaWiki\Hook\ParserFirstCallInitHook;
+use MediaWiki\Hook\SkinAddFooterLinksHook;
 
-class Hooks
+class Hooks implements ParserFirstCallInitHook,SkinAddFooterLinksHook
 {
-    public static function customFooter(Skin $skin, string $key, array &$footerlinks)
+    public function onSkinAddFooterLinks(Skin $skin, string $key, array &$footerlinks)
     {
         if ($key === 'info') {
             $msg = $skin->msg('footerinfo');
@@ -17,10 +18,11 @@ class Hooks
             }
         };
     }
-    public static function onParserFirstCallInit(Parser $parser)
+    public function onParserFirstCallInit($parser)
     {
         $parser->setHook('mcbbs-avatar', [Tags::class, 'renderTagMCBBSAvatar']);
         $parser->setHook('mcbbs-credit', [Tags::class, 'renderTagMCBBSCredit']);
         $parser->setHook('bilibili', [Tags::class, 'renderTagBilibili']);
+        $parser->setHook('edit-credit', [Tags::class, 'renderTagEditCredit']);
     }
 }

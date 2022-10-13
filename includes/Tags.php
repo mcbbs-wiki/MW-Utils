@@ -54,4 +54,14 @@ class Tags
             return Html::element('p', ['style' => 'color:red;font-size:160%'], wfMessage('bilibili-nobvid')->text());
         }
     }
+    public static function renderTagEditCredit($input, array $args, Parser $parser, PPFrame $frame)
+    {
+        $parser->getOutput()->addModuleStyles('ext.mcbbswikiutils.editcredit');
+        if (!is_numeric($args['debug-credit'])) {
+            return '';
+        }
+        $level = CreditCalc::calcLevel($args['debug-credit'] ?? 0);
+        $html = Html::element('span', ['class' => 'user-score-level ' . $level['class']], $level['level']);
+        return $html;
+    }
 }
