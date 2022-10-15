@@ -2,6 +2,9 @@
 
 namespace MediaWiki\Extension\MCBBSWiki;
 
+use MediaWiki\Extension\EditCount\EditCountQuery;
+use User;
+
 class CreditCalc
 {
     const scores = [
@@ -32,11 +35,13 @@ class CreditCalc
         1000000 => 'lv09',
         2147483647 => 'lv10'
     ];
-    /** 
-     * Calc User Edit Credit.
-     * 
-     * @return (int|string)[] 
-     */
+    const calcCredit = '';
+    public static function calcUserLevel(User $user)
+    {
+        $ns = EditCountQuery::queryAllNamespaces($user);
+        @$credit = $ns[0] * 3 + $ns[10] * 2.5 + $ns[12] * 2 + $ns[14] + $ns[4] + floor($ns[6] / 4) + floor(($ns[1] + $ns[5] + $ns[11]) / 8);
+        return $credit;
+    }
     public static function calcLevel(int $credit)
     {
         $lvl = 0;

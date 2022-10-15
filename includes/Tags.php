@@ -5,6 +5,7 @@ namespace MediaWiki\Extension\MCBBSWiki;
 use Parser;
 use PPFrame;
 use Html;
+use MediaWiki\MediaWikiServices;
 
 class Tags
 {
@@ -57,20 +58,23 @@ class Tags
     public static function renderTagEditCredit($input, array $args, Parser $parser, PPFrame $frame)
     {
         $parser->getOutput()->addModuleStyles('ext.mcbbswikiutils.editcredit');
-        $credit = $args['debug-credit'] ?? 0;
-        if (!is_numeric($credit)) {
+        if (isset($args['username'])) {
+            $userFactory = MediaWikiServices::getInstance()->getUserFactory();
+            $username = trim($args['username']);
+            $user = $userFactory->newFromName($username);
+            $credit = CreditCalc::calcUserLevel($user);
+            $level = CreditCalc::calcLevel($credit);
+            $type = $args['type'] ?? 'level';
+            $class = 'user-score-credit ' . $level['class'];
+            $display = $credit;
+            if ($type === 'level') {
+                $parser->getOutput()->addModuleStyles('ext.mcbbswikiutils.editlevel');
+                $class .= ' user-score-level';
+                $display = $level['level'];
+            }
+            return Html::element('span', ['class' => $class], $display);
+        } else {
             return '';
         }
-        $type = $args['type'] ?? 'level';
-        $level = CreditCalc::calcLevel($credit);
-        $display = $credit;
-        $class = 'user-score-credit ' . $level['class'];
-        if ($type === 'level') {
-            $parser->getOutput()->addModuleStyles('ext.mcbbswikiutils.editlevel');
-            $class .= ' user-score-level';
-            $display = $level['level'];
-        }
-        $html = Html::element('span', ['class' => $class], $display);
-        return $html;
     }
 }
