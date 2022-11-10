@@ -5,18 +5,24 @@ namespace MediaWiki\Extension\MCBBSWiki;
 use Parser;
 use PPFrame;
 use Html;
+use MediaWiki\MediaWikiServices;
 
 class Tags
 {
-    public static function renderTagMCBBSAvatar($input, array $args, Parser $parser, PPFrame $frame)
+    public static function renderTagUCenterAvatar($input, array $args, Parser $parser, PPFrame $frame)
     {
         $parser->getOutput()->addModuleStyles('ext.mcbbswikiutils.avatar');
         if (isset($args['mili'])) {
             return Html::element('p', ['class' => 'mili'], '迷离可爱！');
         }
+        $config = MediaWikiServices::getInstance()->getConfigFactory()->makeConfig( 'MCBBSWikiUtils' );
+        $ucenter = $config->get( 'UCenterURL' );
+        if(empty($ucenter)){
+            return Html::element('p',['style' => 'color:red;font-size:160%'],wfMessage('ucenteravatar-noucenterurl')->text());
+        }
         $uid = isset($args['uid']) ? htmlspecialchars($args['uid']) : '1';
         $image = Html::element('img', [
-            'src' => "https://www.mcbbs.net/uc_server/avatar.php?uid=$uid&size=big",
+            'src' => "$ucenter/avatar.php?uid=$uid&size=big",
             'class' => "mcbbs-avatar mcbbs-avatar-$uid",
             'data-uid' => $uid
         ], '');

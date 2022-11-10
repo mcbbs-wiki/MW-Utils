@@ -45,5 +45,13 @@
   "ResourceFileModulePaths": {
     "localBasePath": "resources",
     "remoteExtPath": "MCBBSWikiUtils/resources"
+  },
+  "ConfigRegistry": {
+    "MCBBSWikiUtils": "GlobalVarConfig::newInstance"
+  },
+  "config": {
+    "UCenterURL": {
+      "value": ""
+    }
   }
 }
