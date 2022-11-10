@@ -23,6 +23,5 @@ class Hooks implements ParserFirstCallInitHook,SkinAddFooterLinksHook
         $parser->setHook('mcbbs-avatar', [Tags::class, 'renderTagMCBBSAvatar']);
         $parser->setHook('mcbbs-credit', [Tags::class, 'renderTagMCBBSCredit']);
         $parser->setHook('bilibili', [Tags::class, 'renderTagBilibili']);
-        $parser->setHook('edit-credit', [Tags::class, 'renderTagEditCredit']);
     }
 }

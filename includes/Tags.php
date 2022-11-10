@@ -5,7 +5,6 @@ namespace MediaWiki\Extension\MCBBSWiki;
 use Parser;
 use PPFrame;
 use Html;
-use MediaWiki\MediaWikiServices;
 
 class Tags
 {
@@ -53,28 +52,6 @@ class Tags
             return Html::rawElement('div', ['class' => "bilibili-video bilibili-video-$bvid"], $video);
         } else {
             return Html::element('p', ['style' => 'color:red;font-size:160%'], wfMessage('bilibili-nobvid')->text());
-        }
-    }
-    public static function renderTagEditCredit($input, array $args, Parser $parser, PPFrame $frame)
-    {
-        $parser->getOutput()->addModuleStyles('ext.mcbbswikiutils.editcredit');
-        if (isset($args['username'])) {
-            $userFactory = MediaWikiServices::getInstance()->getUserFactory();
-            $username = trim($args['username']);
-            $user = $userFactory->newFromName($username);
-            $credit = CreditCalc::calcUserLevel($user);
-            $level = CreditCalc::calcLevel($credit);
-            $type = $args['type'] ?? 'level';
-            $class = 'user-score-credit ' . $level['class'];
-            $display = $credit;
-            if ($type === 'level') {
-                $parser->getOutput()->addModuleStyles('ext.mcbbswikiutils.editlevel');
-                $class .= ' user-score-level';
-                $display = $level['level'];
-            }
-            return Html::element('span', ['class' => $class], $display);
-        } else {
-            return '';
         }
     }
 }
