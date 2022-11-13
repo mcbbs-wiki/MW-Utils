@@ -7,7 +7,7 @@ use MediaWiki\Extension\MCBBSWiki\Tags;
 use MediaWiki\Hook\ParserFirstCallInitHook;
 use MediaWiki\Hook\SkinAddFooterLinksHook;
 
-class Hooks implements ParserFirstCallInitHook,SkinAddFooterLinksHook
+class Hooks implements ParserFirstCallInitHook, SkinAddFooterLinksHook
 {
     public function onSkinAddFooterLinks(Skin $skin, string $key, array &$footerlinks)
     {

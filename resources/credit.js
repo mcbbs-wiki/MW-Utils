@@ -50,7 +50,6 @@
     },
   };
   $(function () {
-    console.log("start credit");
     var uid = getUID();
     if (!uid || isNaN(+uid)) {
       console.error("未获取到MCBBS用户ID");
