@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extension\MCBBSWiki;
 
+use Exception;
 use MWException;
 use SpecialPage;
 
@@ -13,6 +14,9 @@ class SpecialVME50 extends SpecialPage
     }
     function execute($par)
     {
-        throw new MWException('KFC Crazy Thursday need ￥50');
+        throw new KFCCrazyThursdayVME50Exception();
     }
+}
+class KFCCrazyThursdayVME50Exception extends Exception
+{
 }
