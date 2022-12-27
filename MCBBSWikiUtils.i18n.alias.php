@@ -2,9 +2,9 @@
 $specialPageAliases = [];
 
 $specialPageAliases['en'] = [
-    'MCBBSCredit' => ['MCBBSCredit', 'MCBBS Credit']
+	'MCBBSCredit' => [ 'MCBBSCredit', 'MCBBS Credit' ]
 ];
 
 $specialPageAliases['zh-hans'] = [
-    'MCBBSCredit' => ['MCBBS积分分析']
+	'MCBBSCredit' => [ 'MCBBS积分分析' ]
 ];
