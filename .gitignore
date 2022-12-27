@@ -1,2 +1,4 @@
-resources/*.vendor.js
-node_modules/
+/composer.lock
+/vendor
+/node_modules
+.eslintcache
