@@ -17,7 +17,7 @@ class Tags {
 		$ucenter = $config->get( 'UCenterURL' );
 		if ( empty( $ucenter ) ) {
 			return Html::element( 'p',
-			[ 'style' => 'color:red;font-size:160%' ],
+			[ 'style' => 'color:#d33;font-size:160%;font-weight:bold' ],
 			 wfMessage( 'ucenteravatar-noucenterurl' )->text() );
 		}
 		$uid = isset( $args['uid'] ) ? htmlspecialchars( $args['uid'] ) : '1';
@@ -58,7 +58,7 @@ class Tags {
 			return Html::rawElement( 'div', [ 'class' => "bilibili-video bilibili-video-$bvid" ], $video );
 		} else {
 			return Html::element( 'p',
-			[ 'style' => 'color:red;font-size:160%' ],
+			[ 'style' => 'color:#d33;font-size:160%;font-weight:bold' ],
 			wfMessage( 'bilibili-nobvid' )->text() );
 		}
 	}

@@ -35,7 +35,11 @@
   "ResourceModules": {
     "ext.mcbbswikiutils.credit": {
       "packageFiles": ["credit.js","highcharts.vendor.js"],
-      "targets": ["desktop", "mobile"]
+      "targets": ["desktop", "mobile"],
+      "messages":[
+        "mcbbscredit-notfound",
+        "mcbbscredit-timeout"
+      ]
     },
     "ext.mcbbswikiutils.avatar": {
       "styles": "avatar.css",

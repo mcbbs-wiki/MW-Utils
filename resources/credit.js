@@ -64,7 +64,12 @@
 	async function getPIE( node, uid ) {
 		const $url = 'https://mcbbs.wiki/913-api/users/' + uid;
 		const res = await fetch( $url );
-
+		if(res.status===404){
+			node.textContent=mw.message( 'mcbbscredit-notfound' ).plain();
+			node.style.color='#d33';
+			node.style.fontWeight='bold';
+			return;
+		}
 		const creditObj = await res.json(),
 			creditsObj = creditObj.credits,
 			activites = creditObj.activites,
