@@ -41,7 +41,7 @@ class SpecialMCBBSCredit extends SpecialPage {
 		if ( $hasuid ) {
 			$output->addModules( 'ext.mcbbswikiutils.credit' );
 			$html .= Html::element( 'div', [
-				'id' => 'userpie',
+				'class' => 'userpie',
 				'data-uid' => $uid
 			], $this->msg( 'mcbbscredit-loading' )->text() );
 		}
