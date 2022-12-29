@@ -49,7 +49,7 @@
 	};
 	function main() {
 		let defaultuid = 1;
-		const el = document.getElementsByClassName( 'mcbbs-avatar' );
+		const el = document.getElementsByClassName( 'ucenter-avatar' );
 		if ( el.length !== 0 ) {
 			defaultuid = el[ 0 ].getAttribute( 'data-uid' );
 		}
