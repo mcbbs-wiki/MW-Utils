@@ -55,7 +55,7 @@
 		}
 		Array.from( document.getElementsByClassName( 'userpie' ) ).forEach( ( element ) => {
 			let uid = parseInt( element.getAttribute( 'data-uid' ) );
-			if ( isNaN( uid ) ) {
+			if ( uid === -1 ) {
 				uid = defaultuid;
 			}
 			getPIE( element, uid );

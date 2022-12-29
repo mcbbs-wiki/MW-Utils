@@ -31,7 +31,7 @@ class Tags {
 
 	public static function renderTagMCBBSCredit( $input, array $args, Parser $parser, PPFrame $frame ) {
 		$parser->getOutput()->addModules( 'ext.mcbbswikiutils.credit' );
-		$uid = isset( $args['uid'] ) ? htmlspecialchars( $args['uid'] ) : '1';
+		$uid = isset( $args['uid'] ) ? htmlspecialchars( $args['uid'] ) : '-1';
 		$credit = Html::element( 'div', [
 			'class' => 'userpie',
 			'data-uid' => $uid
