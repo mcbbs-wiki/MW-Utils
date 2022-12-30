@@ -27,6 +27,7 @@
   },
   "SpecialPages": {
     "MCBBSCredit": "MediaWiki\\Extension\\MCBBSWiki\\SpecialMCBBSCredit",
+    "ExternalLinkWarning":"MediaWiki\\Extension\\MCBBSWiki\\SpecialExternalLinkWarning",
     "VME50": "MediaWiki\\Extension\\MCBBSWiki\\SpecialVME50"
   },
   "ExtensionMessagesFiles": {
