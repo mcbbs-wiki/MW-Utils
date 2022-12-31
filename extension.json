@@ -15,12 +15,14 @@
   },
   "HookHandlers": {
     "main": {
-      "class": "MediaWiki\\Extension\\MCBBSWiki\\Hooks"
+      "class": "MediaWiki\\Extension\\MCBBSWiki\\Hooks",
+      "services": ["ConfigFactory"]
     }
   },
   "Hooks": {
     "SkinAddFooterLinks": "main",
-    "ParserFirstCallInit": "main"
+    "ParserFirstCallInit": "main",
+    "LinkerMakeExternalLink": "main"
   },
   "MessagesDirs": {
     "MCBBSWikiUtils": ["i18n"]
@@ -57,6 +59,12 @@
   "config": {
     "UCenterURL": {
       "value": ""
+    },
+    "URLWarningExclude": {
+      "value":[]
+    },
+    "EnableURLWarning": {
+      "value":false
     }
   }
 }
