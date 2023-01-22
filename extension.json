@@ -44,6 +44,10 @@
         "mcbbscredit-timeout"
       ]
     },
+    "ext.mcbbswikiutils.credit-loader": {
+      "packageFiles": ["credit-loader.js"],
+      "targets": ["desktop", "mobile"]
+    },
     "ext.mcbbswikiutils.avatar": {
       "styles": "avatar.css",
       "targets": ["desktop", "mobile"]

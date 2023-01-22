@@ -60,7 +60,7 @@ class Hooks implements ParserFirstCallInitHook, SkinAddFooterLinksHook, LinkerMa
 	}
 
 	public function renderTagUCenterAvatar( $input, array $args, Parser $parser, PPFrame $frame ) {
-		$parser->getOutput()->addModuleStyles( 'ext.mcbbswikiutils.avatar' );
+		$parser->getOutput()->addModuleStyles( ['ext.mcbbswikiutils.avatar'] );
 		if ( isset( $args['mili'] ) ) {
 			return Html::element( 'p', [ 'class' => 'mili' ], '迷离可爱！' );
 		}
@@ -80,7 +80,7 @@ class Hooks implements ParserFirstCallInitHook, SkinAddFooterLinksHook, LinkerMa
 	}
 
 	public function renderTagMCBBSCredit( $input, array $args, Parser $parser, PPFrame $frame ) {
-		$parser->getOutput()->addModules( 'ext.mcbbswikiutils.credit' );
+		$parser->getOutput()->addModules( ['ext.mcbbswikiutils.credit-loader'] );
 		$uid = isset( $args['uid'] ) ? htmlspecialchars( $args['uid'] ) : '-1';
 		$credit = Html::element( 'div', [
 			'class' => 'userpie',
