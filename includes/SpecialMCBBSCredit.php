@@ -35,6 +35,7 @@ class SpecialMCBBSCredit extends SpecialPage {
 		$form = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() );
 		$form
 			->setMethod( 'get' )
+			->setWrapperLegendMsg( 'mcbbscredit-form-legend' )
 			->prepareForm()
 			->displayForm( false );
 		$html = '';
