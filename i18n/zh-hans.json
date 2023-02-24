@@ -6,9 +6,5 @@
     "mcbbscredit":"MCBBS 积分分析",
     "mcbbscredit-input-uid":"论坛 UID",
     "mcbbscredit-form-legend":"查询 MCBBS 用户积分",
-    "ucenteravatar-noucenterurl":"错误：未设置 $wgUCenterURL。",
-    "externallinkwarning-info":"<strong><big>您即将访问一个站外链接</big></strong><br>请注意网络安全，养成良好上网习惯，谨慎访问站外链接！<br><small>$1</small>",
-    "externallinkwarning-go":"继续访问",
-    "externallinkwarning":"跳转提示"
-
+    "ucenteravatar-noucenterurl":"错误：未设置 $wgUCenterURL。"
 }

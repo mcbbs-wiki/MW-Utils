@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Extension\MCBBSWiki;
 
-use SpecialPage;
+use UnlistedSpecialPage;
 
-class SpecialVME50 extends SpecialPage {
+class SpecialVME50 extends UnlistedSpecialPage {
 	public function __construct() {
 		parent::__construct( 'VME50', '', false );
 	}

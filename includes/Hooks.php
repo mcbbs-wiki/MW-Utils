@@ -4,7 +4,6 @@ namespace MediaWiki\Extension\MCBBSWiki;
 
 use ConfigFactory;
 use Html;
-use MediaWiki\Hook\LinkerMakeExternalLinkHook;
 use MediaWiki\Hook\ParserFirstCallInitHook;
 use MediaWiki\Hook\SkinAddFooterLinksHook;
 use Parser;
@@ -12,7 +11,7 @@ use PPFrame;
 use Skin;
 use SpecialPage;
 
-class Hooks implements ParserFirstCallInitHook, SkinAddFooterLinksHook, LinkerMakeExternalLinkHook {
+class Hooks implements ParserFirstCallInitHook, SkinAddFooterLinksHook {
 	private $ucenter;
 	private $excludeList;
 	private $enableURLWarning;
@@ -20,28 +19,6 @@ class Hooks implements ParserFirstCallInitHook, SkinAddFooterLinksHook, LinkerMa
 	public function __construct( ConfigFactory $configFactory ) {
 		$config = $configFactory->makeConfig( 'MCBBSWikiUtils' );
 		$this->ucenter = $config->get( 'UCenterURL' );
-		$this->excludeList = $config->get( 'URLWarningExclude' );
-		$this->enableURLWarning = $config->get( 'EnableURLWarning' );
-	}
-
-	private function checkURL( string $url ) {
-		foreach ( $this->excludeList as $index => $exclude ) {
-			if ( strpos( $url, $exclude ) !== false ) {
-				return false;
-			} else {
-				continue;
-			}
-		}
-		return true;
-	}
-
-	public function onLinkerMakeExternalLink( &$url, &$text, &$link, &$attribs, $linkType ) {
-		if ( $this->enableURLWarning ) {
-			if ( $this->checkURL( $url ) ) {
-				$url = SpecialPage::getTitleFor( 'ExternalLinkWarning' )
-				->getLocalURL( [ 'wpURL' => base64_encode( $url ) ] );
-			}
-		}
 	}
 
 	public function onSkinAddFooterLinks( Skin $skin, string $key, array &$footerlinks ) {

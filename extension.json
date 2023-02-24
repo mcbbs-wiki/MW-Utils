@@ -21,15 +21,13 @@
   },
   "Hooks": {
     "SkinAddFooterLinks": "main",
-    "ParserFirstCallInit": "main",
-    "LinkerMakeExternalLink": "main"
+    "ParserFirstCallInit": "main"
   },
   "MessagesDirs": {
     "MCBBSWikiUtils": ["i18n"]
   },
   "SpecialPages": {
     "MCBBSCredit": "MediaWiki\\Extension\\MCBBSWiki\\SpecialMCBBSCredit",
-    "ExternalLinkWarning":"MediaWiki\\Extension\\MCBBSWiki\\SpecialExternalLinkWarning",
     "VME50": "MediaWiki\\Extension\\MCBBSWiki\\SpecialVME50"
   },
   "ExtensionMessagesFiles": {
@@ -63,12 +61,6 @@
   "config": {
     "UCenterURL": {
       "value": ""
-    },
-    "URLWarningExclude": {
-      "value":[]
-    },
-    "EnableURLWarning": {
-      "value":false
     }
   }
 }
