@@ -13,8 +13,6 @@ use SpecialPage;
 
 class Hooks implements ParserFirstCallInitHook, SkinAddFooterLinksHook {
 	private $ucenter;
-	private $excludeList;
-	private $enableURLWarning;
 
 	public function __construct( ConfigFactory $configFactory ) {
 		$config = $configFactory->makeConfig( 'MCBBSWikiUtils' );
@@ -71,7 +69,7 @@ class Hooks implements ParserFirstCallInitHook, SkinAddFooterLinksHook {
 			'allowfullscreen' => 'true',
 			'frameborder' => '0',
 			'framespacing' => '0',
-			'sandbox' => 'allow-top-navigation allow-same-origin allow-forms allow-scripts',
+			'sandbox' => 'allow-top-navigation allow-same-origin allow-forms allow-scripts allow-popups',
 			'scrolling' => 'no',
 			'border' => '0',
 			'width' => isset( $args['width'] ) ? htmlspecialchars( $args['width'] ) : '800',
