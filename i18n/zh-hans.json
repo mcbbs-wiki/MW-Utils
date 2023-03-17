@@ -6,5 +6,6 @@
     "mcbbscredit":"MCBBS 积分分析",
     "mcbbscredit-input-uid":"论坛 UID",
     "mcbbscredit-form-legend":"查询 MCBBS 用户积分",
-    "ucenteravatar-noucenterurl":"错误：未设置 $wgUCenterURL。"
+    "ucenteravatar-noucenterurl":"错误：未设置 $wgUCenterURL。",
+    "extimg-invalidurl":"不允许的域名。"
 }
