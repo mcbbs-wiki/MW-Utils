@@ -14,11 +14,14 @@ class SpecialMCBBSCredit extends SpecialPage {
 	public function execute( $par ) {
 		$output = $this->getOutput();
 		$request = $this->getRequest();
-		$uid = $request->getInt( 'wpUID' );
-		if ( $uid == 0 && is_numeric( $par ) ) {
-			$uid = $par;
+		if ($par) {
+			$output->redirect($this->getPageTitle()->getLinkURL([
+				'wpUID' => $par,
+			]));
+			return;
 		}
-		$hasuid = $uid !== 0 || is_numeric( $par );
+		$uid = $request->getInt( 'wpUID' );
+		$hasuid = $uid !== 0;
 		$output->enableOOUI();
 		$this->setHeaders();
 		$formDescriptor = [
