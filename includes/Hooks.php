@@ -4,15 +4,17 @@ namespace MediaWiki\Extension\MCBBSWiki;
 
 use ConfigFactory;
 use Html;
+use MediaWiki\Hook\BeforePageDisplayHook;
 use MediaWiki\Hook\ParserFirstCallInitHook;
 use MediaWiki\Hook\SkinAddFooterLinksHook;
 use Parser;
 use PPFrame;
 use Skin;
 
-class Hooks implements ParserFirstCallInitHook, SkinAddFooterLinksHook {
+class Hooks implements ParserFirstCallInitHook, SkinAddFooterLinksHook, BeforePageDisplayHook {
 	private string $ucenter;
 	private $whitelistDomains;
+	private string $appver;
 	private function checkDomain( string $url ) {
 		$domain = parse_url( $url, PHP_URL_HOST );
 	
@@ -35,6 +37,7 @@ class Hooks implements ParserFirstCallInitHook, SkinAddFooterLinksHook {
 		$config = $configFactory->makeConfig( 'MCBBSWikiUtils' );
 		$this->whitelistDomains = $config->get("ExtImgWhiteList");
 		$this->ucenter = $config->get( 'UCenterURL' );
+		$this->appver = $config->get('MBWAPP');
 	}
 
 	public function onSkinAddFooterLinks( Skin $skin, string $key, array &$footerlinks ) {
@@ -45,7 +48,10 @@ class Hooks implements ParserFirstCallInitHook, SkinAddFooterLinksHook {
 			}
 		}
 	}
-
+	public function onBeforePageDisplay( $out, $skin ):void
+	{
+		$out->addJsConfigVars( 'wgMaxAvatarResolution', $this->appver );
+	}
 	public function onParserFirstCallInit( $parser ) {
 		$parser->setHook( 'ucenter-avatar', [ $this,'renderTagUCenterAvatar' ] );
 		$parser->setHook( 'mcbbs-credit',  [ $this,'renderTagMCBBSCredit' ] );

@@ -21,7 +21,8 @@
   },
   "Hooks": {
     "SkinAddFooterLinks": "main",
-    "ParserFirstCallInit": "main"
+    "ParserFirstCallInit": "main",
+    "BeforePageDisplay": "main"
   },
   "MessagesDirs": {
     "MCBBSWikiUtils": ["i18n"]
@@ -64,6 +65,9 @@
     },
     "ExtImgWhiteList":{
       "value":[]
+    },
+    "MBWAPP":{
+      "value":"eee"
     }
   }
 }
