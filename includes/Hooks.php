@@ -37,7 +37,7 @@ class Hooks implements ParserFirstCallInitHook, SkinAddFooterLinksHook, BeforePa
 		$config = $configFactory->makeConfig( 'MCBBSWikiUtils' );
 		$this->whitelistDomains = $config->get("ExtImgWhiteList");
 		$this->ucenter = $config->get( 'UCenterURL' );
-		$this->appver = $config->get('MBWAPP');
+		$this->appver = $config->get('MBWVER');
 	}
 
 	public function onSkinAddFooterLinks( Skin $skin, string $key, array &$footerlinks ) {
@@ -50,7 +50,7 @@ class Hooks implements ParserFirstCallInitHook, SkinAddFooterLinksHook, BeforePa
 	}
 	public function onBeforePageDisplay( $out, $skin ):void
 	{
-		$out->addJsConfigVars( 'wgMaxAvatarResolution', $this->appver );
+		$out->addJsConfigVars( 'wgMBWVER', $this->appver );
 	}
 	public function onParserFirstCallInit( $parser ) {
 		$parser->setHook( 'ucenter-avatar', [ $this,'renderTagUCenterAvatar' ] );
