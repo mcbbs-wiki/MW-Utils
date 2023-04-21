@@ -54,23 +54,12 @@
 			defaultuid = el[ 0 ].getAttribute( 'data-uid' );
 		}
 		Array.from( document.getElementsByClassName( 'userpie' ) ).forEach( ( element ) => {
-			let uid = parseInt( element.getAttribute( 'data-uid' ) );
-			if ( uid === -1 ) {
-				uid = defaultuid;
-			}
-			getPIE( element, uid );
+			let user = element.getAttribute( 'data-user' );
+			getPIE( element, user );
 		} );
 	}
-	async function getPIE( node, uid ) {
-		const $url = 'https://mcbbs.wiki/913-api/users/' + uid;
-		const res = await fetch( $url );
-		if(res.status===404){
-			node.textContent=mw.message( 'mcbbscredit-notfound' ).plain();
-			node.style.color='#d33';
-			node.style.fontWeight='bold';
-			return;
-		}
-		const creditObj = await res.json(),
+	async function getPIE( node, user ) {
+		const creditObj = JSON.parse(decodeURIComponent(atob(user)).replace("+"," ")),
 			creditsObj = creditObj.credits,
 			activites = creditObj.activites,
 			nickname = creditObj.nickname;
@@ -90,7 +79,7 @@
 			subtitle: {
 				text:
             'UID: ' +
-            uid +
+            creditObj.uid +
             '; \u79EF\u5206: ' +
             credit +
             '; \u7528\u6237\u7EC4: ' +

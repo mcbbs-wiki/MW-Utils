@@ -3,18 +3,27 @@
 namespace MediaWiki\Extension\MCBBSWiki;
 
 use ConfigFactory;
+use Exception;
+use FormatJson;
 use Html;
 use MediaWiki\Hook\BeforePageDisplayHook;
 use MediaWiki\Hook\ParserFirstCallInitHook;
 use MediaWiki\Hook\SkinAddFooterLinksHook;
+use MediaWiki\Http\HttpRequestFactory;
+use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
 use Parser;
 use PPFrame;
 use Skin;
+use WANObjectCache;
 
 class Hooks implements ParserFirstCallInitHook, SkinAddFooterLinksHook, BeforePageDisplayHook {
 	private string $ucenter;
+	private string $apiurl;
 	private $whitelistDomains;
 	private string $appver;
+	private WANObjectCache $cache;
+	private HttpRequestFactory $http;
 	private function checkDomain( string $url ) {
 		$domain = parse_url( $url, PHP_URL_HOST );
 	
@@ -33,11 +42,14 @@ class Hooks implements ParserFirstCallInitHook, SkinAddFooterLinksHook, BeforePa
 		}
 		return $valid;
 	}
-	public function __construct( ConfigFactory $configFactory ) {
+	public function __construct( ConfigFactory $configFactory, HttpRequestFactory $http, WANObjectCache $cache) {
 		$config = $configFactory->makeConfig( 'MCBBSWikiUtils' );
 		$this->whitelistDomains = $config->get("ExtImgWhiteList");
 		$this->ucenter = $config->get( 'UCenterURL' );
+		$this->http = $http;
+		$this->cache = $cache;
 		$this->appver = $config->get('MBWVER');
+		$this->apiurl = $config->get('MBWAPIURL');
 	}
 
 	public function onSkinAddFooterLinks( Skin $skin, string $key, array &$footerlinks ) {
@@ -57,6 +69,89 @@ class Hooks implements ParserFirstCallInitHook, SkinAddFooterLinksHook, BeforePa
 		$parser->setHook( 'mcbbs-credit',  [ $this,'renderTagMCBBSCredit' ] );
 		$parser->setHook( 'bilibili',  [ $this,'renderTagBilibili' ] );
 		$parser->setHook( 'ext-img',  [ $this,'renderTagExtimg' ] );
+		$parser->setFunctionHook('mcbbscreditvalue',[$this,'renderCreditValue']);
+	}
+	public function renderCreditValue(Parser $parser, $uid = '3038', $data = 'diamond')
+	{
+		$user=$this->getBBSUserJson($uid);
+		wfDebugLog('bbsuser',"Fetch user $uid $data");
+		$value=$this->getBBSUserValue($user,$data);
+		if($value===false){
+			return 0;
+		}
+		return $value;
+	}
+	private function getBBSUserValue($userJson,$data='username'){
+		$user = FormatJson::decode( $userJson, true );
+		if ( !$user ) {
+			wfDebugLog('bbsuser','Failed to parse user');
+		}
+		switch ($data) {
+			case 'uid':
+				return $user['uid'];
+			case 'nickname':
+				return $user['nickname'];
+			case 'post':
+				return $user['activites']['post'];
+			case 'thread':
+				return $user['activites']['thread'];
+			case 'groupid':
+				return $user['activites']['currentGroupID'];
+			case 'digiest':
+				return $user['activites']['digiest'];
+			case 'diamond':
+				return $user['credits']['diamond'];
+			case 'popularity':
+				return $user['credits']['popularity'];
+			case 'heart':
+				return $user['credits']['heart'];
+			case 'contribute':
+				return $user['credits']['contribute'];
+			case 'gem':
+				return $user['credits']['gem'];
+			case 'star':
+				return $user['credits']['star'];
+			case 'nugget':
+				return $user['credits']['nugget'];
+			case 'ingot':
+				return $user['credits']['ingot'];
+			case 'credit':
+				return $user['credits']['credit'];
+			default:
+				return false;
+		}
+	}
+	private function getBBSUserJson($uid){
+		$userCacheKey=$this->cache->makeKey('bbsuser-'.$uid);
+		$userJson=$this->cache->get($userCacheKey);
+		if(!$userJson){
+			wfDebugLog('bbsuser',"Fetch user $uid from API");
+			$userJson=$this->getBBSUserFromAPI($uid);
+			if($userJson===false){
+				return false;
+			}
+			$this->cache->set($userCacheKey,$userJson,10800);
+		} else {
+			wfDebugLog('bbsuser',"Fetch user $uid from cache");
+		}
+		return $userJson;
+	}
+	private function getBBSUserFromAPI($uid){
+		$request=$this->http->create($this->apiurl.$uid);
+		try{
+			$status = $request->execute();
+		} catch (Exception $e){
+			wfDebugLog('bbsuser','Failed to fetch user: '.$e->getMessage());
+			return false;
+		}
+		if ( !$status->isOK() ) {
+			wfDebugLog('bbsuser','Failed to fetch user: '.$status->getErrorsArray()[0][0]);
+			return false;
+		}
+		if ($request->getStatus()===500 && $request->getStatus()===404){
+			return false;
+		}
+		return $request->getContent();
 	}
 	public function renderTagExtimg( $input, array $args, Parser $parser, PPFrame $frame ) {
 		if(!isset($args['src'])){
@@ -99,11 +194,16 @@ class Hooks implements ParserFirstCallInitHook, SkinAddFooterLinksHook, BeforePa
 
 	public function renderTagMCBBSCredit( $input, array $args, Parser $parser, PPFrame $frame ) {
 		$parser->getOutput()->addModules( [ 'ext.mcbbswikiutils.credit-loader' ] );
-		$uid = isset( $args['uid'] ) ? htmlspecialchars( $args['uid'] ) : '-1';
+		$uid = isset( $args['uid'] ) ? htmlspecialchars( $args['uid'] ) : '1';
+		$userJson = $this->getBBSUserJson($uid);
+		if($userJson === false) {
+			return Html::element('strong',['class'=>'error'],wfMessage( 'mcbbscredit-notfound' )->text());
+		}
 		$credit = Html::element( 'div', [
 			'class' => 'userpie',
-			'data-uid' => $uid
+			'data-user' => base64_encode(urlencode($userJson))
 		], wfMessage( 'mcbbscredit-loading' )->text() );
+		//$credit .= Html::element('span',[],$this->getBBSUserJson($uid));
 		return $credit;
 	}
 

@@ -9,14 +9,14 @@
   },
   "license-name": "GPL-2.0-or-later",
   "type": "other",
-  "manifest_version": 2,
+  "manifest_version": 1,
   "AutoloadNamespaces": {
     "MediaWiki\\Extension\\MCBBSWiki\\": "includes/"
   },
   "HookHandlers": {
     "main": {
       "class": "MediaWiki\\Extension\\MCBBSWiki\\Hooks",
-      "services": ["ConfigFactory"]
+      "services": ["ConfigFactory","HttpRequestFactory","MainWANObjectCache"]
     }
   },
   "Hooks": {
@@ -60,14 +60,9 @@
     "MCBBSWikiUtils": "GlobalVarConfig::newInstance"
   },
   "config": {
-    "UCenterURL": {
-      "value": ""
-    },
-    "ExtImgWhiteList":{
-      "value":[]
-    },
-    "MBWVER":{
-      "value":"eee"
-    }
+    "UCenterURL": "",
+    "ExtImgWhiteList":[],
+    "MBWVER":"eee",
+    "MBWAPIURL":"http://localhost:18080/users/"
   }
 }
