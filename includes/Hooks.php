@@ -7,20 +7,18 @@ use Html;
 use MediaWiki\Hook\BeforePageDisplayHook;
 use MediaWiki\Hook\ParserFirstCallInitHook;
 use MediaWiki\Hook\SkinAddFooterLinksHook;
-use MediaWiki\Http\HttpRequestFactory;
 use Parser;
 use PPFrame;
 use Skin;
-use WANObjectCache;
 
 class Hooks implements ParserFirstCallInitHook, SkinAddFooterLinksHook, BeforePageDisplayHook {
 	private string $ucenter;
 	private string $appver;
 
-	public function __construct( ConfigFactory $configFactory) {
+	public function __construct( ConfigFactory $configFactory ) {
 		$config = $configFactory->makeConfig( 'MCBBSWikiUtils' );
 		$this->ucenter = $config->get( 'UCenterURL' );
-		$this->appver = $config->get('MBWVER');
+		$this->appver = $config->get( 'MBWVER' );
 	}
 
 	public function onSkinAddFooterLinks( Skin $skin, string $key, array &$footerlinks ) {
@@ -31,32 +29,34 @@ class Hooks implements ParserFirstCallInitHook, SkinAddFooterLinksHook, BeforePa
 			}
 		}
 	}
-	public function onBeforePageDisplay( $out, $skin ):void
-	{
+
+	public function onBeforePageDisplay( $out, $skin ): void {
 		$out->addJsConfigVars( 'wgMBWVER', $this->appver );
 	}
+
 	public function onParserFirstCallInit( $parser ) {
 		$parser->setHook( 'ucenter-avatar', [ $this,'renderTagUCenterAvatar' ] );
 		$parser->setHook( 'mcbbs-credit',  [ $this,'renderTagMCBBSCredit' ] );
 		$parser->setHook( 'bilibili',  [ $this,'renderTagBilibili' ] );
 		$parser->setHook( 'ext-img',  [ $this,'renderTagExtimg' ] );
-		$parser->setFunctionHook('mcbbscreditvalue',[$this,'renderCreditValue']);
+		$parser->setFunctionHook( 'mcbbscreditvalue', [ $this,'renderCreditValue' ] );
 	}
-	public function renderCreditValue(Parser $parser, $uid = '3038', $data = 'diamond')
-	{
-		$user=Utils::getBBSUserJson($uid);
-		wfDebugLog('bbsuser',"Fetch user $uid $data");
-		$value=Utils::getBBSUserValue($user,$data);
-		if($value===false){
+
+	public function renderCreditValue( Parser $parser, $uid = '3038', $data = 'diamond' ) {
+		$user = Utils::getBBSUserJson( $uid );
+		wfDebugLog( 'bbsuser', "Fetch user $uid $data" );
+		$value = Utils::getBBSUserValue( $user, $data );
+		if ( $value === false ) {
 			return 0;
 		}
 		return $value;
 	}
+
 	public function renderTagExtimg( $input, array $args, Parser $parser, PPFrame $frame ) {
-		if(!isset($args['src'])){
+		if ( !isset( $args['src'] ) ) {
 			return '';
 		}
-		if(!Utils::checkDomain($args['src'])){
+		if ( !Utils::checkDomain( $args['src'] ) ) {
 			return Html::element( 'p',
 			[ 'style' => 'color:#d33;font-size:larger;font-weight: bold;' ],
 			 wfMessage( 'extimg-invalidurl' )->text() );
@@ -65,12 +65,13 @@ class Hooks implements ParserFirstCallInitHook, SkinAddFooterLinksHook, BeforePa
 			'src' => $args['src'],
 			'title' => $args['title'] ?? null,
 			'alt' => $args['alt'] ?? null,
-			'width'=>$args['width'] ?? null,
-			'height'=>$args['height'] ?? null,
+			'width' => $args['width'] ?? null,
+			'height' => $args['height'] ?? null,
 			'class' => "ext-img"
 		], '' );
 		return $image;
 	}
+
 	public function renderTagUCenterAvatar( $input, array $args, Parser $parser, PPFrame $frame ) {
 		$parser->getOutput()->addModuleStyles( [ 'ext.mcbbswikiutils.avatar' ] );
 		if ( isset( $args['mili'] ) ) {
@@ -94,9 +95,9 @@ class Hooks implements ParserFirstCallInitHook, SkinAddFooterLinksHook, BeforePa
 	public function renderTagMCBBSCredit( $input, array $args, Parser $parser, PPFrame $frame ) {
 		$parser->getOutput()->addModules( [ 'ext.mcbbswikiutils.credit-loader' ] );
 		$uid = isset( $args['uid'] ) ? htmlspecialchars( $args['uid'] ) : '1';
-		$userJson = Utils::getBBSUserJson($uid);
-		if($userJson === false) {
-			return Html::element('strong',['class'=>'error'],wfMessage( 'mcbbscredit-notfound' )->text());
+		$userJson = Utils::getBBSUserJson( $uid );
+		if ( $userJson === false ) {
+			return Html::element( 'strong', [ 'class' => 'error' ], wfMessage( 'mcbbscredit-notfound' )->text() );
 		}
 		$credit = Html::element( 'div', [
 			'class' => 'userpie',

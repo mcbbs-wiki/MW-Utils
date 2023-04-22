@@ -14,10 +14,10 @@ class SpecialMCBBSCredit extends SpecialPage {
 	public function execute( $par ) {
 		$output = $this->getOutput();
 		$request = $this->getRequest();
-		if ($par) {
-			$output->redirect($this->getPageTitle()->getLinkURL([
+		if ( $par ) {
+			$output->redirect( $this->getPageTitle()->getLinkURL( [
 				'wpUID' => $par,
-			]));
+			] ) );
 			return;
 		}
 		$uid = $request->getInt( 'wpUID' );
@@ -42,12 +42,12 @@ class SpecialMCBBSCredit extends SpecialPage {
 			->prepareForm()
 			->displayForm( false );
 		if ( $hasuid ) {
-			$output->addModules( ['ext.mcbbswikiutils.credit-loader'] );
-			$userJson = Utils::getBBSUserJson($uid);
+			$output->addModules( [ 'ext.mcbbswikiutils.credit-loader' ] );
+			$userJson = Utils::getBBSUserJson( $uid );
 			$html = Html::element( 'div', [
 				'class' => 'userpie',
 				'data-user' => $userJson
-			], wfMessage( 'mcbbscredit-loading' )->text() );
+			], $this->msg( 'mcbbscredit-loading' )->text() );
 		}
 
 		$output->addHTML( $html );
