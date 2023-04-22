@@ -1,10 +1,5 @@
 'use strict';
-
-/**
- * converted by babel
- * from mcbbs-wiki-widget-repo
- */
-
+/* eslint-disable compat/compat */
 ( function () {
 	const highcharts = require( './highcharts.vendor.js' );
 	const defaultOption = {
@@ -48,18 +43,13 @@
 		}
 	};
 	function main() {
-		let defaultuid = 1;
-		const el = document.getElementsByClassName( 'ucenter-avatar' );
-		if ( el.length !== 0 ) {
-			defaultuid = el[ 0 ].getAttribute( 'data-uid' );
-		}
 		Array.from( document.getElementsByClassName( 'userpie' ) ).forEach( ( element ) => {
-			let user = element.getAttribute( 'data-user' );
+			const user = element.getAttribute( 'data-user' );
 			getPIE( element, user );
 		} );
 	}
-	async function getPIE( node, user ) {
-		const creditObj = JSON.parse(user),
+	function getPIE( node, user ) {
+		const creditObj = JSON.parse( user ),
 			creditsObj = creditObj.credits,
 			activites = creditObj.activites,
 			nickname = creditObj.nickname;
@@ -111,7 +101,6 @@
 			]
 		} );
 		highcharts.chart( node, json );
-
 	}
 	$( main() );
 }() );

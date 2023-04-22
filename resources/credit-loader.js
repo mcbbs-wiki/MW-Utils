@@ -1,1 +1,1 @@
-mw.loader.load('ext.mcbbswikiutils.credit');
+mw.loader.load( 'ext.mcbbswikiutils.credit' );
