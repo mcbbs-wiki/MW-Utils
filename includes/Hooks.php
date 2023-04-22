@@ -97,6 +97,8 @@ class Hooks implements ParserFirstCallInitHook, SkinAddFooterLinksHook, BeforePa
 				return $user['activites']['thread'];
 			case 'groupid':
 				return $user['activites']['currentGroupID'];
+			case 'grouptext':
+				return $user['activites']['currentGroupText'];
 			case 'digiest':
 				return $user['activites']['digiest'];
 			case 'diamond':
