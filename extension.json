@@ -16,7 +16,7 @@
   "HookHandlers": {
     "main": {
       "class": "MediaWiki\\Extension\\MCBBSWiki\\Hooks",
-      "services": ["ConfigFactory","HttpRequestFactory","MainWANObjectCache"]
+      "services": ["ConfigFactory"]
     }
   },
   "Hooks": {

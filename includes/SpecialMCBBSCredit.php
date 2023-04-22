@@ -41,13 +41,13 @@ class SpecialMCBBSCredit extends SpecialPage {
 			->setWrapperLegendMsg( 'mcbbscredit-form-legend' )
 			->prepareForm()
 			->displayForm( false );
-		$html = '';
 		if ( $hasuid ) {
-			$output->addModules( 'ext.mcbbswikiutils.credit' );
-			$html .= Html::element( 'div', [
+			$output->addModules( ['ext.mcbbswikiutils.credit-loader'] );
+			$userJson = Utils::getBBSUserJson($uid);
+			$html = Html::element( 'div', [
 				'class' => 'userpie',
-				'data-uid' => $uid
-			], $this->msg( 'mcbbscredit-loading' )->text() );
+				'data-user' => $userJson
+			], wfMessage( 'mcbbscredit-loading' )->text() );
 		}
 
 		$output->addHTML( $html );
