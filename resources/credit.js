@@ -59,7 +59,7 @@
 		} );
 	}
 	async function getPIE( node, user ) {
-		const creditObj = JSON.parse(decodeURIComponent(atob(user)).replace("+"," ")),
+		const creditObj = JSON.parse(user),
 			creditsObj = creditObj.credits,
 			activites = creditObj.activites,
 			nickname = creditObj.nickname;

@@ -201,9 +201,8 @@ class Hooks implements ParserFirstCallInitHook, SkinAddFooterLinksHook, BeforePa
 		}
 		$credit = Html::element( 'div', [
 			'class' => 'userpie',
-			'data-user' => base64_encode(urlencode($userJson))
+			'data-user' => $userJson
 		], wfMessage( 'mcbbscredit-loading' )->text() );
-		//$credit .= Html::element('span',[],$this->getBBSUserJson($uid));
 		return $credit;
 	}
 
