@@ -1,4 +1,3 @@
-'use strict';
 /* eslint-disable compat/compat */
 ( function () {
 	const highcharts = require( './highcharts.vendor.js' );
@@ -65,15 +64,9 @@
 			diamond = creditsObj.diamond;
 
 		const json = Object.assign( {}, defaultOption, {
-			title: { text: nickname + ' \u79EF\u5206\u6784\u6210' },
+			title: { text: `${nickname} 积分构成` },
 			subtitle: {
-				text:
-            'UID: ' +
-            creditObj.uid +
-            '; \u79EF\u5206: ' +
-            credit +
-            '; \u7528\u6237\u7EC4: ' +
-            group
+				text: `UID: ${creditObj.uid}; 积分: ${credit}; 用户组: ${group}`
 			},
 			series: [
 				{
@@ -81,21 +74,21 @@
 					name: '积分占比',
 					data: [
 						{
-							name: '\u53D1\u5E16\u6570/' + ( post + thread ) + '\u5E16',
+							name: `发帖数/${( post + thread )}帖`,
 							y: Math.round( ( post + thread ) / 3 )
 						},
 						{
-							name: '\u4E3B\u9898\u6570/' + thread + '\u5E16',
+							name: `主题数/${thread}帖`,
 							y: thread * 2
 						},
 						{
-							name: '\u7CBE\u534E\u5E16/' + digiest + '\u5E16',
+							name: `精华帖/${digiest}帖`,
 							y: digiest * 45
 						},
-						{ name: '\u4EBA\u6C14/' + popular + '\u70B9', y: popular * 3 },
-						{ name: '\u8D21\u732E/' + contrib + '\u70B9', y: contrib * 10 },
-						{ name: '\u7231\u5FC3/' + heart + '\u9897', y: heart * 4 },
-						{ name: '\u94BB\u77F3/' + diamond + '\u9897', y: diamond * 2 }
+						{ name: `人气/${popular}点`, y: popular * 3 },
+						{ name: `贡献/${contrib}点`, y: contrib * 10 },
+						{ name: `爱心/${heart}颗`, y: heart * 4 },
+						{ name: `钻石/${diamond}颗`, y: diamond * 2 }
 					]
 				}
 			]

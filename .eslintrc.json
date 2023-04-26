@@ -5,11 +5,10 @@
 		"wikimedia/jquery",
 		"wikimedia/mediawiki"
 	],
+	"env": {
+		"browser": true
+	},
 	"rules": {
-		"no-jquery/no-global-selector": "off",
-		"no-jquery/no-class-state": "off",
-		"no-jquery/no-fade": "off",
-		"no-jquery/no-slide": "off",
-		"no-jquery/no-sizzle": "off"
+		"no-jquery/no-global-selector": "off"
 	}
 }

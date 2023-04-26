@@ -1,7 +1,7 @@
 {
-    "bilibili-nobvid":"Error:No specified video BV id.",
-    "mcbbscredit-loading":"Fetching MCBBS credit information,Please wait.",
-    "mcbbscredit":"MCBBS Credit",
-    "mcbbscredit-input-uid":"Forum UID",
-    "ucenteravatar-noucenterurl":"Error:$wgUCenterURL not found."
+	"bilibili-nobvid": "Error:No specified video BV id.",
+	"mcbbscredit-loading": "Fetching MCBBS credit information,Please wait.",
+	"mcbbscredit": "MCBBS Credit",
+	"mcbbscredit-input-uid": "Forum UID",
+	"ucenteravatar-noucenterurl": "Error:$wgUCenterURL not found."
 }

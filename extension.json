@@ -1,68 +1,68 @@
 {
-  "name": "MCBBSWikiUtils",
-  "author": "Litwak913",
-  "url": "https://github.com/mcbbs-wiki/MW-Utils",
-  "description": "MCBBS Wiki Utils",
-  "version": "1.0",
-  "requires": {
-    "MediaWiki": ">= 1.31.0"
-  },
-  "license-name": "GPL-2.0-or-later",
-  "type": "other",
-  "manifest_version": 1,
-  "AutoloadNamespaces": {
-    "MediaWiki\\Extension\\MCBBSWiki\\": "includes/"
-  },
-  "HookHandlers": {
-    "main": {
-      "class": "MediaWiki\\Extension\\MCBBSWiki\\Hooks",
-      "services": ["ConfigFactory"]
-    }
-  },
-  "Hooks": {
-    "SkinAddFooterLinks": "main",
-    "ParserFirstCallInit": "main",
-    "BeforePageDisplay": "main"
-  },
-  "MessagesDirs": {
-    "MCBBSWikiUtils": ["i18n"]
-  },
-  "SpecialPages": {
-    "MCBBSCredit": "MediaWiki\\Extension\\MCBBSWiki\\SpecialMCBBSCredit",
-    "VME50": "MediaWiki\\Extension\\MCBBSWiki\\SpecialVME50"
-  },
-  "ExtensionMessagesFiles": {
-    "MCBBSWikiUtilsAlias": "MCBBSWikiUtils.i18n.alias.php"
-  },
-  "ResourceModules": {
-    "ext.mcbbswikiutils.credit": {
-      "packageFiles": ["credit.js","highcharts.vendor.js"],
-      "targets": ["desktop", "mobile"],
-      "messages":[
-        "mcbbscredit-notfound",
-        "mcbbscredit-timeout"
-      ]
-    },
-    "ext.mcbbswikiutils.credit-loader": {
-      "packageFiles": ["credit-loader.js"],
-      "targets": ["desktop", "mobile"]
-    },
-    "ext.mcbbswikiutils.avatar": {
-      "styles": "avatar.css",
-      "targets": ["desktop", "mobile"]
-    }
-  },
-  "ResourceFileModulePaths": {
-    "localBasePath": "resources",
-    "remoteExtPath": "MCBBSWikiUtils/resources"
-  },
-  "ConfigRegistry": {
-    "MCBBSWikiUtils": "GlobalVarConfig::newInstance"
-  },
-  "config": {
-    "UCenterURL": "",
-    "ExtImgWhiteList":[],
-    "MBWVER":"eee",
-    "MBWAPIURL":"http://localhost:18080/users/"
-  }
+	"name": "MCBBSWikiUtils",
+	"author": "Litwak913",
+	"url": "https://github.com/mcbbs-wiki/MW-Utils",
+	"description": "MCBBS Wiki Utils",
+	"version": "1.0",
+	"requires": {
+		"MediaWiki": ">= 1.31.0"
+	},
+	"license-name": "GPL-2.0-or-later",
+	"type": "other",
+	"manifest_version": 1,
+	"AutoloadNamespaces": {
+		"MediaWiki\\Extension\\MCBBSWiki\\": "includes/"
+	},
+	"HookHandlers": {
+		"main": {
+			"class": "MediaWiki\\Extension\\MCBBSWiki\\Hooks",
+			"services": [ "ConfigFactory" ]
+		}
+	},
+	"Hooks": {
+		"SkinAddFooterLinks": "main",
+		"ParserFirstCallInit": "main",
+		"BeforePageDisplay": "main"
+	},
+	"MessagesDirs": {
+		"MCBBSWikiUtils": [ "i18n" ]
+	},
+	"SpecialPages": {
+		"MCBBSCredit": "MediaWiki\\Extension\\MCBBSWiki\\SpecialMCBBSCredit",
+		"VME50": "MediaWiki\\Extension\\MCBBSWiki\\SpecialVME50"
+	},
+	"ExtensionMessagesFiles": {
+		"MCBBSWikiUtilsAlias": "MCBBSWikiUtils.i18n.alias.php"
+	},
+	"ResourceModules": {
+		"ext.mcbbswikiutils.credit": {
+			"packageFiles": [ "credit.js", "highcharts.vendor.js" ],
+			"targets": [ "desktop", "mobile" ],
+			"messages": [
+				"mcbbscredit-notfound",
+				"mcbbscredit-timeout"
+			]
+		},
+		"ext.mcbbswikiutils.credit-loader": {
+			"packageFiles": [ "credit-loader.js" ],
+			"targets": [ "desktop", "mobile" ]
+		},
+		"ext.mcbbswikiutils.avatar": {
+			"styles": "avatar.css",
+			"targets": [ "desktop", "mobile" ]
+		}
+	},
+	"ResourceFileModulePaths": {
+		"localBasePath": "resources",
+		"remoteExtPath": "MCBBSWikiUtils/resources"
+	},
+	"ConfigRegistry": {
+		"MCBBSWikiUtils": "GlobalVarConfig::newInstance"
+	},
+	"config": {
+		"UCenterURL": "",
+		"ExtImgWhiteList": [],
+		"MBWVER": "eee",
+		"MBWAPIURL": "http://localhost:18080/users/"
+	}
 }
