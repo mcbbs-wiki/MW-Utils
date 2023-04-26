@@ -29,10 +29,11 @@ class Utils {
 		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 		$userCacheKey = $cache->makeKey( 'bbsuser-' . $uid );
 		$userJson = $cache->get( $userCacheKey );
-		if ( !$userJson ) {
+		if ( $userJson === false ) {
 			wfDebugLog( 'bbsuser', "Fetch user $uid from API" );
 			$userJson = self::getBBSUserFromAPI( $uid );
 			if ( $userJson === false ) {
+				$cache->set( $userCacheKey, "NOTFOUND", 10800 );
 				return false;
 			}
 			$cache->set( $userCacheKey, $userJson, 10800 );
@@ -43,9 +44,13 @@ class Utils {
 	}
 
 	public static function getBBSUserValue( $userJson, $data = 'username' ) {
+		if ( $userJson === "NOTFOUND" || $userJson === false ) {
+			return false;
+		}
 		$user = FormatJson::decode( $userJson, true );
 		if ( !$user ) {
 			wfDebugLog( 'bbsuser', 'Failed to parse user' );
+			return false;
 		}
 		switch ( $data ) {
 			case 'uid':
