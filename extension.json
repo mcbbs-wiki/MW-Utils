@@ -43,6 +43,10 @@
 				"mcbbscredit-timeout"
 			]
 		},
+		"ext.mcbbswikiutils.skinview": {
+			"packageFiles": [ "skinshow.js", "skinview3d.vendor.js" ],
+			"targets": [ "desktop", "mobile" ]
+		},
 		"ext.mcbbswikiutils.credit-loader": {
 			"packageFiles": [ "credit-loader.js" ],
 			"targets": [ "desktop", "mobile" ]

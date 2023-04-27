@@ -38,11 +38,16 @@ class Hooks implements ParserFirstCallInitHook, SkinAddFooterLinksHook, BeforePa
 		$parser->setHook( 'ucenter-avatar', [ $this,'renderTagUCenterAvatar' ] );
 		$parser->setHook( 'mcbbs-credit',  [ $this,'renderTagMCBBSCredit' ] );
 		$parser->setHook( 'bilibili',  [ $this,'renderTagBilibili' ] );
+		$parser->setHook( 'skinview',  [ $this,'renderTagSkinview' ] );
 		$parser->setHook( 'ext-img',  [ $this,'renderTagExtimg' ] );
 		$parser->setFunctionHook( 'mcbbscreditvalue', [ $this,'renderCreditValue' ] );
 		$parser->setFunctionHook( 'inline-css', [ $this,'renderInlineCSS' ], Parser::SFH_OBJECT_ARGS );
 	}
-
+	public function renderTagSkinview( $input, array $args, Parser $parser, PPFrame $frame ) {
+		$test = $input;
+		$output = $parser->recursiveTagParse( $input, $frame );
+		trim($test);
+	}
 	public function renderInlineCSS( Parser $parser, $frame, $args ) {
 		$stripState = $parser->getStripState();
 		$realCSS = $stripState->unstripBoth( $args[0] );

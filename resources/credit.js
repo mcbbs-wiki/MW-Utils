@@ -95,5 +95,5 @@
 		} );
 		highcharts.chart( node, json );
 	}
-	$( main() );
+	$( main );
 }() );
