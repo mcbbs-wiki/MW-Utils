@@ -44,9 +44,20 @@ class Hooks implements ParserFirstCallInitHook, SkinAddFooterLinksHook, BeforePa
 		$parser->setFunctionHook( 'inline-css', [ $this,'renderInlineCSS' ], Parser::SFH_OBJECT_ARGS );
 	}
 	public function renderTagSkinview( $input, array $args, Parser $parser, PPFrame $frame ) {
-		$test = $input;
+		$parser->getOutput()->addModules(['ext.mcbbswikiutils.skinview']);
+		$isURL=filter_var($input,FILTER_VALIDATE_URL);
+		$width = $args['width'] ?? 250;
+		$height = $args['height'] ?? 350;
+		if($isURL!==false){
+			if(!Utils::checkDomain($input)){
+				return Html::element( 'strong',
+				[ 'class' => 'error' ],
+				 wfMessage( 'extimg-invalidurl' )->text() );
+			}
+		}
 		$output = $parser->recursiveTagParse( $input, $frame );
-		trim($test);
+
+		return Html::rawElement('div',['class'=>'skinview skinview-loading','style'=>"width:{$width}px;height:{$height}px;"],$output);
 	}
 	public function renderInlineCSS( Parser $parser, $frame, $args ) {
 		$stripState = $parser->getStripState();
@@ -77,8 +88,8 @@ class Hooks implements ParserFirstCallInitHook, SkinAddFooterLinksHook, BeforePa
 			return '';
 		}
 		if ( !Utils::checkDomain( $args['src'] ) ) {
-			return Html::element( 'p',
-			[ 'style' => 'color:#d33;font-size:larger;font-weight: bold;' ],
+			return Html::element( 'strong',
+			[ 'class' => 'error' ],
 			 wfMessage( 'extimg-invalidurl' )->text() );
 		}
 		$image = Html::element( 'img', [

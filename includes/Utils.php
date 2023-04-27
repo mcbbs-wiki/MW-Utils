@@ -10,7 +10,6 @@ class Utils {
 	public static function checkDomain( string $url ) {
 		global $wgExtImgWhiteList;
 		$domain = parse_url( $url, PHP_URL_HOST );
-
 		if ( in_array( $domain, $wgExtImgWhiteList ) ) {
 			return true;
 		}
