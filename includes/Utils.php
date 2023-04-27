@@ -40,11 +40,14 @@ class Utils {
 		} else {
 			wfDebugLog( 'bbsuser', "Fetch user $uid from cache" );
 		}
+		if ( $userJson === 'NOTFOUND' ) {
+			return false;
+		}
 		return $userJson;
 	}
 
 	public static function getBBSUserValue( $userJson, $data = 'username' ) {
-		if ( $userJson === "NOTFOUND" || $userJson === false ) {
+		if ( $userJson === false ) {
 			return false;
 		}
 		$user = FormatJson::decode( $userJson, true );

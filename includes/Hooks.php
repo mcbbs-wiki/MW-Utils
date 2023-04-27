@@ -40,6 +40,15 @@ class Hooks implements ParserFirstCallInitHook, SkinAddFooterLinksHook, BeforePa
 		$parser->setHook( 'bilibili',  [ $this,'renderTagBilibili' ] );
 		$parser->setHook( 'ext-img',  [ $this,'renderTagExtimg' ] );
 		$parser->setFunctionHook( 'mcbbscreditvalue', [ $this,'renderCreditValue' ] );
+		$parser->setFunctionHook( 'inline-css', [ $this,'renderInlineCSS' ] );
+	}
+
+	public function renderInlineCSS( Parser $parser, $css ) {
+		$dataUrl = 'data:text/css;charset=UTF-8;base64,';
+		$url = $dataUrl . base64_encode( $css );
+		$head = Html::linkedStyle( $url );
+		$parser->getOutput()->addHeadItem( $head );
+		return '';
 	}
 
 	public function renderCreditValue( Parser $parser, $uid = '3038', $data = 'diamond' ) {
