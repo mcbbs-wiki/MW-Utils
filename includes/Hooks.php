@@ -56,7 +56,7 @@ class Hooks implements ParserFirstCallInitHook, SkinAddFooterLinksHook, BeforePa
 			}
 		}
 		$output = $parser->recursiveTagParse( $input, $frame );
-
+		$controller = Html::element('div',['class'=>'skinview-controller']);
 		return Html::rawElement('div',['class'=>'skinview skinview-loading','style'=>"width:{$width}px;height:{$height}px;"],$output);
 	}
 	public function renderInlineCSS( Parser $parser, $frame, $args ) {
