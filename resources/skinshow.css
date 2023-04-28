@@ -1,9 +1,15 @@
 .skinview-loading {
-    visibility: hidden;
+	visibility: hidden;
 }
+
 .skinview-controller-fix {
-    clear: both;
+	clear: both;
 }
+
 .skinview-controller-lite {
-    float: right;
+	float: right;
+}
+
+.skinview-controller {
+	text-align: center;
 }
