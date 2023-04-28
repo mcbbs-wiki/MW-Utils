@@ -1,8 +1,6 @@
 /* eslint-disable compat/compat */
 ( function () {
 	const skinview3d = require( 'skinview3d' );
-	const idleAnimation = new skinview3d.IdleAnimation();
-	const walkAnimation = new skinview3d.WalkingAnimation();
 	function init() {
 		Array.from( document.getElementsByClassName( 'skinview-lite' ) ).forEach( ( element ) => {
 			// const user = element.getAttribute( 'data-user' );
@@ -49,13 +47,13 @@
 			}
 			if ( ev.button === 0 ) {
 				if ( parent.dataset.speed === 'slow' ) {
-					setViewerAction( viewer, walkAnimation, 1 );
+					setViewerAction( viewer, 'walk', 1 );
 					parent.dataset.speed = 'fast';
 				} else if ( parent.dataset.speed === 'fast' ) {
-					setViewerAction( viewer, idleAnimation, 1 );
+					setViewerAction( viewer, 'idle', 1 );
 					parent.dataset.speed = 'stop';
 				} else if ( parent.dataset.speed === 'stop' ) {
-					setViewerAction( viewer, walkAnimation, 0.5 );
+					setViewerAction( viewer, 'walk', 0.5 );
 					parent.dataset.speed = 'slow';
 				}
 			} else if ( ev.button === 2 ) {
@@ -67,8 +65,13 @@
 		$( node ).append( popup.$element );
 	}
 	function setViewerAction( viewer, action, speed ) {
-		viewer.animation = action;
-		viewer.animation.speed = speed;
+		if ( action === 'idle' ) {
+			viewer.animation = viewer.mbwAnimation.idle;
+			viewer.animation.speed = speed;
+		} else if ( action === 'walk' ) {
+			viewer.animation = viewer.mbwAnimation.walk;
+			viewer.animation.speed = speed;
+		}
 	}
 	function setSkin( node, url ) {
 		const parent = node.parentElement;
@@ -83,15 +86,19 @@
 			zoom: 0.9
 		};
 		const viewer = new skinview3d.SkinViewer( option );
+		viewer.mbwAnimation = {
+			idle: new skinview3d.IdleAnimation(),
+			walk: new skinview3d.WalkingAnimation()
+		};
 		viewer.globalLight.intensity = 0.5;
 		viewer.cameraLight.intensity = 0.5;
 		node.appendChild( canvas );
 		if ( parent.dataset.speed === 'slow' ) {
-			setViewerAction( viewer, walkAnimation, 0.5 );
+			setViewerAction( viewer, 'walk', 0.5 );
 		} else if ( parent.dataset.speed === 'fast' ) {
-			setViewerAction( viewer, walkAnimation, 1 );
+			setViewerAction( viewer, 'walk', 1 );
 		} else if ( parent.dataset.speed === 'stop' ) {
-			setViewerAction( viewer, idleAnimation, 1 );
+			setViewerAction( viewer, 'idle', 1 );
 		}
 		parent.classList.remove( 'skinview-loading' );
 		return viewer;
