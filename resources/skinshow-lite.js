@@ -23,13 +23,13 @@
 		const parent = node.parentElement;
 		const popup = new OO.ui.PopupButtonWidget( {
 			icon: 'info',
-			label: mw.message( 'skinview-help' ).text(),
+			label: mw.msg( 'skinview-help' ),
 			framed: false,
 			invisibleLabel: true,
 			popup: {
 				head: true,
 				label: mw.message( 'skinview-help' ).text(),
-				$content: $( '<p>' ).text( mw.message( 'skinview-help-content-lite' ).text() ),
+				$content: $( '<p>' ).append( mw.message( 'skinview-help-content-lite' ).parseDom() ),
 				padded: true,
 				align: 'backwards',
 				autoFlip: false

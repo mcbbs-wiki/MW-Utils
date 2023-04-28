@@ -12,7 +12,7 @@
 	"skinview-slow": "慢走",
 	"skinview-fast": "快走",
 	"skinview-reset": "重置镜头",
-	"skinview-help-content": "按住鼠标左键并拖动可以移动视角，鼠标滚轮可以缩放镜头。",
-	"skinview-help-content-lite": "点击鼠标左键可以在慢走、快走、站立三种动作之间切换。点击鼠标右键可以重置镜头。按住鼠标左键并拖动可以移动视角，鼠标滚轮可以缩放镜头。",
+	"skinview-help-content": "<ul><li>按住鼠标左键并拖动可以移动视角。</li><li>鼠标滚轮可以缩放镜头。</li></ul>",
+	"skinview-help-content-lite": "<ul><li>点击鼠标左键可以在慢走、快走、站立三种动作之间切换。</li><li>点击鼠标右键可以重置镜头。</li><li>按住鼠标左键并拖动可以移动视角。</li><li>鼠标滚轮可以缩放镜头。</li></ul>",
 	"skinview-help": "皮肤预览帮助"
 }

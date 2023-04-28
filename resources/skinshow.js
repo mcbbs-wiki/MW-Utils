@@ -23,25 +23,25 @@
 		const parent = node.parentElement;
 		const popup = new OO.ui.PopupButtonWidget( {
 			icon: 'info',
-			label: mw.message( 'skinview-help' ).text(),
+			label: mw.msg( 'skinview-help' ),
 			framed: false,
 			invisibleLabel: true,
 			popup: {
 				head: true,
-				label: mw.message( 'skinview-help' ).text(),
-				$content: $( '<p>' ).text( mw.message( 'skinview-help-content' ).text() ),
+				label: mw.msg( 'skinview-help' ),
+				$content: $( '<p>' ).append( mw.message( 'skinview-help-content' ).parseDom() ),
 				padded: true,
 				align: 'backwards',
 				autoFlip: false
 			}
 		} );
-		const pauseButton = new OO.ui.ButtonOptionWidget( { icon: 'pause', data: 'stop', title: mw.message( 'skinview-pause' ).text() } );
-		const slowButton = new OO.ui.ButtonOptionWidget( { icon: 'next', data: 'slow', title: mw.message( 'skinview-slow' ).text() } );
-		const fastButton = new OO.ui.ButtonOptionWidget( { icon: 'doubleChevronEnd', data: 'fast', title: mw.message( 'skinview-fast' ).text() } );
+		const pauseButton = new OO.ui.ButtonOptionWidget( { icon: 'pause', data: 'stop', title: mw.msg( 'skinview-pause' ) } );
+		const slowButton = new OO.ui.ButtonOptionWidget( { icon: 'next', data: 'slow', title: mw.msg( 'skinview-slow' ) } );
+		const fastButton = new OO.ui.ButtonOptionWidget( { icon: 'doubleChevronEnd', data: 'fast', title: mw.msg( 'skinview-fast' ) } );
 		const speedSelect = new OO.ui.ButtonSelectWidget( {
 			items: [ pauseButton, slowButton, fastButton ] }
 		);
-		const resetButton = new OO.ui.ButtonWidget( { icon: 'reload', title: mw.message( 'skinview-reset' ).text() } );
+		const resetButton = new OO.ui.ButtonWidget( { icon: 'reload', title: mw.msg( 'skinview-reset' ) } );
 		const controller = new OO.ui.HorizontalLayout( {
 			items: [ speedSelect, resetButton, popup ] }
 		);
