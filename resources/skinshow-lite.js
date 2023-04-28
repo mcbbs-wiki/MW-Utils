@@ -4,10 +4,10 @@
 	const idleAnimation = new skinview3d.IdleAnimation();
 	const walkAnimation = new skinview3d.WalkingAnimation();
 	function init() {
-		Array.from( document.getElementsByClassName( 'skinview' ) ).forEach( ( element ) => {
+		Array.from( document.getElementsByClassName( 'skinview-lite' ) ).forEach( ( element ) => {
 			// const user = element.getAttribute( 'data-user' );
 			const skincanvas = element.getElementsByClassName( 'skinview-canvas' )[ 0 ];
-			const skincontroller = element.getElementsByClassName( 'skinview-controller' )[ 0 ];
+			const skincontroller = element.getElementsByClassName( 'skinview-controller-lite' )[ 0 ];
 			const url = getSkinURL( skincanvas );
 			const viewer = setSkin( skincanvas, url );
 			setSkinController( skincontroller, viewer );
@@ -31,43 +31,40 @@
 			popup: {
 				head: true,
 				label: mw.message( 'skinview-help' ).text(),
-				$content: $( '<p>' ).text( mw.message( 'skinview-help-content' ).text() ),
+				$content: $( '<p>' ).text( mw.message( 'skinview-help-content-lite' ).text() ),
 				padded: true,
 				align: 'backwards',
 				autoFlip: false
 			}
 		} );
-		const pauseButton = new OO.ui.ButtonOptionWidget( { icon: 'pause', data: 'stop', title: mw.message( 'skinview-pause' ).text() } );
-		const slowButton = new OO.ui.ButtonOptionWidget( { icon: 'next', data: 'slow', title: mw.message( 'skinview-slow' ).text() } );
-		const fastButton = new OO.ui.ButtonOptionWidget( { icon: 'doubleChevronEnd', data: 'fast', title: mw.message( 'skinview-fast' ).text() } );
-		const speedSelect = new OO.ui.ButtonSelectWidget( {
-			items: [ pauseButton, slowButton, fastButton ] }
-		);
-		const resetButton = new OO.ui.ButtonWidget( { icon: 'reload', title: mw.message( 'skinview-reset' ).text() } );
-		const controller = new OO.ui.HorizontalLayout( {
-			items: [ speedSelect, resetButton, popup ] }
-		);
-		if ( parent.dataset.speed === 'slow' ) {
-			speedSelect.selectItem( slowButton );
-		} else if ( parent.dataset.speed === 'fast' ) {
-			speedSelect.selectItem( fastButton );
-		} else if ( parent.dataset.speed === 'stop' ) {
-			speedSelect.selectItem( pauseButton );
-		}
-		resetButton.on( 'click', () => {
-			viewer.resetCameraPose();
+		const pos = { x: 0, y: 0 };
+		viewer.canvas.addEventListener( 'mousedown', ( ev ) => {
+			pos.x = ev.x;
+			pos.y = ev.y;
+			ev.preventDefault();
 		} );
-		speedSelect.on( 'choose', ( item ) => {
-			parent.dataset.speed = item.data;
-			if ( parent.dataset.speed === 'slow' ) {
-				setViewerAction( viewer, walkAnimation, 0.5 );
-			} else if ( parent.dataset.speed === 'fast' ) {
-				setViewerAction( viewer, walkAnimation, 1 );
-			} else if ( parent.dataset.speed === 'stop' ) {
-				setViewerAction( viewer, idleAnimation, 1 );
+		viewer.canvas.addEventListener( 'mouseup', ( ev ) => {
+			if ( Math.abs( pos.x - ev.x ) > 2 || Math.abs( pos.y - ev.y ) > 2 ) {
+				return;
 			}
+			if ( ev.button === 0 ) {
+				if ( parent.dataset.speed === 'slow' ) {
+					setViewerAction( viewer, walkAnimation, 1 );
+					parent.dataset.speed = 'fast';
+				} else if ( parent.dataset.speed === 'fast' ) {
+					setViewerAction( viewer, idleAnimation, 1 );
+					parent.dataset.speed = 'stop';
+				} else if ( parent.dataset.speed === 'stop' ) {
+					setViewerAction( viewer, walkAnimation, 0.5 );
+					parent.dataset.speed = 'slow';
+				}
+			} else if ( ev.button === 2 ) {
+				viewer.resetCameraPose();
+			}
+			ev.preventDefault();
+
 		} );
-		$( node ).append( controller.$element );
+		$( node ).append( popup.$element );
 	}
 	function setViewerAction( viewer, action, speed ) {
 		viewer.animation = action;

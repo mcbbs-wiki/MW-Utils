@@ -1,6 +1,6 @@
 /* eslint-disable compat/compat */
 ( function () {
-	const highcharts = require( './highcharts.vendor.js' );
+	const highcharts = require( 'highcharts' );
 	const defaultOption = {
 		chart: {
 			backgroundColor:

@@ -36,17 +36,20 @@
 	},
 	"ResourceModules": {
 		"ext.mcbbswikiutils.credit": {
-			"packageFiles": [ "credit.js", "highcharts.vendor.js" ],
+			"packageFiles": [ "credit.js" ],
 			"targets": [ "desktop", "mobile" ],
 			"messages": [
 				"mcbbscredit-notfound",
 				"mcbbscredit-timeout"
+			],
+			"dependencies": [
+				"highcharts"
 			]
 		},
 		"ext.mcbbswikiutils.skinview": {
-			"packageFiles": [ "skinshow.js", "skinview3d.vendor.js" ],
+			"packageFiles": [ "skinshow.js" ],
 			"targets": [ "desktop", "mobile" ],
-			"messages":[
+			"messages": [
 				"skinview-pause",
 				"skinview-slow",
 				"skinview-fast",
@@ -55,6 +58,7 @@
 				"skinview-help-content"
 			],
 			"dependencies": [
+				"skinview3d",
 				"oojs-ui-core",
 				"oojs-ui-widgets",
 				"oojs-ui.styles.icons-movement",
@@ -62,20 +66,32 @@
 				"oojs-ui.styles.icons-media"
 			]
 		},
-		"ext.mcbbswikiutils.credit-loader": {
-			"packageFiles": [ "credit-loader.js" ],
-			"targets": [ "desktop", "mobile" ]
-		},
-		"ext.mcbbswikiutils.skinview-loader": {
-			"packageFiles": [ "skinview-loader.js" ],
-			"targets": [ "desktop", "mobile" ]
+		"ext.mcbbswikiutils.skinview-lite": {
+			"packageFiles": [ "skinshow-lite.js" ],
+			"targets": [ "desktop", "mobile" ],
+			"messages": [
+				"skinview-help",
+				"skinview-help-content-lite"
+			],
+			"dependencies": [
+				"skinview3d",
+				"oojs-ui-core"
+			]
 		},
 		"ext.mcbbswikiutils.skinview.styles": {
-			"styles":"skinshow.css",
+			"styles": "skinshow.css",
 			"targets": [ "desktop", "mobile" ]
 		},
 		"ext.mcbbswikiutils.avatar": {
 			"styles": "avatar.css",
+			"targets": [ "desktop", "mobile" ]
+		},
+		"skinview3d": {
+			"packageFiles": [ "skinview3d.vendor.js" ],
+			"targets": [ "desktop", "mobile" ]
+		},
+		"highcharts": {
+			"packageFiles": [ "highcharts.vendor.js" ],
 			"targets": [ "desktop", "mobile" ]
 		}
 	},

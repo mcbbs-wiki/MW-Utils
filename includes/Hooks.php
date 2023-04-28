@@ -39,19 +39,44 @@ class Hooks implements ParserFirstCallInitHook, SkinAddFooterLinksHook, BeforePa
 		$parser->setHook( 'mcbbs-credit',  [ $this,'renderTagMCBBSCredit' ] );
 		$parser->setHook( 'bilibili',  [ $this,'renderTagBilibili' ] );
 		$parser->setHook( 'skinview',  [ $this,'renderTagSkinview' ] );
+		$parser->setHook( 'skinview-lite',  [ $this,'renderTagSkinviewLite' ] );
 		$parser->setHook( 'ext-img',  [ $this,'renderTagExtimg' ] );
 		$parser->setFunctionHook( 'mcbbscreditvalue', [ $this,'renderCreditValue' ] );
 		$parser->setFunctionHook( 'inline-css', [ $this,'renderInlineCSS' ], Parser::SFH_OBJECT_ARGS );
 	}
 
-	public function renderTagSkinview( $input, array $args, Parser $parser, PPFrame $frame ) {
+	public function renderTagSkinviewLite( $input, array $args, Parser $parser, PPFrame $frame ) {
 		$parser->getOutput()->addModuleStyles( [ 'ext.mcbbswikiutils.skinview.styles' ] );
-		$parser->getOutput()->addModules( [ 'ext.mcbbswikiutils.skinview-loader' ] );
+		$parser->getOutput()->addModules( [ 'ext.mcbbswikiutils.skinview-lite' ] );
 		$isURL = filter_var( $input, FILTER_VALIDATE_URL );
 		$width = $args['width'] ?? 250;
 		$height = $args['height'] ?? 350;
 		$speed = $args['speed'] ?? 'slow';
-		$status = $args['status'] ?? 'run';
+		if ( $isURL !== false ) {
+			if ( !Utils::checkDomain( $input ) ) {
+				return Html::element( 'strong',
+				[ 'class' => 'error' ],
+				 wfMessage( 'extimg-invalidurl' )->text() );
+			}
+		}
+		$output = $parser->recursiveTagParse( $input, $frame );
+		$controller = Html::element( 'div', [ 'class' => 'skinview-controller-lite' ] );
+		$fix = Html::element( 'div', [ 'class' => 'skinview-controller-fix' ] );
+		$canvas = Html::rawElement( 'div', [ 'class' => 'skinview-canvas','style' => "height:{$height}px;" ], $output );
+		return Html::rawElement( 'div', [
+				'class' => 'skinview-lite skinview-loading',
+				'data-speed' => $speed,
+				'style' => "width:{$width}px;"
+			], $canvas . $controller . $fix );
+	}
+
+	public function renderTagSkinview( $input, array $args, Parser $parser, PPFrame $frame ) {
+		$parser->getOutput()->addModuleStyles( [ 'ext.mcbbswikiutils.skinview.styles' ] );
+		$parser->getOutput()->addModules( [ 'ext.mcbbswikiutils.skinview' ] );
+		$isURL = filter_var( $input, FILTER_VALIDATE_URL );
+		$width = $args['width'] ?? 250;
+		$height = $args['height'] ?? 350;
+		$speed = $args['speed'] ?? 'slow';
 		if ( $isURL !== false ) {
 			if ( !Utils::checkDomain( $input ) ) {
 				return Html::element( 'strong',
@@ -64,7 +89,7 @@ class Hooks implements ParserFirstCallInitHook, SkinAddFooterLinksHook, BeforePa
 		$canvas = Html::rawElement( 'div', [ 'class' => 'skinview-canvas','style' => "height:{$height}px;" ], $output );
 		return Html::rawElement( 'div', [
 				'class' => 'skinview skinview-loading',
-				'data-status' => $status,'data-speed' => $speed,
+				'data-speed' => $speed,
 				'style' => "width:{$width}px;"
 			], $canvas . $controller );
 	}
@@ -134,7 +159,7 @@ class Hooks implements ParserFirstCallInitHook, SkinAddFooterLinksHook, BeforePa
 	}
 
 	public function renderTagMCBBSCredit( $input, array $args, Parser $parser, PPFrame $frame ) {
-		$parser->getOutput()->addModules( [ 'ext.mcbbswikiutils.credit-loader' ] );
+		$parser->getOutput()->addModules( [ 'ext.mcbbswikiutils.credit' ] );
 		$uid = isset( $args['uid'] ) ? htmlspecialchars( $args['uid'] ) : '1';
 		$userJson = Utils::getBBSUserJson( $uid );
 		if ( $userJson === false ) {

@@ -1,3 +1,9 @@
 .skinview-loading {
     visibility: hidden;
 }
+.skinview-controller-fix {
+    clear: both;
+}
+.skinview-controller-lite {
+    float: right;
+}
