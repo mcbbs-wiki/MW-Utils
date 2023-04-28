@@ -7,5 +7,11 @@
 	"mcbbscredit-input-uid": "论坛 UID",
 	"mcbbscredit-form-legend": "查询 MCBBS 用户积分",
 	"ucenteravatar-noucenterurl": "错误：未设置 $wgUCenterURL。",
-	"extimg-invalidurl": "不允许的域名。"
+	"extimg-invalidurl": "不允许的域名。",
+	"skinview-pause":"站立",
+	"skinview-slow":"慢走",
+	"skinview-fast":"快走",
+	"skinview-reset":"重置镜头",
+	"skinview-help-content":"按住鼠标左键并拖动可以移动视角，鼠标滚轮可以缩放镜头。",
+	"skinview-help":"皮肤预览帮助"
 }

@@ -45,11 +45,33 @@
 		},
 		"ext.mcbbswikiutils.skinview": {
 			"packageFiles": [ "skinshow.js", "skinview3d.vendor.js" ],
-			"styles":"skinshow.css",
-			"targets": [ "desktop", "mobile" ]
+			"targets": [ "desktop", "mobile" ],
+			"messages":[
+				"skinview-pause",
+				"skinview-slow",
+				"skinview-fast",
+				"skinview-reset",
+				"skinview-help",
+				"skinview-help-content"
+			],
+			"dependencies": [
+				"oojs-ui-core",
+				"oojs-ui-widgets",
+				"oojs-ui.styles.icons-movement",
+				"oojs-ui.styles.icons-interactions",
+				"oojs-ui.styles.icons-media"
+			]
 		},
 		"ext.mcbbswikiutils.credit-loader": {
 			"packageFiles": [ "credit-loader.js" ],
+			"targets": [ "desktop", "mobile" ]
+		},
+		"ext.mcbbswikiutils.skinview-loader": {
+			"packageFiles": [ "skinview-loader.js" ],
+			"targets": [ "desktop", "mobile" ]
+		},
+		"ext.mcbbswikiutils.skinview.styles": {
+			"styles":"skinshow.css",
 			"targets": [ "desktop", "mobile" ]
 		},
 		"ext.mcbbswikiutils.avatar": {

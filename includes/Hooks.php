@@ -43,22 +43,32 @@ class Hooks implements ParserFirstCallInitHook, SkinAddFooterLinksHook, BeforePa
 		$parser->setFunctionHook( 'mcbbscreditvalue', [ $this,'renderCreditValue' ] );
 		$parser->setFunctionHook( 'inline-css', [ $this,'renderInlineCSS' ], Parser::SFH_OBJECT_ARGS );
 	}
+
 	public function renderTagSkinview( $input, array $args, Parser $parser, PPFrame $frame ) {
-		$parser->getOutput()->addModules(['ext.mcbbswikiutils.skinview']);
-		$isURL=filter_var($input,FILTER_VALIDATE_URL);
+		$parser->getOutput()->addModuleStyles( [ 'ext.mcbbswikiutils.skinview.styles' ] );
+		$parser->getOutput()->addModules( [ 'ext.mcbbswikiutils.skinview-loader' ] );
+		$isURL = filter_var( $input, FILTER_VALIDATE_URL );
 		$width = $args['width'] ?? 250;
 		$height = $args['height'] ?? 350;
-		if($isURL!==false){
-			if(!Utils::checkDomain($input)){
+		$speed = $args['speed'] ?? 'slow';
+		$status = $args['status'] ?? 'run';
+		if ( $isURL !== false ) {
+			if ( !Utils::checkDomain( $input ) ) {
 				return Html::element( 'strong',
 				[ 'class' => 'error' ],
 				 wfMessage( 'extimg-invalidurl' )->text() );
 			}
 		}
 		$output = $parser->recursiveTagParse( $input, $frame );
-		$controller = Html::element('div',['class'=>'skinview-controller']);
-		return Html::rawElement('div',['class'=>'skinview skinview-loading','style'=>"width:{$width}px;height:{$height}px;"],$output);
+		$controller = Html::element( 'div', [ 'class' => 'skinview-controller' ] );
+		$canvas = Html::rawElement( 'div', [ 'class' => 'skinview-canvas','style' => "height:{$height}px;" ], $output );
+		return Html::rawElement( 'div', [
+				'class' => 'skinview skinview-loading',
+				'data-status' => $status,'data-speed' => $speed,
+				'style' => "width:{$width}px;"
+			], $canvas . $controller );
 	}
+
 	public function renderInlineCSS( Parser $parser, $frame, $args ) {
 		$stripState = $parser->getStripState();
 		$realCSS = $stripState->unstripBoth( $args[0] );
