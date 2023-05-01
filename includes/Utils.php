@@ -26,7 +26,7 @@ class Utils {
 
 	public static function getBBSUserJson( $uid ) {
 		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
-		$userCacheKey = $cache->makeKey( 'bbsuser-' . $uid );
+		$userCacheKey = $cache->makeKey( 'bbsuser:' . $uid );
 		$userJson = $cache->get( $userCacheKey );
 		if ( $userJson === false ) {
 			wfDebugLog( 'bbsuser', "Fetch user $uid from API" );
