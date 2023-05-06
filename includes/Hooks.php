@@ -32,6 +32,8 @@ class Hooks implements ParserFirstCallInitHook, SkinAddFooterLinksHook, BeforePa
 
 	public function onBeforePageDisplay( $out, $skin ): void {
 		$out->addJsConfigVars( 'wgMBWVER', $this->appver );
+		$out->addModuleStyles( 'ext.mcbbswikiutils.testie.styles' );
+		$out->addModules( "ext.mcbbswikiutils.testie" );
 	}
 
 	public function onParserFirstCallInit( $parser ) {
@@ -41,6 +43,7 @@ class Hooks implements ParserFirstCallInitHook, SkinAddFooterLinksHook, BeforePa
 		$parser->setHook( 'skinview',  [ $this,'renderTagSkinview' ] );
 		$parser->setHook( 'skinview-lite',  [ $this,'renderTagSkinviewLite' ] );
 		$parser->setHook( 'ext-img',  [ $this,'renderTagExtimg' ] );
+		$parser->setHook( '163music',  [ $this,'render163Music' ] );
 		$parser->setFunctionHook( 'mcbbscreditvalue', [ $this,'renderCreditValue' ] );
 		$parser->setFunctionHook( 'inline-css', [ $this,'renderInlineCSS' ], Parser::SFH_OBJECT_ARGS );
 	}
@@ -68,6 +71,20 @@ class Hooks implements ParserFirstCallInitHook, SkinAddFooterLinksHook, BeforePa
 				'data-speed' => $speed,
 				'style' => "width:{$width}px;"
 			], $canvas . $controller . $fix );
+	}
+
+	public function render163Music( $input, array $args, Parser $parser, PPFrame $frame ) {
+		$musicId = $args['id'];
+		$autoplay = $args['auto'] ?? 0;
+		$width = $args['width'] ?? 300;
+		$height = $args['height'] ?? 66;
+		$src = "https://music.163.com/outchain/player?type=2&id=$musicId&auto=$autoplay&height=$height";
+		$embed = Html::element( 'embed', [
+			'width' => $width,
+			'height' => $height + 20,
+			'src' => $src
+		] );
+		return $embed;
 	}
 
 	public function renderTagSkinview( $input, array $args, Parser $parser, PPFrame $frame ) {

@@ -86,6 +86,17 @@
 			"styles": "avatar.css",
 			"targets": [ "desktop", "mobile" ]
 		},
+		"ext.mcbbswikiutils.testie": {
+			"packageFiles": [ "testie.js" ],
+			"dependencies": [
+				"jquery.client"
+			],
+			"targets": [ "desktop", "mobile" ]
+		},
+		"ext.mcbbswikiutils.testie.styles": {
+			"styles": "testie.css",
+			"targets": [ "desktop", "mobile" ]
+		},
 		"skinview3d": {
 			"packageFiles": [ "skinview3d.vendor.js" ],
 			"targets": [ "desktop", "mobile" ]

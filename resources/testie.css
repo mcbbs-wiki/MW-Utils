@@ -1,0 +1,6 @@
+.ie-warning {
+	color: #f00;
+	border: 1px solid #f00;
+	line-height: 2.5em;
+	background-color: #ffd9d9;
+}
