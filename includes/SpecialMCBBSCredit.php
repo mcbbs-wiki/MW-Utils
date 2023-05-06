@@ -42,7 +42,7 @@ class SpecialMCBBSCredit extends SpecialPage {
 			->prepareForm()
 			->displayForm( false );
 		if ( $hasuid ) {
-			$output->addModules( [ 'ext.mcbbswikiutils.credit-loader' ] );
+			$output->addModules( [ 'ext.mcbbswikiutils.credit' ] );
 			$userJson = Utils::getBBSUserJson( $uid );
 			$html = Html::element( 'div', [
 				'class' => 'userpie',
