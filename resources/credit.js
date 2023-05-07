@@ -48,12 +48,11 @@
 		} );
 	}
 	function getPIE( node, user ) {
-		mw.track( 'bbswiki.userpie.get', user );
 		const creditObj = JSON.parse( user ),
 			creditsObj = creditObj.credits,
 			activites = creditObj.activites,
 			nickname = creditObj.nickname;
-
+		mw.track( 'bbswiki.userpie.get', creditObj.uid );
 		const post = activites.post,
 			thread = activites.thread,
 			digiest = activites.digiest,
