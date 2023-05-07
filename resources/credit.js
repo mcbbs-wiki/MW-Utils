@@ -48,6 +48,7 @@
 		} );
 	}
 	function getPIE( node, user ) {
+		mw.track( 'bbswiki.userpie.get', user );
 		const creditObj = JSON.parse( user ),
 			creditsObj = creditObj.credits,
 			activites = creditObj.activites,

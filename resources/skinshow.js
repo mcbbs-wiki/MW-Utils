@@ -3,10 +3,10 @@
 	const skinview3d = require( 'skinview3d' );
 	function init() {
 		Array.from( document.getElementsByClassName( 'skinview' ) ).forEach( ( element ) => {
-			// const user = element.getAttribute( 'data-user' );
 			const skincanvas = element.getElementsByClassName( 'skinview-canvas' )[ 0 ];
 			const skincontroller = element.getElementsByClassName( 'skinview-controller' )[ 0 ];
 			const url = getSkinURL( skincanvas );
+			mw.track( 'bbswiki.skinview.get', url );
 			const viewer = setSkin( skincanvas, url );
 			setSkinController( skincontroller, viewer );
 		} );

@@ -7,6 +7,7 @@
 			const skincanvas = element.getElementsByClassName( 'skinview-canvas' )[ 0 ];
 			const skincontroller = element.getElementsByClassName( 'skinview-controller-lite' )[ 0 ];
 			const url = getSkinURL( skincanvas );
+			mw.track( 'bbswiki.skinviewlite.get', url );
 			const viewer = setSkin( skincanvas, url );
 			setSkinController( skincontroller, viewer );
 		} );
