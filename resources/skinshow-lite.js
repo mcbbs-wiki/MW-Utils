@@ -7,10 +7,18 @@
 			const skincanvas = element.getElementsByClassName( 'skinview-canvas' )[ 0 ];
 			const skincontroller = element.getElementsByClassName( 'skinview-controller-lite' )[ 0 ];
 			const url = getSkinURL( skincanvas );
-			mw.track( 'bbswiki.skinviewlite.get', url );
-			const viewer = setSkin( skincanvas, url );
-			setSkinController( skincontroller, viewer );
+			const interval = setInterval( function () {
+				if ( skincanvas.offsetWidth > 0 ) {
+					initSkin( skincanvas, skincontroller, url );
+					clearInterval( interval );
+				}
+			} );
 		} );
+	}
+	function initSkin( skincanvas, skincontroller, url ) {
+		mw.track( 'bbswiki.skinviewlite.get', url );
+		const viewer = setSkin( skincanvas, url );
+		setSkinController( skincontroller, viewer );
 	}
 	function getSkinURL( node ) {
 		const link = node.firstElementChild;
