@@ -29,7 +29,8 @@
 	},
 	"SpecialPages": {
 		"MCBBSCredit": "MediaWiki\\Extension\\MCBBSWiki\\SpecialMCBBSCredit",
-		"VME50": "MediaWiki\\Extension\\MCBBSWiki\\SpecialVME50"
+		"VME50": "MediaWiki\\Extension\\MCBBSWiki\\SpecialVME50",
+		"SaltToolbox": "MediaWiki\\Extension\\MCBBSWiki\\SpecialSaltToolbox"
 	},
 	"ExtensionMessagesFiles": {
 		"MCBBSWikiUtilsAlias": "MCBBSWikiUtils.i18n.alias.php"
@@ -95,6 +96,11 @@
 		},
 		"ext.mcbbswikiutils.testie.styles": {
 			"styles": "testie.css",
+			"targets": [ "desktop", "mobile" ]
+		},
+		"ext.mcbbswikiutils.salttool.contrast": {
+			"styles": "salttool.contrast.css",
+			"packageFiles": ["salttool.contrast.js"],
 			"targets": [ "desktop", "mobile" ]
 		},
 		"skinview3d": {
