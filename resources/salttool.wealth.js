@@ -5,7 +5,6 @@
 	function main() {
 		wealthSim();
 	}
-	// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	function wealthSim() {
 		const elems = document.querySelectorAll( '.salt-acquire-wealth-simulator:not([done])' );
 		if ( elems.length < 1 ) {
