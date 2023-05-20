@@ -14,18 +14,18 @@ class SaltToolContrastCalculator implements ISaltTool {
         $out->addModules(['ext.mcbbswikiutils.salttool.contrast']);
         $color1Input=Html::element('input',[
             'maxlength'=>20,
-            'placeholder'=>'请输入文字颜色，支持格式“#fff”“#ffffff”“rgb(255,255,255)”'
+            'placeholder'=>$out->msg('salttoolbox-contrast-color1input')->text()
         ]);
         $color1Show=Html::element('div',['class'=>'color-show']);
         $color1=Html::rawElement('div',['class'=>'color left'],$color1Input.$color1Show);
         $color2Input=Html::element('input',[
             'maxlength'=>20,
-            'placeholder'=>'请输入背景颜色，支持格式“#fff”“#ffffff”“rgb(255,255,255)”'
+            'placeholder'=>$out->msg('salttoolbox-contrast-color2input')->text()
         ]);
         $color2Show=Html::element('div',['class'=>'color-show']);
         $color2=Html::rawElement('div',['class'=>'color right'],$color2Input.$color2Show);
-        $resShow=Html::element('div',['class'=>'res-show'],'正文文字ABCD');
-        $resShowBig=Html::element('div',['class'=>'res-show big'],'大号字体ABC');
+        $resShow=Html::element('div',['class'=>'res-show'],$out->msg('salttoolbox-contrast-res')->text());
+        $resShowBig=Html::element('div',['class'=>'res-show big'],$out->msg('salttoolbox-contrast-resbig')->text());
         $resText=Html::element('div',['class'=>'res-text']);
         $res=Html::rawElement('div',['class'=>'res'],$resShow.$resShowBig.$resText);
         $div=Html::rawElement('div',['id'=>'saltContrastCalculator'],$color1.$color2.$res);

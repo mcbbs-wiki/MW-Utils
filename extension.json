@@ -39,6 +39,7 @@
 		"ext.mcbbswikiutils.credit": {
 			"packageFiles": [ "credit.js" ],
 			"targets": [ "desktop", "mobile" ],
+			"es6":true,
 			"messages": [
 				"mcbbscredit-notfound",
 				"mcbbscredit-timeout"
@@ -50,6 +51,7 @@
 		"ext.mcbbswikiutils.skinview": {
 			"packageFiles": [ "skinshow.js" ],
 			"targets": [ "desktop", "mobile" ],
+			"es6":true,
 			"messages": [
 				"skinview-pause",
 				"skinview-slow",
@@ -70,6 +72,7 @@
 		"ext.mcbbswikiutils.skinview-lite": {
 			"packageFiles": [ "skinshow-lite.js" ],
 			"targets": [ "desktop", "mobile" ],
+			"es6":true,
 			"messages": [
 				"skinview-help",
 				"skinview-help-content-lite"
@@ -92,6 +95,9 @@
 			"dependencies": [
 				"jquery.client"
 			],
+			"messages": [
+				"iewarning"
+			],
 			"targets": [ "desktop", "mobile" ]
 		},
 		"ext.mcbbswikiutils.testie.styles": {
@@ -100,7 +106,25 @@
 		},
 		"ext.mcbbswikiutils.salttool.contrast": {
 			"packageFiles": ["salttool.contrast.js"],
-			"targets": [ "desktop", "mobile" ]
+			"targets": [ "desktop", "mobile" ],
+			"es6":true,
+			"messages": [
+				"salttoolbox-contrast-resmsg",
+				"salttoolbox-contrast-verybad-info",
+				"salttoolbox-contrast-verybad-res",
+				"salttoolbox-contrast-verybad-resbig",
+				"salttoolbox-contrast-bad-info",
+				"salttoolbox-contrast-bad-res",
+				"salttoolbox-contrast-bad-resbig",
+				"salttoolbox-contrast-pass-info",
+				"salttoolbox-contrast-pass-res",
+				"salttoolbox-contrast-pass-resbig",
+				"salttoolbox-contrast-good-info",
+				"salttoolbox-contrast-good-res",
+				"salttoolbox-contrast-good-resbig",
+				"salttoolbox-contrast-color",
+				"salttoolbox-contrast-restext"
+			]
 		},
 		"ext.mcbbswikiutils.salttool.contrast.styles": {
 			"styles": "salttool.contrast.css",
@@ -108,10 +132,43 @@
 		},
 		"ext.mcbbswikiutils.salttool.wealth": {
 			"packageFiles": ["salttool.wealth.js"],
-			"targets": [ "desktop", "mobile" ]
+			"targets": [ "desktop", "mobile" ],
+			"es6":true,
+			"messages":[
+				"salttoolbox-wealth-resitem",
+				"salttoolbox-wealth-resinfo",
+				"salttoolbox-wealth-resshow"
+			]
 		},
 		"ext.mcbbswikiutils.salttool.wealth.styles": {
 			"styles": "salttool.wealth.css",
+			"targets": [ "desktop", "mobile" ]
+		},
+		"ext.mcbbswikiutils.salttool.miner": {
+			"packageFiles": ["salttool.miner.js"],
+			"es6":true,
+			"targets": [ "desktop", "mobile" ]
+		},
+		"ext.mcbbswikiutils.salttool.miner.styles": {
+			"styles": "salttool.miner.css",
+			"targets": [ "desktop", "mobile" ]
+		},
+		"ext.mcbbswikiutils.salttool.textdiff": {
+			"packageFiles": ["salttool.textdiff.js"],
+			"es6":true,
+			"targets": [ "desktop", "mobile" ],
+			"messages":[
+				"salttoolbox-textdiff-done",
+				"salttoolbox-textdiff-processing",
+				"salttoolbox-textdiff-stoppalette",
+				"salttoolbox-textdiff-stoplevenshtein"
+			],
+			"dependencies": [
+				"diff"
+			]
+		},
+		"ext.mcbbswikiutils.salttool.textdiff.styles": {
+			"styles": "salttool.textdiff.css",
 			"targets": [ "desktop", "mobile" ]
 		},
 		"skinview3d": {
@@ -120,6 +177,10 @@
 		},
 		"highcharts": {
 			"packageFiles": [ "highcharts.vendor.js" ],
+			"targets": [ "desktop", "mobile" ]
+		},
+		"diff": {
+			"packageFiles": [ "diff.vendor.js" ],
 			"targets": [ "desktop", "mobile" ]
 		}
 	},

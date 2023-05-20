@@ -2,24 +2,24 @@
 ( function () {
 	const answer = {
 		veryBad: [
-			'对比度小于 3:1 , 难以阅读, 反对使用这种配色, 建议立即更改',
-			'文字ABCD 请勿使用于正文部分 ✗',
-			'文字AB 请勿使用于大号字体 ✗'
+			mw.msg( 'salttoolbox-contrast-verybad-info' ),
+			mw.msg( 'salttoolbox-contrast-verybad-res' ),
+			mw.msg( 'salttoolbox-contrast-verybad-resbig' )
 		],
 		bad: [
-			'对比度大于 3:1 但是小于 4.5:1 , 不适合阅读, 不推荐在任何情况下使用',
-			'文字ABCD 请勿使用于正文 ✗',
-			'文字AB 不推荐使用于大号字体 ✗'
+			mw.msg( 'salttoolbox-contrast-bad-info' ),
+			mw.msg( 'salttoolbox-contrast-bad-res' ),
+			mw.msg( 'salttoolbox-contrast-bad-resbig' )
 		],
 		pass: [
-			'(AA级) 对比度大于 4.5:1 但是小于 7:1 , 较为适合阅读, 但仅建议用于大号字体部分',
-			'文字ABCD 不推荐使用于正文 ✗',
-			'文字AB 可以使用于大号字体 ✓'
+			mw.msg( 'salttoolbox-contrast-pass-info' ),
+			mw.msg( 'salttoolbox-contrast-pass-res' ),
+			mw.msg( 'salttoolbox-contrast-pass-resbig' )
 		],
 		good: [
-			'(AAA级) 对比度大于 7:1 , 适合阅读, 此配色可以用于正文部分',
-			'文字ABCD 可以使用于正文 ✓',
-			'文字AB 可以使用于大号字体 ✓'
+			mw.msg( 'salttoolbox-contrast-good-info' ),
+			mw.msg( 'salttoolbox-contrast-good-res' ),
+			mw.msg( 'salttoolbox-contrast-good-resbig' )
 		]
 	};
 	/** rgb(255,255,255) 格式 */
@@ -176,13 +176,14 @@
 		const renderColor = function () {
 			const v1 = color1Input.value, v2 = color2Input.value;
 			if ( v1 && v2 ) {
-				const temp = Math.round( calcContrast( v1, v2 ) * 100 ) / 100, text = '\u5BF9\u6BD4\u5EA6: ' + temp + ', \u8BC4\u4EF7: ';
+				const temp = Math.round( calcContrast( v1, v2 ) * 100 ) / 100;
 				const tc = formatRGB( calcColor( v1 ) ), bc = formatRGB( calcColor( v2 ) );
 				let evaluate;
 				res.style.setProperty( '--color', tc );
 				res.style.setProperty( '--back-color', bc );
-				resShow.title = '\u6587\u5B57\u989C\u8272: ' + tc + '; \u80CC\u666F\u989C\u8272: ' + bc;
-				resShowBig.title = '\u6587\u5B57\u989C\u8272: ' + tc + '; \u80CC\u666F\u989C\u8272: ' + bc;
+				const resmsg = mw.msg( 'salttoolbox-contrast-resmsg', tc, bc );
+				resShow.title = resmsg;
+				resShowBig.title = resmsg;
 				if ( temp < 3 ) {
 					evaluate = answer.veryBad;
 				} else if ( temp < 4.5 ) {
@@ -192,7 +193,7 @@
 				} else {
 					evaluate = answer.good;
 				}
-				resText.textContent = text + evaluate[ 0 ];
+				resText.textContent = mw.msg( 'salttoolbox-contrast-restext', temp, evaluate[ 0 ] );
 				resShow.textContent = evaluate[ 1 ];
 				resShowBig.textContent = evaluate[ 2 ];
 			}
@@ -202,7 +203,7 @@
 			if ( v && v.length > 1 ) {
 				const temp = formatRGB( calcColor( v ) );
 				color1Show.style.backgroundColor = temp;
-				color1Show.title = '颜色: ' + temp;
+				color1Show.title = mw.msg( 'salttoolbox-contrast-color', temp );
 				renderColor();
 			}
 		};
@@ -211,12 +212,12 @@
 			if ( v && v.length > 1 ) {
 				const temp = formatRGB( calcColor( v ) );
 				color2Show.style.backgroundColor = temp;
-				color2Show.title = '颜色: ' + temp;
+				color2Show.title = mw.msg( 'salttoolbox-contrast-color', temp );
 				renderColor();
 			}
 		};
 		color1Input.addEventListener( 'change', renderColor1 );
 		color2Input.addEventListener( 'change', renderColor2 );
 	}
-	main();
+	$( main );
 }() );

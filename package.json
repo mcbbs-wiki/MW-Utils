@@ -13,6 +13,7 @@
 		"stylelint-config-wikimedia": "0.13.0"
 	},
 	"dependencies": {
+		"diff": "^5.0.0",
 		"highcharts": "^10.3.3",
 		"skinview3d": "^3.0.0-alpha.1"
 	}

@@ -117,11 +117,11 @@
 }
 
 .salt-miner-simulator .sim:nth-of-type( 1 ):before {
-	background-image: url( https://patchwiki.biligame.com/images/mc/6/63/58aatekitx9pn6kx9ji0few8cxgx06r.png );
+	background-image: url( imgs/iron_pickaxe.png );
 }
 
 .salt-miner-simulator .sim:nth-of-type( 2 ):before {
-	background-image: url( https://mcbbs.wiki/images/e/e7/Diamond_Pickaxe_JE3_BE3.png );
+	background-image: url( imgs/diamond_pickaxe.png );
 }
 
 .salt-miner-simulator .sim:before {

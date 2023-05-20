@@ -2,80 +2,7 @@
 // @author Salt
 // @license CC BY-NC-SA
 ( function () {
-	function main() {
-		wealthSim();
-	}
-	function wealthSim() {
-		const elems = document.querySelectorAll( '.salt-acquire-wealth-simulator:not([done])' );
-		if ( elems.length < 1 ) {
-			return;
-		}
-		for ( let i = 0; i < elems.length; i++ ) {
-			wealthSimulator( elems[ i ] );
-		}
-	}
-	function wealthSimulator( el ) {
-		const simbtn = document.createElement( 'div' );
-		simbtn.textContent = '模拟致富';
-		simbtn.classList.add( 'sim' );
-		const clsbtn = document.createElement( 'div' );
-		clsbtn.textContent = '清空';
-		clsbtn.classList.add( 'cls' );
-		const resshow = document.createElement( 'div' );
-		resshow.textContent = '统计数据:';
-		resshow.classList.add( 'resshow' );
-		const simipt = document.createElement( 'input' );
-		simipt.placeholder = '请输入模拟次数，最低为1';
-		simipt.classList.add( 'input' );
-		const resul = document.createElement( 'ul' );
-		resul.classList.add( 'resul' );
-		const simres = new wsr( resul );
-		let count = 1;
-		simipt.addEventListener( 'change', () => {
-			const s = simipt.value;
-			if ( s.length < 1 ) {
-				count = 1;
-				return;
-			}
-			count = parseInt( s );
-			if ( isNaN( count ) || count < 1 ) {
-				count = 1;
-			}
-		} );
-		simbtn.addEventListener( 'click', () => {
-			simres.sim( count );
-			resshow.textContent = `统计数据:
-致富卡: ${simres.res.length}张
-花费金粒: ${simres.res.length * 500}粒
-获得金粒: ${simres.totalRes}粒
-总计盈亏: ${simres.totalWin}粒
-获利比率: ${Math.round( simres.totalWinChance * 10000 ) / 100}%
-平局比率: ${Math.round( simres.totalDrawChance * 10000 ) / 100}%
-损失比率: ${Math.round( simres.totalLoseChance * 10000 ) / 100}%
-`;
-		} );
-		clsbtn.addEventListener( 'click', () => {
-			simres.clear();
-			resshow.textContent = '统计数据:';
-		} );
-		el.innerHTML = '';
-		el.appendChild( resul );
-		el.appendChild( simipt );
-		el.appendChild( simbtn );
-		el.appendChild( clsbtn );
-		el.appendChild( resshow );
-		el.setAttribute( 'done', '' );
-	}
-
-	function randInt( max = 750, min = 1 ) {
-		if ( min > max ) {
-			const temp = max;
-			max = min;
-			min = temp;
-		}
-		return Math.floor( Math.random() * ( max - min + 1 ) + min );
-	}
-	class wsr {
+	class WealthSimulator {
 		constructor( el, winStandard = 500, bottom = 1, top = 750 ) {
 			this.res = []; // 存放结果
 			this.totalRes = 0;
@@ -136,7 +63,8 @@
 			for ( let i = childlen; i < len; i++ ) {
 				const x = this.res[ i ];
 				html = document.createElement( 'li' );
-				html.textContent = `模拟结果: ${x.res}; 盈亏: ${x.win}`;
+				html.textContent = mw.msg( 'salttoolbox-wealth-resitem', x.res, x.win );
+				// html.textContent = `模拟结果: ${x.res}; 盈亏: ${x.win}`;
 				this.bindEl.appendChild( html );
 			}
 		}
@@ -159,5 +87,71 @@
 			this.resultShow();
 		}
 	}
-	main();
+	function wealthSim() {
+		const elems = document.querySelectorAll( '.salt-acquire-wealth-simulator:not([done])' );
+		if ( elems.length < 1 ) {
+			return;
+		}
+		for ( let i = 0; i < elems.length; i++ ) {
+			wealthSimulator( elems[ i ] );
+		}
+	}
+	function wealthSimulator( el ) {
+		const simbtn = el.querySelector( '.sim' );
+		const clsbtn = el.querySelector( '.cls' );
+		const resshow = el.querySelector( '.resshow' );
+		const simipt = el.querySelector( '.input' );
+		const resul = el.querySelector( '.resul' );
+		const simres = new WealthSimulator( resul );
+		let count = 1;
+		simipt.addEventListener( 'change', () => {
+			const s = simipt.value;
+			if ( s.length < 1 ) {
+				count = 1;
+				return;
+			}
+			count = parseInt( s );
+			if ( isNaN( count ) || count < 1 ) {
+				count = 1;
+			}
+		} );
+		simbtn.addEventListener( 'click', () => {
+			simres.sim( count );
+			resshow.textContent = mw.msg(
+				'salttoolbox-wealth-resinfo',
+				simres.res.length,
+				simres.res.length * 500,
+				simres.totalRes,
+				simres.totalWin,
+				Math.round( simres.totalWinChance * 10000 ) / 100,
+				Math.round( simres.totalDrawChance * 10000 ) / 100,
+				Math.round( simres.totalLoseChance * 10000 ) / 100
+			);
+			/* resshow.textContent = `统计数据:
+致富卡: ${simres.res.length}张
+花费金粒: ${simres.res.length * 500}粒
+获得金粒: ${simres.totalRes}粒
+总计盈亏: ${simres.totalWin}粒
+获利比率: ${Math.round( simres.totalWinChance * 10000 ) / 100}%
+平局比率: ${Math.round( simres.totalDrawChance * 10000 ) / 100}%
+损失比率: ${Math.round( simres.totalLoseChance * 10000 ) / 100}%
+`; */
+		} );
+		clsbtn.addEventListener( 'click', () => {
+			simres.clear();
+			resshow.textContent = mw.msg( 'salttoolbox-wealth-resshow' );
+		} );
+		el.setAttribute( 'done', '' );
+	}
+
+	function randInt( max = 750, min = 1 ) {
+		if ( min > max ) {
+			const temp = max;
+			max = min;
+			min = temp;
+		}
+		return Math.floor( Math.random() * ( max - min + 1 ) + min );
+	}
+
+	$( wealthSim );
 }() );
