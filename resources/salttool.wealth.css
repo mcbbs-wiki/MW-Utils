@@ -1,0 +1,128 @@
+.salt-acquire-wealth-simulator {
+	width: calc( 50% + 5rem );
+	padding: 1rem;
+	margin: 1.25rem auto;
+	box-shadow: 6px 6px 12px #e2dac6, -6px -6px 12px #fffff2;
+	overflow: auto;
+	position: relative;
+}
+
+.salt-acquire-wealth-simulator:after {
+	content: '致富卡模拟器';
+	font-size: 2rem;
+	color: rgba( 128, 128, 128, 0.25 );
+	position: absolute;
+	bottom: 0;
+	right: 1rem;
+	pointer-events: none;
+}
+
+.salt-acquire-wealth-simulator:before {
+	content: '@author Salt @license CC BY-NC-SA';
+	font-size: 0.2rem;
+	color: rgba( 128, 128, 128, 0.15 );
+	position: absolute;
+	top: 0;
+	left: 1rem;
+	pointer-events: none;
+}
+
+.salt-acquire-wealth-simulator,
+.salt-acquire-wealth-simulator > * {
+	box-sizing: border-box;
+	transition: 0.3s ease;
+}
+
+.salt-acquire-wealth-simulator .resul {
+	width: 60%;
+	height: 25rem;
+	padding: 0.375rem;
+	margin: 0 0 0 0;
+	float: right;
+	overflow-y: scroll;
+	outline: 1px solid #ccc;
+}
+
+.salt-acquire-wealth-simulator .resul li {
+	height: 1.25rem;
+	margin-left: 2.25rem;
+	margin-bottom: 0;
+	list-style: decimal;
+	border-bottom: 1px solid #ccc;
+	transition: 0.25s ease;
+	white-space: pre;
+}
+
+.salt-acquire-wealth-simulator .resul li:last-child {
+	border-bottom: none;
+}
+
+.salt-acquire-wealth-simulator .resul li:hover {
+	background-color: #fff9;
+}
+
+.salt-acquire-wealth-simulator .input {
+	width: calc( 40% - 1rem );
+	margin: 0 1rem 0 0;
+	float: left;
+}
+
+.salt-acquire-wealth-simulator .sim,
+.salt-acquire-wealth-simulator .cls {
+	width: calc( 40% - 1rem );
+	padding: 0.5rem;
+	margin: 1rem 1rem 0 0;
+	border-radius: 0.2rem;
+	background: #fbf2dc;
+	box-shadow: 6px 6px 12px #e2dac6, -6px -6px 12px #fffff2;
+	text-align: center;
+	float: left;
+	transition: 0.15s ease;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.salt-acquire-wealth-simulator .sim:hover,
+.salt-acquire-wealth-simulator .cls:hover {
+	box-shadow: 4px 4px 8px #e2dac6, -4px -4px 8px #fffff2, inset 4px 4px 8px #fffff2, inset -4px -4px 8px #e2dac6;
+}
+
+.salt-acquire-wealth-simulator .sim:active,
+.salt-acquire-wealth-simulator .cls:active {
+	box-shadow: 0 0 0 transparent, 0 0 0 transparent, inset 6px 6px 12px #e2dac6, inset -6px -6px 12px #fffff2;
+}
+
+.salt-acquire-wealth-simulator .resshow {
+	width: calc( 40% - 1rem );
+	padding: 0.5rem;
+	margin: 1rem 1rem 0 0;
+	border-radius: 0.2rem;
+	outline: 1px solid #ccc;
+	white-space: pre-line;
+	float: left;
+}
+
+@media screen and ( max-width: 960px ) {
+	.salt-acquire-wealth-simulator {
+		width: 100%;
+	}
+
+	.salt-acquire-wealth-simulator .resul,
+	.salt-acquire-wealth-simulator .input,
+	.salt-acquire-wealth-simulator .sim,
+	.salt-acquire-wealth-simulator .cls,
+	.salt-acquire-wealth-simulator .resshow {
+		width: 100%;
+		white-space: pre;
+	}
+
+	.salt-acquire-wealth-simulator .input {
+		margin-top: 0.5rem;
+	}
+
+	.salt-acquire-wealth-simulator .resul {
+		height: 13.75rem;
+	}
+}

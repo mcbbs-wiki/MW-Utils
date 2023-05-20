@@ -13,7 +13,7 @@ class SpecialSaltToolbox extends IncludableSpecialPage {
         $this->tools = [
             'home'=> new SaltToolWelcome(),
             'miner'=>new SaltToolMinerSimulator(),
-            'acquire'=>new SaltToolAcquireWealthSimulator(),
+            'wealth'=>new SaltToolWealthSimulator(),
             'textdiff'=>new SaltToolTextDiffPalette(),
             'contrast'=>new SaltToolContrastCalculator()
         ];

@@ -1,7 +1,7 @@
 <?php
 namespace MediaWiki\Extension\MCBBSWiki;
 use OutputPage;
-class SaltToolAcquireWealthSimulator implements ISaltTool {
+class SaltToolWealthSimulator implements ISaltTool {
     public function outHead(OutputPage $out)
     {
         

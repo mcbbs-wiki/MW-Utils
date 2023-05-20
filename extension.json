@@ -99,8 +99,19 @@
 			"targets": [ "desktop", "mobile" ]
 		},
 		"ext.mcbbswikiutils.salttool.contrast": {
-			"styles": "salttool.contrast.css",
 			"packageFiles": ["salttool.contrast.js"],
+			"targets": [ "desktop", "mobile" ]
+		},
+		"ext.mcbbswikiutils.salttool.contrast.styles": {
+			"styles": "salttool.contrast.css",
+			"targets": [ "desktop", "mobile" ]
+		},
+		"ext.mcbbswikiutils.salttool.wealth": {
+			"packageFiles": ["salttool.wealth.js"],
+			"targets": [ "desktop", "mobile" ]
+		},
+		"ext.mcbbswikiutils.salttool.wealth.styles": {
+			"styles": "salttool.wealth.css",
 			"targets": [ "desktop", "mobile" ]
 		},
 		"skinview3d": {
