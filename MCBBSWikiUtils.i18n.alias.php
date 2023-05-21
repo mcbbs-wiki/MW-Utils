@@ -14,5 +14,5 @@ $specialPageAliases['zh-hans'] = [
 $magicWords = [];
 $magicWords['en'] = [
 	'mcbbscreditvalue' => [ 0,'mcbbscreditvalue' ],
-	'inline-css' => [ 0,'inline-css' ]
+	'unsafe-css' => [ 0,'unsafe-css' ]
 ];

@@ -42,8 +42,9 @@ class Hooks implements ParserFirstCallInitHook, SkinAddFooterLinksHook, BeforePa
 		$parser->setHook( 'skinview-lite',  [ TagsMCBBS::class,'renderTagSkinviewLite' ] );
 		$parser->setHook( 'ext-img',  [ TagsMedia::class,'renderTagExtimg' ] );
 		$parser->setHook( '163music',  [ TagsMedia::class,'render163Music' ] );
+		$parser->setHook( 'salt-album',  [ TagsMedia::class,'renderTagSaltAlbum' ] );
 		$parser->setFunctionHook( 'mcbbscreditvalue', [ TagsMCBBS::class,'renderCreditValue' ] );
-		$parser->setFunctionHook( 'inline-css', [ TagsUtils::class,'renderInlineCSS' ], Parser::SFH_OBJECT_ARGS );
+		$parser->setFunctionHook( 'unsafe-css', [ TagsUtils::class,'renderInlineCSS' ], Parser::SFH_OBJECT_ARGS );
 	}
 
 }
