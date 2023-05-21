@@ -147,6 +147,31 @@
 		"ext.mcbbswikiutils.salttool.miner": {
 			"packageFiles": ["salttool.miner.js"],
 			"es6":true,
+			"messages":[
+				"salttoolbox-miner-reward-nugget50",
+				"salttoolbox-miner-reward-diamond1",
+				"salttoolbox-miner-reward-diamond2",
+				"salttoolbox-miner-reward-unlock3",
+				"salttoolbox-miner-reward-notification2",
+				"salttoolbox-miner-reward-nugget100",
+				"salttoolbox-miner-reward-diamond4",
+				"salttoolbox-miner-reward-serverbump2",
+				"salttoolbox-miner-reward-bump4",
+				"salttoolbox-miner-reward-highlight",
+				"salttoolbox-miner-reward-unlock5",
+				"salttoolbox-miner-reward-rename",
+				"salttoolbox-miner-reward-anonymouspost2",
+				"salttoolbox-miner-reward-nugget500",
+				"salttoolbox-miner-reward-diamond8",
+				"salttoolbox-miner-reward-20off",
+				"salttoolbox-miner-reward-bump8",
+				"salttoolbox-miner-reward-serverbump4",
+				"salttoolbox-miner-reward-nugget999",
+				"salttoolbox-miner-reward-emerald1",
+				"salttoolbox-miner-reward-diamond20",
+				"salttoolbox-miner-reward-40off",
+				"salttoolbox-miner-reward-piglin"
+			],
 			"targets": [ "desktop", "mobile" ]
 		},
 		"ext.mcbbswikiutils.salttool.miner.styles": {

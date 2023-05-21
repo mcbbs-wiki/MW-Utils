@@ -10,15 +10,15 @@
 			3, 1, 3, 1, 2
 		],
 		reward: [
-			'nugget50.gif|金粒*50|common', 'diamond1.gif|钻石*1|common', 'diamond2.gif|钻石*2|common',
-			'unlock3.gif|挖掘卡*3|common', 'notification2.gif|召集卡*2|common',
-			'nugget100.gif|金粒*100|rare', 'diamond4.gif|钻石*4|rare', 'serverbump2.gif|服务器提升卡*2|rare',
-			'bump4.gif|提升卡*4|rare', 'highlight.gif|变色卡*1|rare', 'unlock5.gif|挖掘卡*5|rare',
-			'rename.gif|改名卡*1|rare', 'anonymouspost2.gif|匿名卡*2|rare',
-			'nugget500.gif|金粒*500|epic', 'diamond8.gif|钻石*8|epic', '20off.gif|-20%优惠券|epic',
-			'bump8.gif|提升卡*8|epic', 'serverbump4.gif|服务器提升卡*4|epic',
-			'nugget999.gif|金粒*999|legend', 'emerald1.gif|绿宝石*1|legend', 'diamond20.gif|钻石*20|legend',
-			'40off.gif|-40%优惠券|legend', 'piglin.gif|猪灵勋章|legend'
+			'nugget50.gif|common', 'diamond1.gif|common', 'diamond2.gif|common',
+			'unlock3.gif|common', 'notification2.gif|common',
+			'nugget100.gif|rare', 'diamond4.gif|rare', 'serverbump2.gif|rare',
+			'bump4.gif|rare', 'highlight.gif|rare', 'unlock5.gif|rare',
+			'rename.gif|rare', 'anonymouspost2.gif|rare',
+			'nugget500.gif|epic', 'diamond8.gif|epic', '20off.gif|epic',
+			'bump8.gif|epic', 'serverbump4.gif|epic',
+			'nugget999.gif|legend', 'emerald1.gif|legend', 'diamond20.gif|legend',
+			'40off.gif|legend', 'piglin.gif|legend'
 		]
 	};
 	function mineSim() {
@@ -51,6 +51,9 @@
 			}
 			showOre();
 		} );
+		function getMsgname( name ) {
+			return name.slice( 0, Math.max( 0, name.lastIndexOf( '.' ) ) );
+		}
 		function checkOre() {
 			for ( const r of res ) {
 				if ( r.indexOf( '|epic' ) > 0 || r.indexOf( '|legend' ) > 0 ) {
@@ -63,7 +66,10 @@
 			resul.innerHTML = '';
 			for ( let i = 0; i < res.length; i++ ) {
 				const x = res[ i ].split( '|' );
-				const src = mw.config.get( 'wgExtensionAssetsPath' ) + '/MCBBSWikiUtils/resources/imgs/' + x[ 0 ], alt = x[ 1 ];
+				const src = mw.config.get( 'wgExtensionAssetsPath' ) + '/MCBBSWikiUtils/resources/imgs/' + x[ 0 ];
+				// eslint-disable-next-line mediawiki/msg-doc
+				const alt = mw.msg( 'salttoolbox-miner-reward-' + getMsgname( x[ 0 ] ) );
+
 				const li = document.createElement( 'li' ), img = document.createElement( 'img' ), span = document.createElement( 'span' );
 				img.src = src;
 				img.alt = alt;
@@ -71,7 +77,7 @@
 				span.textContent = alt;
 				li.appendChild( span );
 				// eslint-disable-next-line mediawiki/class-doc
-				li.classList.add( x[ 2 ] );
+				li.classList.add( x[ 1 ] );
 				resul.appendChild( li );
 			}
 		}
