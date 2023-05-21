@@ -39,7 +39,7 @@
 		"ext.mcbbswikiutils.credit": {
 			"packageFiles": [ "credit.js" ],
 			"targets": [ "desktop", "mobile" ],
-			"es6":true,
+			"es6": true,
 			"messages": [
 				"mcbbscredit-notfound",
 				"mcbbscredit-timeout"
@@ -51,7 +51,7 @@
 		"ext.mcbbswikiutils.skinview": {
 			"packageFiles": [ "skinshow.js" ],
 			"targets": [ "desktop", "mobile" ],
-			"es6":true,
+			"es6": true,
 			"messages": [
 				"skinview-pause",
 				"skinview-slow",
@@ -72,7 +72,7 @@
 		"ext.mcbbswikiutils.skinview-lite": {
 			"packageFiles": [ "skinshow-lite.js" ],
 			"targets": [ "desktop", "mobile" ],
-			"es6":true,
+			"es6": true,
 			"messages": [
 				"skinview-help",
 				"skinview-help-content-lite"
@@ -105,9 +105,9 @@
 			"targets": [ "desktop", "mobile" ]
 		},
 		"ext.mcbbswikiutils.salttool.contrast": {
-			"packageFiles": ["salttool.contrast.js"],
+			"packageFiles": [ "salttool.contrast.js" ],
 			"targets": [ "desktop", "mobile" ],
-			"es6":true,
+			"es6": true,
 			"messages": [
 				"salttoolbox-contrast-resmsg",
 				"salttoolbox-contrast-verybad-info",
@@ -131,10 +131,10 @@
 			"targets": [ "desktop", "mobile" ]
 		},
 		"ext.mcbbswikiutils.salttool.wealth": {
-			"packageFiles": ["salttool.wealth.js"],
+			"packageFiles": [ "salttool.wealth.js" ],
 			"targets": [ "desktop", "mobile" ],
-			"es6":true,
-			"messages":[
+			"es6": true,
+			"messages": [
 				"salttoolbox-wealth-resitem",
 				"salttoolbox-wealth-resinfo",
 				"salttoolbox-wealth-resshow"
@@ -145,9 +145,9 @@
 			"targets": [ "desktop", "mobile" ]
 		},
 		"ext.mcbbswikiutils.salttool.miner": {
-			"packageFiles": ["salttool.miner.js"],
-			"es6":true,
-			"messages":[
+			"packageFiles": [ "salttool.miner.js" ],
+			"es6": true,
+			"messages": [
 				"salttoolbox-miner-reward-nugget50",
 				"salttoolbox-miner-reward-diamond1",
 				"salttoolbox-miner-reward-diamond2",
@@ -179,10 +179,10 @@
 			"targets": [ "desktop", "mobile" ]
 		},
 		"ext.mcbbswikiutils.salttool.textdiff": {
-			"packageFiles": ["salttool.textdiff.js"],
-			"es6":true,
+			"packageFiles": [ "salttool.textdiff.js" ],
+			"es6": true,
 			"targets": [ "desktop", "mobile" ],
-			"messages":[
+			"messages": [
 				"salttoolbox-textdiff-done",
 				"salttoolbox-textdiff-processing",
 				"salttoolbox-textdiff-stoppalette",

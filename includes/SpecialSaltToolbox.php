@@ -1,47 +1,51 @@
 <?php
 namespace MediaWiki\Extension\MCBBSWiki;
-use IncludableSpecialPage;
+
 use HtmlArmor;
-use Xml;
+use IncludableSpecialPage;
 use TitleValue;
+use Xml;
+
 class SpecialSaltToolbox extends IncludableSpecialPage {
-    /**@var ISaltTool[] */
-    private $tools;
-    public function __construct()
-    {
-        parent::__construct('SaltToolbox');
-        $this->tools = [
-            'home'=> new SaltToolWelcome(),
-            'miner'=>new SaltToolMinerSimulator(),
-            'wealth'=>new SaltToolWealthSimulator(),
-            'textdiff'=>new SaltToolTextDiffPalette(),
-            'contrast'=>new SaltToolContrastCalculator()
-        ];
-    }
-    public function execute($arg){
-        $this->setHeaders();
-        $toolId='';
-        $toolObj = null;
-        foreach ($this->tools as $key => $value) {
-            if($arg===$key){
-                $toolId=$key;
-                $toolObj = $value;
-            }
-        }
-        if($toolObj===null){
-            $toolObj=new SaltToolWelcome();
-            $toolId='home';
-        }
-        if(!$this->including()){
-            $this->addNavigationLinks($toolId);
-            $toolObj->outHead($this->getOutput());
-        }
-        $toolObj->outBody($this->getOutput());
-    }
-    protected function addNavigationLinks( $pageType ) {
+	/** @var ISaltTool[] */
+	private $tools;
+
+	public function __construct() {
+		parent::__construct( 'SaltToolbox' );
+		$this->tools = [
+			'home' => new SaltToolWelcome(),
+			'miner' => new SaltToolMinerSimulator(),
+			'wealth' => new SaltToolWealthSimulator(),
+			'textdiff' => new SaltToolTextDiffPalette(),
+			'contrast' => new SaltToolContrastCalculator()
+		];
+	}
+
+	public function execute( $arg ) {
+		$this->setHeaders();
+		$toolId = '';
+		$toolObj = null;
+		foreach ( $this->tools as $key => $value ) {
+			if ( $arg === $key ) {
+				$toolId = $key;
+				$toolObj = $value;
+			}
+		}
+		if ( $toolObj === null ) {
+			$toolObj = new SaltToolWelcome();
+			$toolId = 'home';
+		}
+		if ( !$this->including() ) {
+			$this->addNavigationLinks( $toolId );
+			$toolObj->outHead( $this->getOutput() );
+		}
+		$toolObj->outBody( $this->getOutput() );
+	}
+
+	protected function addNavigationLinks( $pageType ) {
 		$links = [];
 
-		foreach ( $this->tools as $name=>$page ) {
+		foreach ( $this->tools as $name => $page ) {
 			$msgName = "salttoolbox-topnav-$name";
 
 			$msg = $this->msg( $msgName )->parse();
@@ -50,7 +54,7 @@ class SpecialSaltToolbox extends IncludableSpecialPage {
 				$links[] = Xml::tags( 'strong', null, $msg );
 			} else {
 				$links[] = $this->getLinkRenderer()->makeLink(
-					new TitleValue( NS_SPECIAL, 'SaltToolbox/'.$name ),
+					new TitleValue( NS_SPECIAL, 'SaltToolbox/' . $name ),
 					new HtmlArmor( $msg )
 				);
 			}
@@ -64,5 +68,5 @@ class SpecialSaltToolbox extends IncludableSpecialPage {
 		$linkStr = Xml::tags( 'div', [ 'class' => 'mw-salttoolbox-navigation' ], $linkStr );
 
 		$this->getOutput()->setSubtitle( $linkStr );
-    }
+	}
 }

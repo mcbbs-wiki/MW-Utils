@@ -3,12 +3,12 @@ $specialPageAliases = [];
 
 $specialPageAliases['en'] = [
 	'MCBBSCredit' => [ 'MCBBSCredit', 'MCBBS Credit' ],
-	'SaltToolbox' => ['SaltToolbox','Salt Toolbox']
+	'SaltToolbox' => [ 'SaltToolbox','Salt Toolbox' ]
 ];
 
 $specialPageAliases['zh-hans'] = [
 	'MCBBSCredit' => [ 'MCBBS积分分析' ],
-	'SaltToolbox' => ['盐酱工具箱']
+	'SaltToolbox' => [ '盐酱工具箱' ]
 ];
 
 $magicWords = [];

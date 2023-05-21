@@ -133,6 +133,7 @@
 	line-height: 1.2em;
 	vertical-align: sub;
 }
+
 @media screen and ( max-width: 960px ) {
 	.salt-miner-simulator {
 		width: 100%;
