@@ -1,11 +1,11 @@
 
 /*  */
-#saltContrastCalculator * {
+.salt-contrast-calculator * {
 	box-sizing: border-box;
 }
 
-#saltContrastCalculator .color,
-#saltContrastCalculator .res {
+.salt-contrast-calculator .color,
+.salt-contrast-calculator .res {
 	display: inline-block;
 	padding: 5px;
 	margin: 0 4px;
@@ -15,27 +15,27 @@
 	vertical-align: middle;
 }
 
-#saltContrastCalculator .color {
+.salt-contrast-calculator .color {
 	width: calc( 50% - 12px );
 }
 
-#saltContrastCalculator .color.left {
+.salt-contrast-calculator .color.left {
 	margin-right: 8px;
 }
 
-#saltContrastCalculator .color.right {
+.salt-contrast-calculator .color.right {
 	margin-left: 8px;
 }
 
-#saltContrastCalculator .res {
+.salt-contrast-calculator .res {
 	width: calc( 100% - 8px );
 	margin-top: 4px;
 }
 
-#saltContrastCalculator input,
-#saltContrastCalculator .color-show,
-#saltContrastCalculator .res-show,
-#saltContrastCalculator .res-text {
+.salt-contrast-calculator input,
+.salt-contrast-calculator .color-show,
+.salt-contrast-calculator .res-show,
+.salt-contrast-calculator .res-text {
 	width: 100%;
 	height: 3rem;
 	line-height: 3rem;
@@ -45,16 +45,16 @@
 	text-align: center;
 }
 
-#saltContrastCalculator .res-show {
+.salt-contrast-calculator .res-show {
 	color: var( --color );
 	background-color: var( --back-color );
 }
 
-#saltContrastCalculator .big {
+.salt-contrast-calculator .big {
 	font-size: 1.5rem;
 }
 
-#saltContrastCalculator .res-text {
+.salt-contrast-calculator .res-text {
 	height: 2rem;
 	line-height: 2rem;
 }

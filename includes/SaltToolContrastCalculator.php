@@ -27,7 +27,7 @@ class SaltToolContrastCalculator implements ISaltTool {
 		$resShowBig = Html::element( 'div', [ 'class' => 'res-show big' ], $out->msg( 'salttoolbox-contrast-resbig' )->text() );
 		$resText = Html::element( 'div', [ 'class' => 'res-text' ] );
 		$res = Html::rawElement( 'div', [ 'class' => 'res' ], $resShow . $resShowBig . $resText );
-		$div = Html::rawElement( 'div', [ 'id' => 'saltContrastCalculator' ], $color1 . $color2 . $res );
+		$div = Html::rawElement( 'div', [ 'class' => 'salt-contrast-calculator' ], $color1 . $color2 . $res );
 		$out->addHTML( $div );
 	}
 }

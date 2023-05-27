@@ -157,9 +157,19 @@
 			return h;
 		}
 	};
-	// 主过程
 	function main() {
-		const div = document.getElementById( 'saltContrastCalculator' );
+		const elems = document.querySelectorAll( '.salt-contrast-calculator' );
+		if ( elems.length < 1 ) {
+			return;
+		}
+		for ( let i = 0; i < elems.length; i++ ) {
+			contrast( elems[ i ] );
+		}
+	}
+	// 主过程
+	function contrast( ele ) {
+		const div = ele;
+		// const div = document.getElementById( 'saltContrastCalculator' );
 		if ( !div ) {
 			return;
 		}
