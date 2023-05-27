@@ -64,12 +64,12 @@ class TagsMedia {
 		}
 	}
 
-	public static function renderTagSaltAlbum($input, array $args, Parser $parser, PPFrame $frame){
-		$parser->getOutput()->addModuleStyles(['ext.mcbbswikiutils.saltalbum.styles']);
-		$parser->getOutput()->addModules(['ext.mcbbswikiutils.saltalbum']);
+	public static function renderTagSaltAlbum( $input, array $args, Parser $parser, PPFrame $frame ) {
+		$parser->getOutput()->addModuleStyles( [ 'ext.mcbbswikiutils.saltalbum.styles' ] );
+		$parser->getOutput()->addModules( [ 'ext.mcbbswikiutils.saltalbum' ] );
 		$width = $args['width'] ?? '100%';
 		$height = $args['height'] ?? '680px';
-		$content=$parser->recursiveTagParse( $input, $frame );
-		return Html::rawElement('div',['class'=>'salt-album','style'=>"display:none;width:{$width};--height:{$height};"],$content);
+		$content = $parser->recursiveTagParse( $input, $frame );
+		return Html::rawElement( 'div', [ 'class' => 'salt-album','style' => "display:none;width:{$width};--height:{$height};" ], $content );
 	}
 }
