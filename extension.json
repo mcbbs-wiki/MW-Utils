@@ -233,6 +233,6 @@
 		"UCenterURL": "",
 		"ExtImgWhiteList": [],
 		"MBWVER": "eee",
-		"MBWAPIURL": "http://localhost:18080/users/"
+		"MBWAPIURL": "http://localhost:18080/"
 	}
 }
