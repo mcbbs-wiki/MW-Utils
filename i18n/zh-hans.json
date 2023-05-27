@@ -82,5 +82,11 @@
 	"salttoolbox-textdiff-stoplevenshtein": "内容太多, 不再同步计算Levenshtein距离",
 	"salttoolbox-textdiff-stoppalette": "内容太多, 不再同步处理调色板",
 	"salttoolbox-welcome": "欢迎来到盐酱的工具箱！",
-	"iewarning": "警告：您正在使用 Internet Explorer 访问本站。"
+	"iewarning": "警告：您正在使用 Internet Explorer 访问本站。",
+	"mbwapistatus":"MCBBS Wiki API 状态",
+	"mbwapi-status":"此页面显示有关 MCBBS Wiki API 的状态信息。",
+	"mbwapi-user-ok":"用户积分信息 API 状态正常",
+	"mbwapi-user-fail":"用户积分信息 API 状态异常",
+	"mbwapi-ok":"MCBBS Wiki API 状态正常",
+	"mbwapi-fail":"MCBBS Wiki API 状态异常"
 }

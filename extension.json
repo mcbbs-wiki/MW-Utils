@@ -30,6 +30,7 @@
 	"SpecialPages": {
 		"MCBBSCredit": "MediaWiki\\Extension\\MCBBSWiki\\SpecialMCBBSCredit",
 		"VME50": "MediaWiki\\Extension\\MCBBSWiki\\SpecialVME50",
+		"MBWAPIStatus":"MediaWiki\\Extension\\MCBBSWiki\\SpecialMBWAPIStatus",
 		"SaltToolbox": "MediaWiki\\Extension\\MCBBSWiki\\SpecialSaltToolbox"
 	},
 	"ExtensionMessagesFiles": {

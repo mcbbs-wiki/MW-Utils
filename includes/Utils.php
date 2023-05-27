@@ -94,7 +94,7 @@ class Utils {
 
 	public static function getBBSUserFromAPI( $uid ) {
 		global $wgMBWAPIURL;
-		$request = MediaWikiServices::getInstance()->getHttpRequestFactory()->create( $wgMBWAPIURL . $uid );
+		$request = MediaWikiServices::getInstance()->getHttpRequestFactory()->create( $wgMBWAPIURL .'users/'. $uid );
 		try{
 			$status = $request->execute();
 		} catch ( Exception $e ) {
