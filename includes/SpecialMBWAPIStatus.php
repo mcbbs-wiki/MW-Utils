@@ -50,7 +50,7 @@ class SpecialMBWAPIStatus extends SpecialPage {
 	}
 
 	private function testAPIStatus() {
-		$apiurl=$this->getConfig()->get('MBWAPIURL');
+		$apiurl = $this->getConfig()->get( 'MBWAPIURL' );
 		$statusRequest = MediaWikiServices::getInstance()->getHttpRequestFactory()->create( $apiurl );
 		$apiStatus = true;
 		try{
@@ -65,7 +65,7 @@ class SpecialMBWAPIStatus extends SpecialPage {
 	}
 
 	private function testAPIUserStatus() {
-		$apiurl=$this->getConfig()->get('MBWAPIURL');
+		$apiurl = $this->getConfig()->get( 'MBWAPIURL' );
 		$statusRequest = MediaWikiServices::getInstance()->getHttpRequestFactory()->create( $apiurl . 'users/' . '3038' );
 		$apiStatus = true;
 		try{

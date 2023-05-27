@@ -109,6 +109,10 @@
 			"packageFiles": [ "saltalbum.js" ],
 			"targets": [ "desktop", "mobile" ]
 		},
+		"ext.mcbbswikiutils.firework": {
+			"packageFiles": [ "firework.js" ],
+			"targets": [ "desktop", "mobile" ]
+		},
 		"ext.mcbbswikiutils.saltalbum.styles": {
 			"styles": "saltalbum.css",
 			"targets": [ "desktop", "mobile" ]
