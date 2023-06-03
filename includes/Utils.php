@@ -110,4 +110,10 @@ class Utils {
 		}
 		return $request->getContent();
 	}
+	public static function checkNumber(mixed $str,int $defaultValue,int $min,int $max){
+		$num=(int)$str;
+		$pass=$num===0||$num<$min||$num>$max;
+		return !$pass?$num:$defaultValue;
+	}
+	
 }

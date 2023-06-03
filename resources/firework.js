@@ -37,37 +37,9 @@
 	let zeroFrame = 0;
 	$( init );
 	function init() {
-		const getValue = ( id, defaultValue, min, max ) => {
-			const e = document.getElementById( id );
-			if ( !e ) {
-				return defaultValue;
-			}
-			const c = parseInt( e.textContent || '' );
-			if ( isNaN( c ) || c < min || c > max ) {
-				return defaultValue;
-			}
-			return c;
-		};
-		hueRange = ( () => {
-			const defaultValue = ( () => {
-				const x = [];
-				for ( let i = 1; i < 361; i++ ) {
-					x.push( i );
-				}
-				return x;
-			} )();
-			const e = document.getElementById( 'saltFireworkHueRange' );
-			if ( !e ) {
-				return defaultValue;
-			}
-			const c = ( e.textContent || '' ).replace( /[\s\n_]+/g, '' ).replace( /[;/|/\\，；、-]+/g, ',' ).split( ',' ).map( ( v ) => parseInt( v ) ).filter( Boolean ).filter( ( v ) => v > 0 && v < 361 );
-			if ( !c || c.length < 1 || c.length > 360 ) {
-				return defaultValue;
-			}
-			return c;
-		} )();
-		hueDiff = getValue( 'saltFireworkHueDiff', 30, 0, 180 );
-		count = getValue( 'saltFireworkCount', 110, 1, 500 );
+		hueRange = mw.config.get( 'wgFireworkHueRange' );
+		hueDiff = mw.config.get( 'wgFireworkHueDiff' );
+		count = mw.config.get( 'wgFireworkCount' );
 		canvas.id = 'saltFireWorkCanvas';
 		canvas.style.left = '0';
 		canvas.style.top = '0';
