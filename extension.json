@@ -65,9 +65,7 @@
 				"skinview3d",
 				"oojs-ui-core",
 				"oojs-ui-widgets",
-				"oojs-ui.styles.icons-movement",
-				"oojs-ui.styles.icons-interactions",
-				"oojs-ui.styles.icons-media"
+				"ext.mcbbswikiutils.skinview.icons"
 			]
 		},
 		"ext.mcbbswikiutils.skinview-lite": {
@@ -85,6 +83,17 @@
 		},
 		"ext.mcbbswikiutils.skinview.styles": {
 			"styles": "skinshow.css",
+			"targets": [ "desktop", "mobile" ]
+		},
+		"ext.mcbbswikiutils.skinview.icons": {
+			"class":"ResourceLoaderOOUIIconPackModule",
+			"icons": [
+				"info",
+				"pause",
+				"next",
+				"doubleChevronEnd",
+				"reload"
+			],
 			"targets": [ "desktop", "mobile" ]
 		},
 		"ext.mcbbswikiutils.avatar": {

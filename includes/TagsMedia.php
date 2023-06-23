@@ -86,16 +86,15 @@ class TagsMedia {
 		if(empty($input)){
 			$attr=[
 				'controls' => '',
-				'class' => 'custom-audio'
+				'class' => 'custom-audio',
+				'src'=>$audioUrl
 			];
-			$attr['controls']='';
-			if(array_key_exists("autoplay",$args)){
+			if($args["autoplay"]==='true'){
 				$attr['autoplay']='';
 			}
-			if(array_key_exists("loop",$args)){
+			if($args["loop"]==='true'){
 				$attr['loop']='';
 			}
-			$attr['src']=$audioUrl;
 			return Html::element('audio',$attr);
 		} else {
 			$parser->getOutput()->addModules(['ext.mcbbswikiutils.clickaudio']);

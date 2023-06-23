@@ -5,7 +5,7 @@
 		Array.from( document.getElementsByClassName( 'skinview' ) ).forEach( ( element ) => {
 			const skincanvas = element.getElementsByClassName( 'skinview-canvas' )[ 0 ];
 			const skincontroller = element.getElementsByClassName( 'skinview-controller' )[ 0 ];
-			const url = getSkinURL( skincanvas );
+			const url = element.dataset.src;
 			const interval = setInterval( function () {
 				if ( skincanvas.offsetWidth > 0 ) {
 					initSkin( skincanvas, skincontroller, url );
@@ -18,14 +18,6 @@
 		mw.track( 'bbswiki.skinview.get', url );
 		const viewer = setSkin( skincanvas, url );
 		setSkinController( skincontroller, viewer );
-	}
-	function getSkinURL( node ) {
-		const link = node.firstElementChild;
-		if ( link.classList.contains( 'external' ) ) {
-			return link.getAttribute( 'href' );
-		} else if ( link.classList.contains( 'image' ) ) {
-			return link.firstElementChild.getAttribute( 'src' );
-		}
 	}
 	function setSkinController( node, viewer ) {
 		const parent = node.parentElement;

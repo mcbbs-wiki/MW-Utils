@@ -6,7 +6,7 @@
 			// const user = element.getAttribute( 'data-user' );
 			const skincanvas = element.getElementsByClassName( 'skinview-canvas' )[ 0 ];
 			const skincontroller = element.getElementsByClassName( 'skinview-controller-lite' )[ 0 ];
-			const url = getSkinURL( skincanvas );
+			const url = element.dataset.src;
 			const interval = setInterval( function () {
 				if ( skincanvas.offsetWidth > 0 ) {
 					initSkin( skincanvas, skincontroller, url );
@@ -20,14 +20,7 @@
 		const viewer = setSkin( skincanvas, url );
 		setSkinController( skincontroller, viewer );
 	}
-	function getSkinURL( node ) {
-		const link = node.firstElementChild;
-		if ( link.classList.contains( 'external' ) ) {
-			return link.getAttribute( 'href' );
-		} else if ( link.classList.contains( 'image' ) ) {
-			return link.firstElementChild.getAttribute( 'src' );
-		}
-	}
+
 	function setSkinController( node, viewer ) {
 		const parent = node.parentElement;
 		const popup = new OO.ui.PopupButtonWidget( {

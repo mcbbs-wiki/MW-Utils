@@ -4,29 +4,41 @@ namespace MediaWiki\Extension\MCBBSWiki;
 use Html;
 use Parser;
 use PPFrame;
+use MediaWiki\MediaWikiServices;
+use Title;
 
 class TagsMCBBS {
 	public static function renderTagSkinviewLite( $input, array $args, Parser $parser, PPFrame $frame ) {
 		$parser->getOutput()->addModuleStyles( [ 'ext.mcbbswikiutils.skinview.styles' ] );
 		$parser->getOutput()->addModules( [ 'ext.mcbbswikiutils.skinview-lite' ] );
-		$isURL = filter_var( $input, FILTER_VALIDATE_URL );
+		$isURL = filter_var( $args['src'], FILTER_VALIDATE_URL );
 		$width = $args['width'] ?? 250;
 		$height = $args['height'] ?? 350;
 		$speed = $args['speed'] ?? 'slow';
+		$src = '';
 		if ( $isURL !== false ) {
-			if ( !Utils::checkDomain( $input ) ) {
+			if ( !Utils::checkDomain( $args['src'] ) ) {
 				return Html::element( 'strong',
 				[ 'class' => 'error' ],
 				 wfMessage( 'extimg-invalidurl' )->text() );
 			}
+			$src=$args['src'];
+		} else {
+			$title=Title::makeTitle(NS_FILE,$args['src']);
+			if(!$title->exists()){
+				$lr=MediaWikiServices::getInstance()->getLinkRenderer();
+				return $lr->makeBrokenLink($title);
+			}
+			$src=MediaWikiServices::getInstance()->getRepoGroup()->findFile( $title )->getUrl();
 		}
 		$output = $parser->recursiveTagParse( $input, $frame );
 		$controller = Html::element( 'div', [ 'class' => 'skinview-controller-lite' ] );
 		$fix = Html::element( 'div', [ 'class' => 'skinview-controller-fix' ] );
-		$canvas = Html::rawElement( 'div', [ 'class' => 'skinview-canvas','style' => "height:{$height}px;" ], $output );
+		$canvas = Html::rawElement( 'div', [ 'class' => 'skinview-canvas','style' => "height:{$height}px;" ] );
 		return Html::rawElement( 'div', [
 				'class' => 'skinview-lite skinview-loading',
 				'data-speed' => $speed,
+				'data-src' => $src,
 				'style' => "width:{$width}px;"
 			], $canvas . $controller . $fix );
 	}
@@ -34,23 +46,32 @@ class TagsMCBBS {
 	public static function renderTagSkinview( $input, array $args, Parser $parser, PPFrame $frame ) {
 		$parser->getOutput()->addModuleStyles( [ 'ext.mcbbswikiutils.skinview.styles' ] );
 		$parser->getOutput()->addModules( [ 'ext.mcbbswikiutils.skinview' ] );
-		$isURL = filter_var( $input, FILTER_VALIDATE_URL );
+		$isURL = filter_var( $args['src'], FILTER_VALIDATE_URL );
 		$width = $args['width'] ?? 250;
 		$height = $args['height'] ?? 350;
 		$speed = $args['speed'] ?? 'slow';
+		$src = '';
 		if ( $isURL !== false ) {
-			if ( !Utils::checkDomain( $input ) ) {
+			if ( !Utils::checkDomain( $args['src'] ) ) {
 				return Html::element( 'strong',
 				[ 'class' => 'error' ],
 				 wfMessage( 'extimg-invalidurl' )->text() );
 			}
+			$src=$args['src'];
+		} else {
+			$title=Title::makeTitle(NS_FILE,$args['src']);
+			if(!$title->exists()){
+				$lr=MediaWikiServices::getInstance()->getLinkRenderer();
+				return $lr->makeBrokenLink($title);
+			}
+			$src=MediaWikiServices::getInstance()->getRepoGroup()->findFile( $title )->getUrl();
 		}
-		$output = $parser->recursiveTagParse( $input, $frame );
 		$controller = Html::element( 'div', [ 'class' => 'skinview-controller' ] );
-		$canvas = Html::rawElement( 'div', [ 'class' => 'skinview-canvas','style' => "height:{$height}px;" ], $output );
+		$canvas = Html::rawElement( 'div', [ 'class' => 'skinview-canvas','style' => "height:{$height}px;" ]);
 		return Html::rawElement( 'div', [
 				'class' => 'skinview skinview-loading',
 				'data-speed' => $speed,
+				'data-src' => $src,
 				'style' => "width:{$width}px;"
 			], $canvas . $controller );
 	}
