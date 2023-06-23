@@ -4,6 +4,8 @@ namespace MediaWiki\Extension\MCBBSWiki;
 use Html;
 use Parser;
 use PPFrame;
+use MediaWiki\MediaWikiServices;
+use Title;
 
 class TagsMedia {
 	public static function renderTagExtimg( $input, array $args, Parser $parser, PPFrame $frame ) {
@@ -71,5 +73,39 @@ class TagsMedia {
 		$height = $args['height'] ?? '680px';
 		$content = $parser->recursiveTagParse( $input, $frame );
 		return Html::rawElement( 'div', [ 'class' => 'salt-album','style' => "display:none;width:{$width};--height:{$height};" ], $content );
+	}
+	
+	public static function renderTagAudio($input, array $args, Parser $parser, PPFrame $frame)
+	{
+		$title=Title::makeTitle(NS_FILE,$args['src']);
+		if(!$title->exists()){
+			$lr=MediaWikiServices::getInstance()->getLinkRenderer();
+			return $lr->makeBrokenLink($title);
+		}
+		$audioUrl=MediaWikiServices::getInstance()->getRepoGroup()->findFile( $title )->getUrl();
+		if(empty($input)){
+			$attr=[
+				'controls' => '',
+				'class' => 'custom-audio'
+			];
+			$attr['controls']='';
+			if(array_key_exists("autoplay",$args)){
+				$attr['autoplay']='';
+			}
+			if(array_key_exists("loop",$args)){
+				$attr['loop']='';
+			}
+			$attr['src']=$audioUrl;
+			return Html::element('audio',$attr);
+		} else {
+			$parser->getOutput()->addModules(['ext.mcbbswikiutils.clickaudio']);
+			return Html::rawElement('span',
+				['class'=>'custom-audio-click'],
+				Html::element(
+					'audio',
+					['src'=>$audioUrl]
+				).$parser->recursiveTagParse($input,$frame)
+			);
+		}
 	}
 }

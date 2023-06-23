@@ -107,10 +107,16 @@
 		},
 		"ext.mcbbswikiutils.saltalbum": {
 			"packageFiles": [ "saltalbum.js" ],
+			"es6": true,
 			"targets": [ "desktop", "mobile" ]
 		},
 		"ext.mcbbswikiutils.firework": {
 			"packageFiles": [ "firework.js" ],
+			"es6": true,
+			"targets": [ "desktop", "mobile" ]
+		},
+		"ext.mcbbswikiutils.clickaudio": {
+			"packageFiles": [ "clickaudio.js" ],
 			"targets": [ "desktop", "mobile" ]
 		},
 		"ext.mcbbswikiutils.saltalbum.styles": {
