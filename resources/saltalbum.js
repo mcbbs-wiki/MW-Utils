@@ -229,6 +229,7 @@
 				createAlbum( el );
 			}
 		}
+		mw.track( 'bbswiki.saltalbum' );
 	}
 	// 执行
 	$( main );

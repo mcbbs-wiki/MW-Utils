@@ -165,6 +165,7 @@
 		for ( let i = 0; i < elems.length; i++ ) {
 			contrast( elems[ i ] );
 		}
+		mw.track( 'bbswiki.salttool', 'contrast' );
 	}
 	// 主过程
 	function contrast( ele ) {

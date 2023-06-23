@@ -79,6 +79,7 @@
 				}
 			};
 		}
+		mw.track( 'bbswiki.salttool', 'textdiff' );
 	}
 	function fastLevenshteinDistance( str1 = '', str2 = '' ) {
 		let res;

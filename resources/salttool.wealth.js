@@ -95,6 +95,7 @@
 		for ( let i = 0; i < elems.length; i++ ) {
 			wealthSimulator( elems[ i ] );
 		}
+		mw.track( 'bbswiki.salttool', 'wealth' );
 	}
 	function wealthSimulator( el ) {
 		const simbtn = el.querySelector( '.sim' );

@@ -29,6 +29,7 @@
 		for ( let i = 0; i < elems.length; i++ ) {
 			mineSimulator( elems[ i ] );
 		}
+		mw.track( 'bbswiki.salttool', 'miner' );
 	}
 	function mineSimulator( el ) {
 		const simbtn = el.querySelector( '.s1' );

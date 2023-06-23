@@ -53,6 +53,7 @@
 		document.addEventListener( 'mousedown', function ( e ) {
 			createFireworks( e.clientX, e.clientY );
 		} );
+		mw.track( 'bbswiki.salttool', 'firework' );
 	}
 	function resizeCanvas() {
 		canvas.width = window.innerWidth;
