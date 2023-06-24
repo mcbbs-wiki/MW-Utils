@@ -29,9 +29,13 @@
 		"MCBBSWikiUtils": [ "i18n" ]
 	},
 	"SpecialPages": {
-		"MCBBSCredit": "MediaWiki\\Extension\\MCBBSWiki\\SpecialMCBBSCredit",
+		"MCBBSCredit": {
+			"class":"MediaWiki\\Extension\\MCBBSWiki\\SpecialMCBBSCredit",
+			"services":[
+				"MBWUtils.MCBBSCredit"
+			]
+		},
 		"VME50": "MediaWiki\\Extension\\MCBBSWiki\\SpecialVME50",
-		"MBWAPIStatus":"MediaWiki\\Extension\\MCBBSWiki\\SpecialMBWAPIStatus",
 		"SaltToolbox": "MediaWiki\\Extension\\MCBBSWiki\\SpecialSaltToolbox"
 	},
 	"ServiceWiringFiles":[

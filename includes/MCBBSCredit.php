@@ -6,6 +6,7 @@ use Wikimedia\Rdbms\ILoadBalancer;
 use WANObjectCache;
 use Exception;
 use FormatJson;
+use MWTimestamp;
 
 class MCBBSCredit {
     public static $userGroupRegex ='/<em class="xg1">用户组&nbsp;&nbsp;<\/em><span[\s\S]+?><a href="home\.php\?mod=spacecp&amp;ac=usergroup&amp;gid=([0-9]+)" target="_blank">([\s\S]+?)<\/a>/';
@@ -54,6 +55,7 @@ class MCBBSCredit {
     {
         $user=[];
         $user['uid']=$uid;
+        $user['update']=MWTimestamp::getLocalInstance()->format("Y-m-d H:i:s");
         $userCacheKey = $this->cache->makeKey( 'bbsuser', $uid );
         $doc=$this->fetchUserDoc($uid);
         if($doc===null) {
@@ -141,7 +143,7 @@ class MCBBSCredit {
         $credit['contribute']=intval($matchCredit[7]);
         $credit['heart']=intval($matchCredit[8]);
         $credit['diamond']=intval($matchCredit[9]);
-        $user['credit']=$credit;
+        $user['credits']=$credit;
     }
     private function writeDBUserCredit($user){
         $user['fallback']=true;
@@ -158,7 +160,6 @@ class MCBBSCredit {
         } else {
             $dbw->update('mbw_usercredit',['mbwuc_data'=>FormatJson::encode($user)],['mbwuc_id'=>$uid]);
         }
-        empty($data);
     }
     private function calcDigiest($credit,int $post,int $thread){
         $totalPost=floor(($post+$thread)/3);

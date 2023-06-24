@@ -47,7 +47,7 @@ class SpecialMCBBSCredit extends SpecialPage {
 		if ( $hasuid ) {
 			$output->addModules( [ 'ext.mcbbswikiutils.credit' ] );
 			$user=$this->credit->getUserInfo($uid);
-			if ( isset( $args['mili'] ) ) {
+			if ( $user===null ) {
 				$html= Html::element( 'strong', [ 'class' => 'error' ], wfMessage( 'mcbbscredit-notfound' )->text() );
 			}
 			$userJson = FormatJson::encode($user);

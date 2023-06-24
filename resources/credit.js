@@ -50,8 +50,9 @@
 	function getPIE( node, user ) {
 		const creditObj = JSON.parse( user ),
 			creditsObj = creditObj.credits,
-			activites = creditObj.activites,
-			nickname = creditObj.nickname;
+			activites = creditObj.activities,
+			nickname = creditObj.nickname,
+			updateat = creditObj.update;
 		mw.track( 'bbswiki.userpie.get', creditObj.uid );
 		const post = activites.post,
 			thread = activites.thread,
@@ -62,11 +63,14 @@
 			contrib = creditsObj.contribute,
 			heart = creditsObj.heart,
 			diamond = creditsObj.diamond;
-
+		let subtxt = `UID: ${creditObj.uid}; 积分: ${credit}; 用户组: ${group}；更新于: ${updateat}`;
+		if ( creditObj.fallback ) {
+			subtxt += '\n正在显示历史数据';
+		}
 		const json = Object.assign( {}, defaultOption, {
 			title: { text: `${nickname} 积分构成` },
 			subtitle: {
-				text: `UID: ${creditObj.uid}; 积分: ${credit}; 用户组: ${group}`
+				text: subtxt
 			},
 			series: [
 				{
