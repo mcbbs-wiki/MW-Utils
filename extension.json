@@ -38,6 +38,16 @@
 		"VME50": "MediaWiki\\Extension\\MCBBSWiki\\SpecialVME50",
 		"SaltToolbox": "MediaWiki\\Extension\\MCBBSWiki\\SpecialSaltToolbox"
 	},
+	"RestRoutes": [
+		{
+			"path": "/mbwutils/v0/credit/{uid}",
+            "method": "GET",
+			"class": "MediaWiki\\Extension\\MCBBSWiki\\HandlerCredit",
+			"services":[
+				"MBWUtils.MCBBSCredit"
+			]
+		}
+	],
 	"ServiceWiringFiles":[
 		"includes/ServiceWiring.php"
 	],

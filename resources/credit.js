@@ -65,7 +65,7 @@
 			diamond = creditsObj.diamond;
 		let subtxt = `UID: ${creditObj.uid}; 积分: ${credit}; 用户组: ${group}；更新于: ${updateat}`;
 		if ( creditObj.fallback ) {
-			subtxt += '\n正在显示历史数据';
+			subtxt += ' 正在显示历史数据';
 		}
 		const json = Object.assign( {}, defaultOption, {
 			title: { text: `${nickname} 积分构成` },
