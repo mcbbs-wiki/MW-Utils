@@ -2,13 +2,16 @@
 
 namespace MediaWiki\Extension\MCBBSWiki;
 
+use FormatJson;
 use Html;
 use HTMLForm;
 use SpecialPage;
 
 class SpecialMCBBSCredit extends SpecialPage {
-	public function __construct() {
+	private MCBBSCredit $credit;
+	public function __construct(MCBBSCredit $credit) {
 		parent::__construct( 'MCBBSCredit' );
+		$this->credit=$credit;
 	}
 
 	public function execute( $par ) {
@@ -43,7 +46,11 @@ class SpecialMCBBSCredit extends SpecialPage {
 			->displayForm( false );
 		if ( $hasuid ) {
 			$output->addModules( [ 'ext.mcbbswikiutils.credit' ] );
-			$userJson = Utils::getBBSUserJson( $uid );
+			$user=$this->credit->getUserInfo($uid);
+			if ( isset( $args['mili'] ) ) {
+				$html= Html::element( 'strong', [ 'class' => 'error' ], wfMessage( 'mcbbscredit-notfound' )->text() );
+			}
+			$userJson = FormatJson::encode($user);
 			$html = Html::element( 'div', [
 				'class' => 'userpie',
 				'data-user' => $userJson

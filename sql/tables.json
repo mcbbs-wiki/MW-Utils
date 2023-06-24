@@ -1,0 +1,21 @@
+[
+	{
+		"name": "mbw_usercredit",
+		"columns": [
+			{
+				"name": "mbwuc_id",
+				"comment": "User ID",
+				"type": "integer",
+				"options": { "notnull": true,"unsigned": true }
+			},
+			{
+				"name": "mbwuc_data",
+				"comment": "User credit data",
+				"type": "blob",
+				"options": { "length": 65535,"notnull": true }
+			}
+		],
+		"indexes":[],
+		"pk": [ "mbwuc_id" ]
+	}
+]

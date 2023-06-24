@@ -1,6 +1,7 @@
 <?php
 namespace MediaWiki\Extension\MCBBSWiki;
 
+use FormatJson;
 use Html;
 use Parser;
 use PPFrame;
@@ -77,7 +78,12 @@ class TagsMCBBS {
 	}
 
 	public static function renderCreditValue( Parser $parser, $uid = '3038', $data = 'diamond' ) {
-		$user = Utils::getBBSUserJson( $uid );
+		/**@var MCBBSCredit */
+		$cr=MediaWikiServices::getInstance()->getService('MBWUtils.MCBBSCredit');
+		$user = $cr->getUserInfo( $uid );
+		if($user['notfound']===true && $user===null){
+			return 0;
+		}
 		wfDebugLog( 'bbsuser', "Fetch user $uid $data" );
 		$value = Utils::getBBSUserValue( $user, $data );
 		if ( $value === false ) {
@@ -107,12 +113,14 @@ class TagsMCBBS {
 	}
 
 	public static function renderTagMCBBSCredit( $input, array $args, Parser $parser, PPFrame $frame ) {
+		$cr=MediaWikiServices::getInstance()->getService('MBWUtils.MCBBSCredit');
 		$parser->getOutput()->addModules( [ 'ext.mcbbswikiutils.credit' ] );
 		$uid = isset( $args['uid'] ) ? htmlspecialchars( $args['uid'] ) : '1';
-		$userJson = Utils::getBBSUserJson( $uid );
-		if ( $userJson === false ) {
+		$user = $cr->getUserInfo( $uid );
+		if ( $user['notfound'] === true && $user===null) {
 			return Html::element( 'strong', [ 'class' => 'error' ], wfMessage( 'mcbbscredit-notfound' )->text() );
 		}
+		$userJson = FormatJson::encode($user);
 		$credit = Html::element( 'div', [
 			'class' => 'userpie',
 			'data-user' => $userJson

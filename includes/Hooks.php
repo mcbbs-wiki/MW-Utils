@@ -6,7 +6,9 @@ use ConfigFactory;
 use MediaWiki\Hook\BeforePageDisplayHook;
 use MediaWiki\Hook\ParserFirstCallInitHook;
 use MediaWiki\Hook\SkinAddFooterLinksHook;
+use MediaWiki\Installer\Hook\LoadExtensionSchemaUpdatesHook;
 use Parser;
+use Exception;
 use Skin;
 
 class Hooks implements ParserFirstCallInitHook, SkinAddFooterLinksHook, BeforePageDisplayHook {
@@ -18,7 +20,20 @@ class Hooks implements ParserFirstCallInitHook, SkinAddFooterLinksHook, BeforePa
 		$this->ucenter = $config->get( 'UCenterURL' );
 		$this->appver = $config->get( 'MBWVER' );
 	}
-
+	public static function onLoadExtensionSchemaUpdates( $updater ) {
+		$dir = __DIR__ . '/../sql';
+		$dbType = $updater->getDB()->getType();
+		if ( $dbType==='mysql' ) {
+			$updater->addExtensionTable( 'mbw_usercredit', "{$dir}/tables-generated.sql" );
+		} else if ($dbType === 'sqlite') {
+			$updater->addExtensionTable( 'mbw_usercredit', "{$dir}/sqlite/tables-generated.sql" );
+		} else if($dbType==='postgres') {
+			$updater->addExtensionTable( 'mbw_usercredit', "{$dir}/postgres/tables-generated.sql" );
+		} else {
+			throw new Exception( 'Database type not currently supported' );
+		}
+		return true;
+	}
 	public function onSkinAddFooterLinks( Skin $skin, string $key, array &$footerlinks ) {
 		if ( $key === 'info' ) {
 			$msg = $skin->msg( 'footerinfo' );

@@ -22,7 +22,8 @@
 	"Hooks": {
 		"SkinAddFooterLinks": "main",
 		"ParserFirstCallInit": "main",
-		"BeforePageDisplay": "main"
+		"BeforePageDisplay": "main",
+		"LoadExtensionSchemaUpdates":"MediaWiki\\Extension\\MCBBSWiki\\Hooks::onLoadExtensionSchemaUpdates"
 	},
 	"MessagesDirs": {
 		"MCBBSWikiUtils": [ "i18n" ]
@@ -33,6 +34,9 @@
 		"MBWAPIStatus":"MediaWiki\\Extension\\MCBBSWiki\\SpecialMBWAPIStatus",
 		"SaltToolbox": "MediaWiki\\Extension\\MCBBSWiki\\SpecialSaltToolbox"
 	},
+	"ServiceWiringFiles":[
+		"includes/ServiceWiring.php"
+	],
 	"ExtensionMessagesFiles": {
 		"MCBBSWikiUtilsAlias": "MCBBSWikiUtils.i18n.alias.php"
 	},

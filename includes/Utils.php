@@ -24,36 +24,7 @@ class Utils {
 		return $valid;
 	}
 
-	public static function getBBSUserJson( $uid ) {
-		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
-		$userCacheKey = $cache->makeKey( 'bbsuser', $uid );
-		$userJson = $cache->get( $userCacheKey );
-		if ( $userJson === false ) {
-			wfDebugLog( 'bbsuser', "Fetch user $uid from API" );
-			$userJson = self::getBBSUserFromAPI( $uid );
-			if ( $userJson === false ) {
-				$cache->set( $userCacheKey, "NOTFOUND", 10800 );
-				return false;
-			}
-			$cache->set( $userCacheKey, $userJson, 10800 );
-		} else {
-			wfDebugLog( 'bbsuser', "Fetch user $uid from cache" );
-		}
-		if ( $userJson === 'NOTFOUND' ) {
-			return false;
-		}
-		return $userJson;
-	}
-
-	public static function getBBSUserValue( $userJson, $data = 'username' ) {
-		if ( $userJson === false ) {
-			return false;
-		}
-		$user = FormatJson::decode( $userJson, true );
-		if ( !$user ) {
-			wfDebugLog( 'bbsuser', 'Failed to parse user' );
-			return false;
-		}
+	public static function getBBSUserValue( $user, $data = 'username' ) {
 		switch ( $data ) {
 			case 'uid':
 				return $user['uid'];
@@ -92,24 +63,6 @@ class Utils {
 		}
 	}
 
-	public static function getBBSUserFromAPI( $uid ) {
-		global $wgMBWAPIURL;
-		$request = MediaWikiServices::getInstance()->getHttpRequestFactory()->create( $wgMBWAPIURL . 'users/' . $uid );
-		try{
-			$status = $request->execute();
-		} catch ( Exception $e ) {
-			wfDebugLog( 'bbsuser', 'Failed to fetch user: ' . $e->getMessage() );
-			return false;
-		}
-		if ( !$status->isOK() ) {
-			wfDebugLog( 'bbsuser', 'Failed to fetch user: ' . $status->getErrorsArray()[0][0] );
-			return false;
-		}
-		if ( $request->getStatus() === 500 && $request->getStatus() === 404 ) {
-			return false;
-		}
-		return $request->getContent();
-	}
 	public static function checkNumber(mixed $str,int $defaultValue,int $min,int $max){
 		$num=(int)$str;
 		$pass=$num===0||$num<$min||$num>$max;
