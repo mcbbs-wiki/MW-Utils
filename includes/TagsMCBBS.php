@@ -3,9 +3,9 @@ namespace MediaWiki\Extension\MCBBSWiki;
 
 use FormatJson;
 use Html;
+use MediaWiki\MediaWikiServices;
 use Parser;
 use PPFrame;
-use MediaWiki\MediaWikiServices;
 use Title;
 
 class TagsMCBBS {
@@ -23,14 +23,14 @@ class TagsMCBBS {
 				[ 'class' => 'error' ],
 				 wfMessage( 'extimg-invalidurl' )->text() );
 			}
-			$src=$args['src'];
+			$src = $args['src'];
 		} else {
-			$title=Title::makeTitle(NS_FILE,$args['src']);
-			if(!$title->exists()){
-				$lr=MediaWikiServices::getInstance()->getLinkRenderer();
-				return $lr->makeBrokenLink($title);
+			$title = Title::makeTitle( NS_FILE, $args['src'] );
+			if ( !$title->exists() ) {
+				$lr = MediaWikiServices::getInstance()->getLinkRenderer();
+				return $lr->makeBrokenLink( $title );
 			}
-			$src=MediaWikiServices::getInstance()->getRepoGroup()->findFile( $title )->getUrl();
+			$src = MediaWikiServices::getInstance()->getRepoGroup()->findFile( $title )->getUrl();
 		}
 		$output = $parser->recursiveTagParse( $input, $frame );
 		$controller = Html::element( 'div', [ 'class' => 'skinview-controller-lite' ] );
@@ -58,17 +58,17 @@ class TagsMCBBS {
 				[ 'class' => 'error' ],
 				 wfMessage( 'extimg-invalidurl' )->text() );
 			}
-			$src=$args['src'];
+			$src = $args['src'];
 		} else {
-			$title=Title::makeTitle(NS_FILE,$args['src']);
-			if(!$title->exists()){
-				$lr=MediaWikiServices::getInstance()->getLinkRenderer();
-				return $lr->makeBrokenLink($title);
+			$title = Title::makeTitle( NS_FILE, $args['src'] );
+			if ( !$title->exists() ) {
+				$lr = MediaWikiServices::getInstance()->getLinkRenderer();
+				return $lr->makeBrokenLink( $title );
 			}
-			$src=MediaWikiServices::getInstance()->getRepoGroup()->findFile( $title )->getUrl();
+			$src = MediaWikiServices::getInstance()->getRepoGroup()->findFile( $title )->getUrl();
 		}
 		$controller = Html::element( 'div', [ 'class' => 'skinview-controller' ] );
-		$canvas = Html::rawElement( 'div', [ 'class' => 'skinview-canvas','style' => "height:{$height}px;" ]);
+		$canvas = Html::rawElement( 'div', [ 'class' => 'skinview-canvas','style' => "height:{$height}px;" ] );
 		return Html::rawElement( 'div', [
 				'class' => 'skinview skinview-loading',
 				'data-speed' => $speed,
@@ -78,10 +78,10 @@ class TagsMCBBS {
 	}
 
 	public static function renderCreditValue( Parser $parser, $uid = '3038', $data = 'diamond' ) {
-		/**@var MCBBSCredit */
-		$cr=MediaWikiServices::getInstance()->getService('MBWUtils.MCBBSCredit');
+		/** @var MCBBSCredit */
+		$cr = MediaWikiServices::getInstance()->getService( 'MBWUtils.MCBBSCredit' );
 		$user = $cr->getUserInfo( $uid );
-		if($user['notfound']===true && $user===null){
+		if ( $user['notfound'] === true && $user === null ) {
 			return 0;
 		}
 		wfDebugLog( 'bbsuser', "Fetch user $uid $data" );
@@ -113,14 +113,14 @@ class TagsMCBBS {
 	}
 
 	public static function renderTagMCBBSCredit( $input, array $args, Parser $parser, PPFrame $frame ) {
-		$cr=MediaWikiServices::getInstance()->getService('MBWUtils.MCBBSCredit');
+		$cr = MediaWikiServices::getInstance()->getService( 'MBWUtils.MCBBSCredit' );
 		$parser->getOutput()->addModules( [ 'ext.mcbbswikiutils.credit' ] );
 		$uid = isset( $args['uid'] ) ? htmlspecialchars( $args['uid'] ) : '1';
 		$user = $cr->getUserInfo( $uid );
-		if ( $user['notfound'] === true && $user===null) {
+		if ( $user['notfound'] === true && $user === null ) {
 			return Html::element( 'strong', [ 'class' => 'error' ], wfMessage( 'mcbbscredit-notfound' )->text() );
 		}
-		$userJson = FormatJson::encode($user);
+		$userJson = FormatJson::encode( $user );
 		$credit = Html::element( 'div', [
 			'class' => 'userpie',
 			'data-user' => $userJson

@@ -2,10 +2,6 @@
 
 namespace MediaWiki\Extension\MCBBSWiki;
 
-use Exception;
-use FormatJson;
-use MediaWiki\MediaWikiServices;
-
 class Utils {
 	public static function checkDomain( string $url ) {
 		global $wgExtImgWhiteList;
@@ -63,10 +59,10 @@ class Utils {
 		}
 	}
 
-	public static function checkNumber(mixed $str,int $defaultValue,int $min,int $max){
-		$num=(int)$str;
-		$pass=$num===0||$num<$min||$num>$max;
-		return !$pass?$num:$defaultValue;
+	public static function checkNumber( mixed $str, int $defaultValue, int $min, int $max ) {
+		$num = (int)$str;
+		$pass = $num === 0 || $num < $min || $num > $max;
+		return !$pass ? $num : $defaultValue;
 	}
-	
+
 }

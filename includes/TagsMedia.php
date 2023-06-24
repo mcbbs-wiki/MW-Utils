@@ -2,9 +2,9 @@
 namespace MediaWiki\Extension\MCBBSWiki;
 
 use Html;
+use MediaWiki\MediaWikiServices;
 use Parser;
 use PPFrame;
-use MediaWiki\MediaWikiServices;
 use Title;
 
 class TagsMedia {
@@ -74,36 +74,35 @@ class TagsMedia {
 		$content = $parser->recursiveTagParse( $input, $frame );
 		return Html::rawElement( 'div', [ 'class' => 'salt-album','style' => "display:none;width:{$width};--height:{$height};" ], $content );
 	}
-	
-	public static function renderTagAudio($input, array $args, Parser $parser, PPFrame $frame)
-	{
-		$title=Title::makeTitle(NS_FILE,$args['src']);
-		if(!$title->exists()){
-			$lr=MediaWikiServices::getInstance()->getLinkRenderer();
-			return $lr->makeBrokenLink($title);
+
+	public static function renderTagAudio( $input, array $args, Parser $parser, PPFrame $frame ) {
+		$title = Title::makeTitle( NS_FILE, $args['src'] );
+		if ( !$title->exists() ) {
+			$lr = MediaWikiServices::getInstance()->getLinkRenderer();
+			return $lr->makeBrokenLink( $title );
 		}
-		$audioUrl=MediaWikiServices::getInstance()->getRepoGroup()->findFile( $title )->getUrl();
-		if(empty($input)){
-			$attr=[
+		$audioUrl = MediaWikiServices::getInstance()->getRepoGroup()->findFile( $title )->getUrl();
+		if ( empty( $input ) ) {
+			$attr = [
 				'controls' => '',
 				'class' => 'custom-audio',
-				'src'=>$audioUrl
+				'src' => $audioUrl
 			];
-			if($args["autoplay"]==='true'){
-				$attr['autoplay']='';
+			if ( $args["autoplay"] === 'true' ) {
+				$attr['autoplay'] = '';
 			}
-			if($args["loop"]==='true'){
-				$attr['loop']='';
+			if ( $args["loop"] === 'true' ) {
+				$attr['loop'] = '';
 			}
-			return Html::element('audio',$attr);
+			return Html::element( 'audio', $attr );
 		} else {
-			$parser->getOutput()->addModules(['ext.mcbbswikiutils.clickaudio']);
-			return Html::rawElement('span',
-				['class'=>'custom-audio-click'],
+			$parser->getOutput()->addModules( [ 'ext.mcbbswikiutils.clickaudio' ] );
+			return Html::rawElement( 'span',
+				[ 'class' => 'custom-audio-click' ],
 				Html::element(
 					'audio',
-					['src'=>$audioUrl]
-				).$parser->recursiveTagParse($input,$frame)
+					[ 'src' => $audioUrl ]
+				) . $parser->recursiveTagParse( $input, $frame )
 			);
 		}
 	}

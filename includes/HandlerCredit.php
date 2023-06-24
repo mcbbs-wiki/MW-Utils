@@ -5,18 +5,21 @@ use MediaWiki\Rest\SimpleHandler;
 use Wikimedia\ParamValidator\ParamValidator;
 
 class HandlerCredit extends SimpleHandler {
-    private MCBBSCredit $credit;
-    public function __construct(MCBBSCredit $credit)
-    {
-        $this->credit=$credit;
-    }
-    public function run( $uid ) {
-        return $this->credit->getUserInfo($uid);
-    }
-    public function needsWriteAccess() {
+	private MCBBSCredit $credit;
+
+	public function __construct( MCBBSCredit $credit ) {
+		$this->credit = $credit;
+	}
+
+	public function run( $uid ) {
+		return $this->credit->getUserInfo( $uid );
+	}
+
+	public function needsWriteAccess() {
 		return false;
 	}
-    public function getParamSettings() {
+
+	public function getParamSettings() {
 		return [
 			'uid' => [
 				self::PARAM_SOURCE => 'path',

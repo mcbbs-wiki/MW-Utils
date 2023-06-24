@@ -9,9 +9,10 @@ use SpecialPage;
 
 class SpecialMCBBSCredit extends SpecialPage {
 	private MCBBSCredit $credit;
-	public function __construct(MCBBSCredit $credit) {
+
+	public function __construct( MCBBSCredit $credit ) {
 		parent::__construct( 'MCBBSCredit' );
-		$this->credit=$credit;
+		$this->credit = $credit;
 	}
 
 	public function execute( $par ) {
@@ -46,11 +47,11 @@ class SpecialMCBBSCredit extends SpecialPage {
 			->displayForm( false );
 		if ( $hasuid ) {
 			$output->addModules( [ 'ext.mcbbswikiutils.credit' ] );
-			$user=$this->credit->getUserInfo($uid);
-			if ( $user===null ) {
-				$html= Html::element( 'strong', [ 'class' => 'error' ], wfMessage( 'mcbbscredit-notfound' )->text() );
+			$user = $this->credit->getUserInfo( $uid );
+			if ( $user === null ) {
+				$html = Html::element( 'strong', [ 'class' => 'error' ], $this->msg( 'mcbbscredit-notfound' )->text() );
 			}
-			$userJson = FormatJson::encode($user);
+			$userJson = FormatJson::encode( $user );
 			$html = Html::element( 'div', [
 				'class' => 'userpie',
 				'data-user' => $userJson
