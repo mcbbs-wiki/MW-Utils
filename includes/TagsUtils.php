@@ -52,7 +52,7 @@ class TagsUtils {
 	}
 	public static function renderTimediff( $input, array $args, Parser $parser, PPFrame $frame ) {
 		//global $wgLocaltimezone;
-		//$parser->getOutput()->addModules(["ext.mcbbswikiutils.timediff"]);
+		$parser->getOutput()->addModules(["ext.mcbbswikiutils.timediff"]);
 		$class=['salt-time-diff'];
 		if($args['complex']==="true"){
 			$class[]='complex';
