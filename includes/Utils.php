@@ -27,15 +27,15 @@ class Utils {
 			case 'nickname':
 				return $user['nickname'];
 			case 'post':
-				return $user['activites']['post'];
+				return $user['activities']['post'];
 			case 'thread':
-				return $user['activites']['thread'];
+				return $user['activities']['thread'];
 			case 'groupid':
-				return $user['activites']['currentGroupID'];
+				return $user['activities']['currentGroupID'];
 			case 'grouptext':
-				return $user['activites']['currentGroupText'];
+				return $user['activities']['currentGroupText'];
 			case 'digiest':
-				return $user['activites']['digiest'];
+				return $user['activities']['digiest'];
 			case 'diamond':
 				return $user['credits']['diamond'];
 			case 'popularity':
