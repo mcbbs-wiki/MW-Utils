@@ -1,9 +1,12 @@
 <?php
 namespace MediaWiki\Extension\MCBBSWiki;
 
+use DateTime;
 use Html;
+use MWTimestamp;
 use Parser;
 use PPFrame;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 class TagsUtils {
 	public static function renderInlineCSS( Parser $parser, $frame, $args ) {
@@ -47,7 +50,54 @@ class TagsUtils {
 		$out->addModules( [ 'ext.mcbbswikiutils.firework' ] );
 		return '';
 	}
-
+	public static function renderTimediff( $input, array $args, Parser $parser, PPFrame $frame ) {
+		global $wgLocaltimezone;
+-		$class=['salt-time-diff'];
+		if($args['complex']==="true"){
+			$class[]='complex';
+		}
+		if($args['unix']==="true"){
+			$startStamp=new ConvertibleTimestamp(intval($args['start']));
+		} else {
+			$startTimeTxt=$args['start'];
+			$startTimeTxt=str_replace(["年","月"],'/',$startTimeTxt);
+			$startTimeTxt=str_replace("日","",$startTimeTxt);
+			$startStamp=new ConvertibleTimestamp(strtotime($startTimeTxt));
+		}
+		if($args['realtime']==="true"){
+			$class[]='real-time';
+			$end="REALTIME";
+		} else {
+			if($args['unix']==="true"){
+				$endStamp=new ConvertibleTimestamp(intval($args['end']));
+			} else {
+				$endTimeTxt=$args['end'];
+				$endTimeTxt=str_replace(["年","月"],'/',$endTimeTxt);
+				$endTimeTxt=str_replace("日","",$endTimeTxt);
+				$endStamp=new ConvertibleTimestamp(strtotime($endTimeTxt));
+			}
+		}
+		//$class[]='utc';
+		$start=$startStamp->getTimestamp()*1000;
+		if($args['realtime']!=="true"){
+			$end=$endStamp->getTimestamp()*1000;
+		}
+		$classList=implode(' ',$class).' '.$args['class'];
+		$cmd=$args['cmd'] ?? 'd';
+		$cmd=preg_replace('/年份?/u','y',$cmd);
+		$cmd=preg_replace('/月份?/u','o',$cmd);
+		$cmd=preg_replace('/[天日]/u','d',$cmd);
+		$cmd=preg_replace('/小?时/u','h',$cmd);
+		$cmd=preg_replace('/分钟?/u','m',$cmd);
+		$cmd=preg_replace('/毫秒/u','M',$cmd);
+		$cmd=preg_replace('/秒/u','s',$cmd);
+		return Html::element('span',[
+			'class'=>$classList,
+			'data-salt-time-diff-command'=>$cmd,
+			'data-salt-time-diff-start'=>$start,
+			'data-salt-time-diff-end'=>$end
+		]);
+	}
 	private static function genFireworkHue() {
 		$hue = [];
 		for ( $i = 1; $i < 361; $i++ ) {

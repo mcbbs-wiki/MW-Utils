@@ -56,7 +56,7 @@
 	},
 	"ResourceModules": {
 		"ext.mcbbswikiutils.credit": {
-			"packageFiles": [ "credit.js" ],
+			"scripts": [ "credit.js" ],
 			"targets": [ "desktop", "mobile" ],
 			"es6": true,
 			"messages": [
@@ -68,7 +68,7 @@
 			]
 		},
 		"ext.mcbbswikiutils.skinview": {
-			"packageFiles": [ "skinshow.js" ],
+			"scripts": [ "skinshow.js" ],
 			"targets": [ "desktop", "mobile" ],
 			"es6": true,
 			"messages": [
@@ -87,7 +87,7 @@
 			]
 		},
 		"ext.mcbbswikiutils.skinview-lite": {
-			"packageFiles": [ "skinshow-lite.js" ],
+			"scripts": [ "skinshow-lite.js" ],
 			"targets": [ "desktop", "mobile" ],
 			"es6": true,
 			"messages": [
@@ -118,8 +118,12 @@
 			"styles": "avatar.css",
 			"targets": [ "desktop", "mobile" ]
 		},
+		"ext.mcbbswikiutils.timediff": {
+			"scripts": "timediff.js",
+			"targets": [ "desktop", "mobile" ]
+		},
 		"ext.mcbbswikiutils.testie": {
-			"packageFiles": [ "testie.js" ],
+			"scripts": [ "testie.js" ],
 			"dependencies": [
 				"jquery.client"
 			],
@@ -133,17 +137,17 @@
 			"targets": [ "desktop", "mobile" ]
 		},
 		"ext.mcbbswikiutils.saltalbum": {
-			"packageFiles": [ "saltalbum.js" ],
+			"scripts": [ "saltalbum.js" ],
 			"es6": true,
 			"targets": [ "desktop", "mobile" ]
 		},
 		"ext.mcbbswikiutils.firework": {
-			"packageFiles": [ "firework.js" ],
+			"scripts": [ "firework.js" ],
 			"es6": true,
 			"targets": [ "desktop", "mobile" ]
 		},
 		"ext.mcbbswikiutils.clickaudio": {
-			"packageFiles": [ "clickaudio.js" ],
+			"scripts": [ "clickaudio.js" ],
 			"targets": [ "desktop", "mobile" ]
 		},
 		"ext.mcbbswikiutils.saltalbum.styles": {
@@ -151,7 +155,7 @@
 			"targets": [ "desktop", "mobile" ]
 		},
 		"ext.mcbbswikiutils.salttool.contrast": {
-			"packageFiles": [ "salttool.contrast.js" ],
+			"scripts": [ "salttool.contrast.js" ],
 			"targets": [ "desktop", "mobile" ],
 			"es6": true,
 			"messages": [
@@ -177,7 +181,7 @@
 			"targets": [ "desktop", "mobile" ]
 		},
 		"ext.mcbbswikiutils.salttool.wealth": {
-			"packageFiles": [ "salttool.wealth.js" ],
+			"scripts": [ "salttool.wealth.js" ],
 			"targets": [ "desktop", "mobile" ],
 			"es6": true,
 			"messages": [
@@ -191,7 +195,7 @@
 			"targets": [ "desktop", "mobile" ]
 		},
 		"ext.mcbbswikiutils.salttool.miner": {
-			"packageFiles": [ "salttool.miner.js" ],
+			"scripts": [ "salttool.miner.js" ],
 			"es6": true,
 			"messages": [
 				"salttoolbox-miner-reward-nugget50",
@@ -225,7 +229,7 @@
 			"targets": [ "desktop", "mobile" ]
 		},
 		"ext.mcbbswikiutils.salttool.textdiff": {
-			"packageFiles": [ "salttool.textdiff.js" ],
+			"scripts": [ "salttool.textdiff.js" ],
 			"es6": true,
 			"targets": [ "desktop", "mobile" ],
 			"messages": [
@@ -243,15 +247,15 @@
 			"targets": [ "desktop", "mobile" ]
 		},
 		"skinview3d": {
-			"packageFiles": [ "skinview3d.vendor.js" ],
+			"scripts": [ "skinview3d.vendor.js" ],
 			"targets": [ "desktop", "mobile" ]
 		},
 		"highcharts": {
-			"packageFiles": [ "highcharts.vendor.js" ],
+			"scripts": [ "highcharts.vendor.js" ],
 			"targets": [ "desktop", "mobile" ]
 		},
 		"diff": {
-			"packageFiles": [ "diff.vendor.js" ],
+			"scripts": [ "diff.vendor.js" ],
 			"targets": [ "desktop", "mobile" ]
 		}
 	},
