@@ -16,7 +16,7 @@
 		if ( !time ) {
 			return new Date();
 		}
-		if ( /^\d+$/.test( time.trim() ) ) {
+		if ( /^(-|\+)\d+$/.test( time.trim() ) ) {
 			const d2 = new Date( +time );
 			if ( !isNaN( d2.valueOf() ) ) {
 				if ( utc ) {
