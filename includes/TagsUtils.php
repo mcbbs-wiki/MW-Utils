@@ -52,7 +52,7 @@ class TagsUtils {
 	}
 	public static function renderTimediff( $input, array $args, Parser $parser, PPFrame $frame ) {
 		global $wgLocaltimezone;
--		$class=['salt-time-diff'];
+		$class=['salt-time-diff'];
 		if($args['complex']==="true"){
 			$class[]='complex';
 		}
@@ -81,6 +81,9 @@ class TagsUtils {
 		$start=$startStamp->getTimestamp()*1000;
 		if($args['realtime']!=="true"){
 			$end=$endStamp->getTimestamp()*1000;
+		}
+		if($args['simple']==="true"){
+			$class[]='simple';
 		}
 		$classList=implode(' ',$class).' '.$args['class'];
 		$cmd=$args['cmd'] ?? 'd';
