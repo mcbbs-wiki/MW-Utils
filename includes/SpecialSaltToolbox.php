@@ -14,17 +14,20 @@ class SpecialSaltToolbox extends IncludableSpecialPage {
 		parent::__construct( 'SaltToolbox' );
 		$this->tools = [
 			'home' => new SaltToolWelcome(),
+			'credit' => new SaltToolCredit(),
 			'miner' => new SaltToolMinerSimulator(),
 			'wealth' => new SaltToolWealthSimulator(),
+			'contrast' => new SaltToolContrastCalculator(),
 			'textdiff' => new SaltToolTextDiffPalette(),
-			'contrast' => new SaltToolContrastCalculator()
 		];
 	}
 
-	public function execute( $arg ) {
+	public function execute( $par ) {
 		$this->setHeaders();
 		$toolId = '';
 		$toolObj = null;
+		$args=explode("/",$par,2);
+		$arg=$args[0]??null;
 		foreach ( $this->tools as $key => $value ) {
 			if ( $arg === $key ) {
 				$toolId = $key;
@@ -37,9 +40,9 @@ class SpecialSaltToolbox extends IncludableSpecialPage {
 		}
 		if ( !$this->including() ) {
 			$this->addNavigationLinks( $toolId );
-			$toolObj->outHead( $this->getOutput() );
+			$toolObj->outHead( $this->getOutput(),$args[1]??null );
 		}
-		$toolObj->outBody( $this->getOutput() );
+		$toolObj->outBody( $this->getOutput(),$args[1]??null );
 	}
 
 	protected function addNavigationLinks( $pageType ) {

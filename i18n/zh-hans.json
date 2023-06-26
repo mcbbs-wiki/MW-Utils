@@ -22,6 +22,7 @@
 	"salttoolbox-topnav-contrast": "🎨️对比度检测",
 	"salttoolbox-topnav-wealth": "💰️致富卡模拟器",
 	"salttoolbox-topnav-textdiff": "🔤️文字调色板",
+	"salttoolbox-topnav-credit": "📊积分分析",
 	"salttoolbox-contrast-color1input": "请输入文字颜色，支持格式“#fff”“#ffffff”“rgb(255,255,255)”",
 	"salttoolbox-contrast-color2input": "请输入背景颜色，支持格式“#fff”“#ffffff”“rgb(255,255,255)”",
 	"salttoolbox-contrast-res": "正文文字ABCD",

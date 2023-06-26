@@ -5,10 +5,10 @@ use Html;
 use OutputPage;
 
 class SaltToolContrastCalculator implements ISaltTool {
-	public function outHead( OutputPage $out ) {
+	public function outHead( OutputPage $out,$arg ) {
 	}
 
-	public function outBody( OutputPage $out ) {
+	public function outBody( OutputPage $out,$arg ) {
 		$out->addModuleStyles( [ 'ext.mcbbswikiutils.salttool.contrast.styles' ] );
 		$out->addModules( [ 'ext.mcbbswikiutils.salttool.contrast' ] );
 		$color1Input = Html::element( 'input', [
