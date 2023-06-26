@@ -62,7 +62,7 @@ class MCBBSCredit {
 		}
 		if ( strpos( $doc, self::$errClass ) ) {
 			$user['notfound'] = true;
-			$this->cache->set( $userCacheKey, $user );
+			$this->cache->set( $userCacheKey, $user,21600 );
 			$this->writeDBUserCredit( $user );
 			return $user;
 		}
@@ -71,7 +71,7 @@ class MCBBSCredit {
 		$user['nickname'] = $matchName[1];
 		$this->getUserCredit( $doc, $user );
 		$this->getUserActivities( $doc, $user );
-		$this->cache->set( $userCacheKey, $user );
+		$this->cache->set( $userCacheKey, $user,10800 );
 		$this->writeDBUserCredit( $user );
 		return $user;
 	}
@@ -98,7 +98,7 @@ class MCBBSCredit {
 			return null;
 		}
 		$user = FormatJson::decode( $data, true );
-		$this->cache->set( $userCacheKey, $user );
+		$this->cache->set( $userCacheKey, $user,5400 );
 		return $user;
 	}
 
