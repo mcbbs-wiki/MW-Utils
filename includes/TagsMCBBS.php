@@ -117,7 +117,7 @@ class TagsMCBBS {
 		$parser->getOutput()->addModules( [ 'ext.mcbbswikiutils.credit' ] );
 		$uid = isset( $args['uid'] ) ? htmlspecialchars( $args['uid'] ) : '1';
 		$user = $cr->getUserInfo( $uid );
-		if ( $user['notfound'] === true && $user === null ) {
+		if ( $user['notfound'] === true || $user === null ) {
 			return Html::element( 'strong', [ 'class' => 'error' ], wfMessage( 'mcbbscredit-notfound' )->text() );
 		}
 		$userJson = FormatJson::encode( $user );
