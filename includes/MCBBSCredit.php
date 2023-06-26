@@ -103,7 +103,7 @@ class MCBBSCredit {
 	}
 
 	private function fetchUserDoc( int $uid ): string|null {
-		$req = $this->http->create( "https://www.mcbbs.net/home.php?mod=space&uid={$uid}" );
+		$req = $this->http->create( "https://www.mcbbs.net/home.php?mod=space&uid={$uid}",['timeout'=>5] );
 		try{
 			$status = $req->execute();
 		} catch ( Exception $e ) {
