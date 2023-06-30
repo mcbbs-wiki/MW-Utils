@@ -47,7 +47,7 @@ class TagsMCBBS {
 	public static function renderTagSkinview( $input, array $args, Parser $parser, PPFrame $frame ) {
 		$parser->getOutput()->addModuleStyles( [ 'ext.mcbbswikiutils.skinview.styles' ] );
 		$parser->getOutput()->addModules( [ 'ext.mcbbswikiutils.skinview' ] );
-		$isURL = filter_var( $args['src'], FILTER_VALIDATE_URL );
+		$isURL = filter_var( $args['src']??'', FILTER_VALIDATE_URL );
 		$width = $args['width'] ?? 250;
 		$height = $args['height'] ?? 350;
 		$speed = $args['speed'] ?? 'slow';
@@ -79,6 +79,9 @@ class TagsMCBBS {
 
 	public static function renderCreditValue( Parser $parser, $uid = '3038', $data = 'diamond' ) {
 		/** @var MCBBSCredit */
+		if(empty($uid)){
+			return 0;
+		}
 		$cr = MediaWikiServices::getInstance()->getService( 'MBWUtils.MCBBSCredit' );
 		$user = $cr->getUserInfo( $uid );
 		if ( $user['notfound'] === true && $user === null ) {
