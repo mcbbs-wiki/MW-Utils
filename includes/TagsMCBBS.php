@@ -79,15 +79,16 @@ class TagsMCBBS {
 
 	public static function renderCreditValue( Parser $parser, $uid = '3038', $data = 'diamond' ) {
 		/** @var MCBBSCredit */
-		if(empty($uid)){
+		$realUID=intval($uid);
+		if($realUID===0){
 			return 0;
 		}
 		$cr = MediaWikiServices::getInstance()->getService( 'MBWUtils.MCBBSCredit' );
-		$user = $cr->getUserInfo( $uid );
+		$user = $cr->getUserInfo( $realUID );
 		if ( $user['notfound'] === true && $user === null ) {
 			return 0;
 		}
-		wfDebugLog( 'bbsuser', "Fetch user $uid $data" );
+		wfDebugLog( 'bbsuser', "Fetch user $realUID $data" );
 		$value = Utils::getBBSUserValue( $user, $data );
 		if ( $value === false ) {
 			return 0;
