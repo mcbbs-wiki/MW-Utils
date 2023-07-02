@@ -1,28 +1,28 @@
 <?php
 namespace MediaWiki\Extension\MCBBSWiki;
 
+use FormatJson;
+use Html;
+use HTMLForm;
 use MediaWiki\MediaWikiServices;
 use OutputPage;
-use HTMLForm;
-use Html;
-use FormatJson;
 use SpecialPage;
 
-class SaltToolCredit implements ISaltTool{
-    public function outHead( OutputPage $out,$arg ) {
+class SaltToolCredit implements ISaltTool {
+	public function outHead( OutputPage $out, $arg ) {
 	}
 
-	public function outBody( OutputPage $out,$arg ) {
-        if ( $arg ) {
-			$out->redirect( SpecialPage::getTitleFor("SaltToolbox/credit")->getLinkURL( [
+	public function outBody( OutputPage $out, $arg ) {
+		if ( $arg ) {
+			$out->redirect( SpecialPage::getTitleFor( "SaltToolbox/credit" )->getLinkURL( [
 				'wpUID' => $arg,
 			] ) );
 			return;
 		}
-        $uid=$out->getRequest()->getInt( 'wpUID' );
-        $hasuid = $uid !== 0;
-        $out->enableOOUI();
-        $formDescriptor = [
+		$uid = $out->getRequest()->getInt( 'wpUID' );
+		$hasuid = $uid !== 0;
+		$out->enableOOUI();
+		$formDescriptor = [
 			'uid' => [
 				'type' => 'number',
 				'name' => 'wpUID',
@@ -39,9 +39,9 @@ class SaltToolCredit implements ISaltTool{
 			->setWrapperLegendMsg( 'mcbbscredit-form-legend' )
 			->prepareForm()
 			->displayForm( false );
-        if ( $hasuid ) {
-            /**@var MCBBSCredit */
-            $credit=MediaWikiServices::getInstance()->getService("MBWUtils.MCBBSCredit");
+		if ( $hasuid ) {
+			/** @var MCBBSCredit */
+			$credit = MediaWikiServices::getInstance()->getService( "MBWUtils.MCBBSCredit" );
 			$out->addModules( [ 'ext.mcbbswikiutils.credit' ] );
 			$user = $credit->getUserInfo( $uid );
 			if ( $user === null ) {
@@ -53,6 +53,6 @@ class SaltToolCredit implements ISaltTool{
 				'data-user' => $userJson
 			], $out->msg( 'mcbbscredit-loading' )->text() );
 		}
-        $out->addHTML( $html );
-    }
+		$out->addHTML( $html );
+	}
 }

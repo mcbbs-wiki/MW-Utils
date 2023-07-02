@@ -15,8 +15,7 @@
 	},
 	"HookHandlers": {
 		"main": {
-			"class": "MediaWiki\\Extension\\MCBBSWiki\\Hooks",
-			"services": [ "ConfigFactory" ]
+			"class": "MediaWiki\\Extension\\MCBBSWiki\\Hooks"
 		}
 	},
 	"Hooks": {
@@ -265,6 +264,7 @@
 		"UCenterURL": "",
 		"ExtImgWhiteList": [],
 		"MBWVER": "eee",
+		"BBSUserUrl":"https://www.mcbbs.net/home.php?mod=space&uid=",
 		"MBWAPIURL": "http://localhost:18080/"
 	}
 }

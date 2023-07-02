@@ -5,10 +5,10 @@ use Html;
 use OutputPage;
 
 class SaltToolWealthSimulator implements ISaltTool {
-	public function outHead( OutputPage $out,$arg ) {
+	public function outHead( OutputPage $out, $arg ) {
 	}
 
-	public function outBody( OutputPage $out,$arg ) {
+	public function outBody( OutputPage $out, $arg ) {
 		$out->addModuleStyles( 'ext.mcbbswikiutils.salttool.wealth.styles' );
 		$out->addModules( 'ext.mcbbswikiutils.salttool.wealth' );
 		$resul = Html::element( 'ul', [ 'class' => 'resul' ] );

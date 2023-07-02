@@ -11,15 +11,6 @@ use Parser;
 use Skin;
 
 class Hooks implements ParserFirstCallInitHook, SkinAddFooterLinksHook, BeforePageDisplayHook {
-	private string $ucenter;
-	private string $appver;
-
-	public function __construct( ConfigFactory $configFactory ) {
-		$config = $configFactory->makeConfig( 'MCBBSWikiUtils' );
-		$this->ucenter = $config->get( 'UCenterURL' );
-		$this->appver = $config->get( 'MBWVER' );
-	}
-
 	public static function onLoadExtensionSchemaUpdates( $updater ) {
 		$dir = __DIR__ . '/../sql';
 		$dbType = $updater->getDB()->getType();
@@ -45,7 +36,8 @@ class Hooks implements ParserFirstCallInitHook, SkinAddFooterLinksHook, BeforePa
 	}
 
 	public function onBeforePageDisplay( $out, $skin ): void {
-		$out->addJsConfigVars( 'wgMBWVER', $this->appver );
+		global $wgMBWVER;
+		$out->addJsConfigVars( 'wgMBWVER', $wgMBWVER );
 		$out->addModuleStyles( 'ext.mcbbswikiutils.testie.styles' );
 		$out->addModules( "ext.mcbbswikiutils.testie" );
 	}
@@ -65,5 +57,4 @@ class Hooks implements ParserFirstCallInitHook, SkinAddFooterLinksHook, BeforePa
 		$parser->setFunctionHook( 'mcbbscreditvalue', [ TagsMCBBS::class,'renderCreditValue' ] );
 		$parser->setFunctionHook( 'unsafe-css', [ TagsUtils::class,'renderInlineCSS' ], Parser::SFH_OBJECT_ARGS );
 	}
-
 }

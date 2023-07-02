@@ -6,7 +6,7 @@ use SpecialPage;
 use UnlistedSpecialPage;
 
 class SpecialMCBBSCredit extends UnlistedSpecialPage {
-	public function __construct( ) {
+	public function __construct() {
 		parent::__construct( 'MCBBSCredit' );
 	}
 
@@ -14,14 +14,14 @@ class SpecialMCBBSCredit extends UnlistedSpecialPage {
 		$output = $this->getOutput();
 		$request = $this->getRequest();
 		if ( $par ) {
-			$output->redirect( SpecialPage::getTitleFor("SaltToolbox/credit")->getLinkURL([
-				'wpUID'=>$par
-			]));
+			$output->redirect( SpecialPage::getTitleFor( "SaltToolbox/credit" )->getLinkURL( [
+				'wpUID' => $par
+			] ) );
 			return;
 		}
 		$uid = $request->getText( 'wpUID' );
-		$output->redirect( SpecialPage::getTitleFor("SaltToolbox/credit")->getLinkURL([
-			'wpUID'=>$uid
-		]) );
+		$output->redirect( SpecialPage::getTitleFor( "SaltToolbox/credit" )->getLinkURL( [
+			'wpUID' => $uid
+		] ) );
 	}
 }

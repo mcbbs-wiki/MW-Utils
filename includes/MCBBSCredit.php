@@ -21,6 +21,7 @@ class MCBBSCredit {
 	private ILoadBalancer $lb;
 	private WANObjectCache $cache;
 	private HttpRequestFactory $http;
+	private string $bbsurl;
 
 	public function __construct(
 		ILoadBalancer $lb,
@@ -63,7 +64,7 @@ class MCBBSCredit {
 		}
 		if ( strpos( $doc, self::$errClass ) ) {
 			$user['notfound'] = true;
-			$this->cache->set( $userCacheKey, $user,21600 );
+			$this->cache->set( $userCacheKey, $user, 21600 );
 			$this->writeDBUserCredit( $user );
 			return $user;
 		}
@@ -72,7 +73,7 @@ class MCBBSCredit {
 		$user['nickname'] = $matchName[1];
 		$this->getUserCredit( $doc, $user );
 		$this->getUserActivities( $doc, $user );
-		$this->cache->set( $userCacheKey, $user,10800 );
+		$this->cache->set( $userCacheKey, $user, 10800 );
 		$this->writeDBUserCredit( $user );
 		return $user;
 	}
@@ -99,12 +100,13 @@ class MCBBSCredit {
 			return null;
 		}
 		$user = FormatJson::decode( $data, true );
-		$this->cache->set( $userCacheKey, $user,5400 );
+		$this->cache->set( $userCacheKey, $user, 5400 );
 		return $user;
 	}
 
 	private function fetchUserDoc( int $uid ): string|null {
-		$req = $this->http->create( "https://www.mcbbs.net/home.php?mod=space&uid={$uid}",['timeout'=>5] );
+		global $wgBBSUserUrl;
+		$req = $this->http->create( $wgBBSUserUrl.$uid, [ 'timeout' => 5 ] );
 		try{
 			$status = $req->execute();
 		} catch ( Exception $e ) {
@@ -151,8 +153,8 @@ class MCBBSCredit {
 	}
 
 	private function writeDBUserCredit( $user ) {
-		$update=new UpdateFallbackUserCredit($this->lb,$user);
-		DeferredUpdates::addUpdate($update);
+		$update = new UpdateFallbackUserCredit( $this->lb, $user );
+		DeferredUpdates::addUpdate( $update );
 	}
 
 	private function calcDigiest( $credit, int $post, int $thread ) {

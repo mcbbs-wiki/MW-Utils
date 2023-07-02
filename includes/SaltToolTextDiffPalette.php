@@ -5,10 +5,10 @@ use Html;
 use OutputPage;
 
 class SaltToolTextDiffPalette implements ISaltTool {
-	public function outHead( OutputPage $out,$arg ) {
+	public function outHead( OutputPage $out, $arg ) {
 	}
 
-	public function outBody( OutputPage $out,$arg ) {
+	public function outBody( OutputPage $out, $arg ) {
 		$out->addModuleStyles( 'ext.mcbbswikiutils.salttool.textdiff.styles' );
 		$out->addModules( 'ext.mcbbswikiutils.salttool.textdiff' );
 		$subtitle = Html::element( 'span', [ 'class' => 'subtitle','title' => $out->msg( 'salttoolbox-textdiff-aboutlevenshtein' )->text() ] );

@@ -5,10 +5,10 @@ use Html;
 use OutputPage;
 
 class SaltToolMinerSimulator implements ISaltTool {
-	public function outHead( OutputPage $out,$arg ) {
+	public function outHead( OutputPage $out, $arg ) {
 	}
 
-	public function outBody( OutputPage $out,$arg ) {
+	public function outBody( OutputPage $out, $arg ) {
 		$out->addModuleStyles( 'ext.mcbbswikiutils.salttool.miner.styles' );
 		$out->addModules( 'ext.mcbbswikiutils.salttool.miner' );
 		$resul = Html::element( 'ul', [ 'class' => 'resul' ] );

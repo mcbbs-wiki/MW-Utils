@@ -5,15 +5,17 @@ use DeferrableUpdate;
 use FormatJson;
 use Wikimedia\Rdbms\ILoadBalancer;
 
-class UpdateFallbackUserCredit implements DeferrableUpdate{
-    private $lb;
-    private $user;
-    public function __construct(ILoadBalancer $lb,$user) {
-        $this->lb=$lb;
-        $this->user=$user;
-    }
-    public function doUpdate() {
-        $this->user['fallback'] = true;
+class UpdateFallbackUserCredit implements DeferrableUpdate {
+	private $lb;
+	private $user;
+
+	public function __construct( ILoadBalancer $lb, $user ) {
+		$this->lb = $lb;
+		$this->user = $user;
+	}
+
+	public function doUpdate() {
+		$this->user['fallback'] = true;
 		$uid = $this->user['uid'];
 		$dbw = $this->lb->getConnection( DB_PRIMARY );
 		$data = $dbw->newSelectQueryBuilder()
@@ -27,5 +29,5 @@ class UpdateFallbackUserCredit implements DeferrableUpdate{
 		} else {
 			$dbw->update( 'mbw_usercredit', [ 'mbwuc_data' => FormatJson::encode( $this->user ) ], [ 'mbwuc_id' => $uid ] );
 		}
-    }
+	}
 }
