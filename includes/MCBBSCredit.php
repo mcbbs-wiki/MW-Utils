@@ -1,6 +1,7 @@
 <?php
 namespace MediaWiki\Extension\MCBBSWiki;
 
+use DeferredUpdates;
 use Exception;
 use FormatJson;
 use MediaWiki\Http\HttpRequestFactory;
@@ -128,7 +129,7 @@ class MCBBSCredit {
 		$activities = [];
 		$activities['post'] = intval( $matchPost[1] );
 		$activities['thread'] = intval( $matchThread[1] );
-		$activities['digiest'] = $this->calcDigiest( $user['credit'], $activities['post'], $activities['thread'] );
+		$activities['digiest'] = $this->calcDigiest( $user['credits'], $activities['post'], $activities['thread'] );
 		$activities['currentGroupID'] = intval( $matchGroup[1] );
 		$activities['currentGroupText'] = empty( $matchGroupText ) ? $matchGroup[2] : $matchGroupText[1];
 		$user['activities'] = $activities;
@@ -150,20 +151,8 @@ class MCBBSCredit {
 	}
 
 	private function writeDBUserCredit( $user ) {
-		$user['fallback'] = true;
-		$uid = $user['uid'];
-		$dbw = $this->lb->getConnection( DB_PRIMARY );
-		$data = $dbw->newSelectQueryBuilder()
-			->select( [ 'mbwuc_id' ] )
-			->from( 'mbw_usercredit' )
-			->where( [ 'mbwuc_id' => $user['uid'] ] )
-			->caller( __METHOD__ )
-			->fetchField();
-		if ( $data === false ) {
-			$dbw->insert( 'mbw_usercredit', [ 'mbwuc_id' => $uid,'mbwuc_data' => FormatJson::encode( $user ) ] );
-		} else {
-			$dbw->update( 'mbw_usercredit', [ 'mbwuc_data' => FormatJson::encode( $user ) ], [ 'mbwuc_id' => $uid ] );
-		}
+		$update=new UpdateFallbackUserCredit($this->lb,$user);
+		DeferredUpdates::addUpdate($update);
 	}
 
 	private function calcDigiest( $credit, int $post, int $thread ) {
