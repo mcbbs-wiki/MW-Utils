@@ -106,7 +106,7 @@ class MCBBSCredit {
 
 	private function fetchUserDoc( int $uid ): string|null {
 		global $wgBBSUserUrl;
-		$req = $this->http->create( $wgBBSUserUrl.$uid, [ 'timeout' => 5 ] );
+		$req = $this->http->create( $wgBBSUserUrl . $uid, [ 'timeout' => 5 ] );
 		try{
 			$status = $req->execute();
 		} catch ( Exception $e ) {

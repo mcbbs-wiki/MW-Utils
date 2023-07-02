@@ -262,6 +262,8 @@
 	},
 	"config": {
 		"UCenterURL": "",
+		"UCenterStatic": false,
+		"UCenterDirTemplate":"%dir1/%dir2/%dir3/%dir4_avatar_%size.jpg",
 		"ExtImgWhiteList": [],
 		"MBWVER": "eee",
 		"BBSUserUrl":"https://www.mcbbs.net/home.php?mod=space&uid=",

@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Extension\MCBBSWiki;
 
-use ConfigFactory;
 use Exception;
 use MediaWiki\Hook\BeforePageDisplayHook;
 use MediaWiki\Hook\ParserFirstCallInitHook;

@@ -98,21 +98,34 @@ class TagsMCBBS {
 
 	public static function renderTagUCenterAvatar( $input, array $args, Parser $parser, PPFrame $frame ) {
 		$parser->getOutput()->addModuleStyles( [ 'ext.mcbbswikiutils.avatar' ] );
-		if ( isset( $args['mili'] ) ) {
-			return Html::element( 'p', [ 'class' => 'mili' ], '迷离可爱！' );
-		}
-		global $wgUCenterURL;
+		global $wgUCenterURL,$wgUCenterStatic,$wgUCenterDirTemplate;
 		if ( empty( $wgUCenterURL ) ) {
 			return Html::element( 'strong',
 			[ 'class' => 'error' ],
 			 wfMessage( 'ucenteravatar-noucenterurl' )->text() );
 		}
-		$uid = isset( $args['uid'] ) ? htmlspecialchars( $args['uid'] ) : '1';
-		$image = Html::element( 'img', [
-			'src' => "$wgUCenterURL/avatar.php?uid=$uid&size=big",
-			'class' => "ucenter-avatar ucenter-avatar-$uid",
-			'data-uid' => $uid
-		], '' );
+		$uid = $args['uid'] ?? '1';
+		$size = $args['size'] ?? 'big';
+		if ( $wgUCenterStatic ) {
+			$fullUID = sprintf( "%09d", $uid );
+			$dir1 = substr( $fullUID, 0, 3 );
+			$dir2 = substr( $fullUID, 3, 2 );
+			$dir3 = substr( $fullUID, 5, 2 );
+			$dir4 = substr( $fullUID, -2 );
+			$imgdir = str_replace( [ "%dir1","%dir2","%dir3","%dir4","%size" ], [ $dir1,$dir2,$dir3,$dir4,$size ], $wgUCenterDirTemplate );
+
+			$image = Html::element( 'img', [
+				'src' => "$wgUCenterURL/$imgdir",
+				'class' => "ucenter-avatar ucenter-avatar-$size ucenter-avatar-$uid",
+				'data-uid' => $uid
+			], '' );
+		} else {
+			$image = Html::element( 'img', [
+				'src' => "$wgUCenterURL/avatar.php?uid=$uid&size=$size",
+				'class' => "ucenter-avatar ucenter-avatar-$size ucenter-avatar-$uid",
+				'data-uid' => $uid
+			], '' );
+		}
 		return $image;
 	}
 
