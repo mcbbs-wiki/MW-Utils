@@ -1,7 +1,7 @@
 <?php
 namespace MediaWiki\Extension\MCBBSWiki;
 
-use Html;
+use MediaWiki\Html\Html;
 use Parser;
 use PPFrame;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
@@ -19,6 +19,26 @@ class TagsUtils {
 		$head = Html::linkedStyle( $url );
 		$parser->getOutput()->addHeadItem( $head );
 		return '';
+	}
+	public static function renderTopSign( $input, array $args, Parser $parser, PPFrame $frame ) {
+		$parser->getOutput()->addModuleStyles(['ext.mcbbswikiutils.topsign.styles']);
+		$parser->getOutput()->addModules( [ "ext.mcbbswikiutils.topsign" ] );
+		$innerHTML=$parser->recursiveTagParse($input,$frame);
+		$delay=intval($args['delay']??'5000');
+		if($delay===0){
+			$delay=5000;
+		}
+		$html = Html::openElement('div',[
+			'class'=>'topsign',
+			'style'=>$args['style']??'',
+			'data-delay'=>$delay,
+			'data-height'=>$args['height']??'-55px'
+		]);
+		$html.=Html::openElement('div',['class'=>'topsignitem']);
+		$html.=$innerHTML;
+		$html.=Html::closeElement('div');
+		$html.=Html::closeElement('div');
+		return $html;
 	}
 
 	public static function renderFirework( $input, array $args, Parser $parser, PPFrame $frame ) {

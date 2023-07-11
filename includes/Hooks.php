@@ -53,6 +53,7 @@ class Hooks implements ParserFirstCallInitHook, SkinAddFooterLinksHook, BeforePa
 		$parser->setHook( 'firework', [ TagsUtils::class,'renderFirework' ] );
 		$parser->setHook( 'custom-audio',  [ TagsMedia::class,'renderTagAudio' ] );
 		$parser->setHook( 'timediff',  [ TagsUtils::class,'renderTimediff' ] );
+		$parser->setHook( 'topsign',  [ TagsUtils::class,'renderTopSign' ] );
 		$parser->setFunctionHook( 'mcbbscreditvalue', [ TagsMCBBS::class,'renderCreditValue' ] );
 		$parser->setFunctionHook( 'unsafe-css', [ TagsUtils::class,'renderInlineCSS' ], Parser::SFH_OBJECT_ARGS );
 	}

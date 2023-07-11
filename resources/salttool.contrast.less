@@ -1,0 +1,60 @@
+.salt-contrast-calculator {
+	* {
+		box-sizing: border-box;
+	}
+
+	.color,
+	.res {
+		display: inline-block;
+		padding: 5px;
+		margin: 0 4px;
+		border: 4px solid #ccc6;
+		border-radius: 4px;
+		text-align: center;
+		vertical-align: middle;
+	}
+
+	.color {
+		width: calc( ~'50% - 12px' );
+
+		.left {
+			margin-right: 8px;
+		}
+
+		.right {
+			margin-left: 8px;
+		}
+	}
+
+	input,
+	.color-show,
+	.res-show,
+	.res-text {
+		width: 100%;
+		height: 3rem;
+		line-height: 3rem;
+		border-radius: 4px;
+		margin-top: 4px;
+		font-size: 1rem;
+		text-align: center;
+	}
+
+	.res {
+		width: calc( ~'100% - 8px' );
+		margin-top: 4px;
+	}
+
+	.res-show {
+		color: var( --color );
+		background-color: var( --back-color );
+	}
+
+	.big {
+		font-size: 1.5rem;
+	}
+
+	.res-text {
+		height: 2rem;
+		line-height: 2rem;
+	}
+}

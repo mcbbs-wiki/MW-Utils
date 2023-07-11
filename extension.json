@@ -126,6 +126,14 @@
 			],
 			"targets": [ "desktop", "mobile" ]
 		},
+		"ext.mcbbswikiutils.topsign": {
+			"packageFiles": [ "topsign.js" ],
+			"targets": [ "desktop", "mobile" ]
+		},
+		"ext.mcbbswikiutils.topsign.styles": {
+			"styles": "topsign.less",
+			"targets": [ "desktop", "mobile" ]
+		},
 		"ext.mcbbswikiutils.testie.styles": {
 			"styles": "testie.css",
 			"targets": [ "desktop", "mobile" ]
@@ -145,7 +153,7 @@
 			"targets": [ "desktop", "mobile" ]
 		},
 		"ext.mcbbswikiutils.saltalbum.styles": {
-			"styles": "saltalbum.css",
+			"styles": "saltalbum.less",
 			"targets": [ "desktop", "mobile" ]
 		},
 		"ext.mcbbswikiutils.salttool.contrast": {
@@ -171,7 +179,7 @@
 			]
 		},
 		"ext.mcbbswikiutils.salttool.contrast.styles": {
-			"styles": "salttool.contrast.css",
+			"styles": "salttool.contrast.less",
 			"targets": [ "desktop", "mobile" ]
 		},
 		"ext.mcbbswikiutils.salttool.wealth": {
@@ -185,7 +193,7 @@
 			]
 		},
 		"ext.mcbbswikiutils.salttool.wealth.styles": {
-			"styles": "salttool.wealth.css",
+			"styles": "salttool.wealth.less",
 			"targets": [ "desktop", "mobile" ]
 		},
 		"ext.mcbbswikiutils.salttool.miner": {
@@ -219,7 +227,7 @@
 			"targets": [ "desktop", "mobile" ]
 		},
 		"ext.mcbbswikiutils.salttool.miner.styles": {
-			"styles": "salttool.miner.css",
+			"styles": "salttool.miner.less",
 			"targets": [ "desktop", "mobile" ]
 		},
 		"ext.mcbbswikiutils.salttool.textdiff": {
@@ -237,7 +245,7 @@
 			]
 		},
 		"ext.mcbbswikiutils.salttool.textdiff.styles": {
-			"styles": "salttool.textdiff.css",
+			"styles": "salttool.textdiff.less",
 			"targets": [ "desktop", "mobile" ]
 		},
 		"skinview3d": {
