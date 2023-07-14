@@ -22,8 +22,6 @@ class TagsUtils {
 	}
 
 	public static function renderTopSign( $input, array $args, Parser $parser, PPFrame $frame ) {
-		$parser->getOutput()->addModuleStyles( [ 'ext.mcbbswikiutils.topsign.styles' ] );
-		$parser->getOutput()->addModules( [ "ext.mcbbswikiutils.topsign" ] );
 		$innerHTML = $parser->recursiveTagParse( $input, $frame );
 		$delay = intval( $args['delay'] ?? '5000' );
 		if ( $delay === 0 ) {
