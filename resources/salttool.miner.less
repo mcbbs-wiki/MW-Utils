@@ -113,14 +113,6 @@
 			box-shadow: 0 0 0 transparent, 0 0 0 transparent, inset 6px 6px 12px #e2dac6, inset -6px -6px 12px #fffff2;
 		}
 
-		&:nth-of-type( 1 ):before {
-			background-image: url( imgs/iron_pickaxe.png );
-		}
-
-		&:nth-of-type( 2 ):before {
-			background-image: url( imgs/diamond_pickaxe.png );
-		}
-
 		&:before {
 			content: '';
 			background-size: cover;
@@ -129,6 +121,14 @@
 			width: 1.2em;
 			line-height: 1.2em;
 			vertical-align: sub;
+		}
+
+		&:nth-of-type( 1 ):before {
+			background-image: url( imgs/iron_pickaxe.png );
+		}
+
+		&:nth-of-type( 2 ):before {
+			background-image: url( imgs/diamond_pickaxe.png );
 		}
 	}
 }

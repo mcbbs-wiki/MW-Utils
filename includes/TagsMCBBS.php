@@ -2,11 +2,11 @@
 namespace MediaWiki\Extension\MCBBSWiki;
 
 use FormatJson;
-use Html;
+use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
 use Parser;
 use PPFrame;
-use Title;
+use MediaWiki\Title\Title;
 
 class TagsMCBBS {
 	public static function renderTagSkinviewLite( $input, array $args, Parser $parser, PPFrame $frame ) {
@@ -143,5 +143,25 @@ class TagsMCBBS {
 			'data-user' => $userJson
 		], wfMessage( 'mcbbscredit-loading' )->text() );
 		return $credit;
+	}
+	public static function renderTagCardEffect( $input, array $args, Parser $parser, PPFrame $frame ) {
+		$nostyle=$args['nostyle']??'';
+		$class=$args['class']??'';
+		$mode=$args['mode']??'detail';
+		$inner=$parser->recursiveTagParse($input,$frame);
+		if ($nostyle!=='true'){
+			$parser->getOutput()->addModuleStyles(['ext.mcbbswikiutils.cardeffect.styles']);
+		}
+		if ($mode==='overview'){
+			$classList='salt-card-effect-overview ';
+		} else {
+			$classList='salt-card-effect-detail ';
+		}
+		$classList.=$class;
+		$parser->getOutput()->addModules(['ext.mcbbswikiutils.cardeffect']);
+		$div = Html::rawElement( 'div', [
+			'class' => $classList,
+		], $inner );
+		return $div;
 	}
 }

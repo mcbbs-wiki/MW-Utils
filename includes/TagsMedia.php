@@ -1,11 +1,11 @@
 <?php
 namespace MediaWiki\Extension\MCBBSWiki;
 
-use Html;
+use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
 use Parser;
 use PPFrame;
-use Title;
+use MediaWiki\Title\Title;
 
 class TagsMedia {
 	public static function renderTagExtimg( $input, array $args, Parser $parser, PPFrame $frame ) {

@@ -1,7 +1,7 @@
 <?php
 namespace MediaWiki\Extension\MCBBSWiki;
 
-use Html;
+use MediaWiki\Html\Html;
 use OutputPage;
 
 class SaltToolTextDiffPalette implements ISaltTool {

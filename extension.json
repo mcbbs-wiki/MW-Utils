@@ -196,6 +196,15 @@
 			"styles": "salttool.wealth.less",
 			"targets": [ "desktop", "mobile" ]
 		},
+		"ext.mcbbswikiutils.cardeffect": {
+			"packageFiles": [ "cardeffect.js" ],
+			"targets": [ "desktop", "mobile" ],
+			"es6": true
+		},
+		"ext.mcbbswikiutils.cardeffect.styles": {
+			"styles": "cardeffect.less",
+			"targets": [ "desktop", "mobile" ]
+		},
 		"ext.mcbbswikiutils.salttool.miner": {
 			"packageFiles": [ "salttool.miner.js" ],
 			"es6": true,
