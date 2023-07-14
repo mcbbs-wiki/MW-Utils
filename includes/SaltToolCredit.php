@@ -2,8 +2,8 @@
 namespace MediaWiki\Extension\MCBBSWiki;
 
 use FormatJson;
-use MediaWiki\Html\Html;
 use HTMLForm;
+use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
 use OutputPage;
 use SpecialPage;

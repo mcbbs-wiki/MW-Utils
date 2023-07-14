@@ -22,7 +22,7 @@
 		"SkinAddFooterLinks": "main",
 		"ParserFirstCallInit": "main",
 		"BeforePageDisplay": "main",
-		"LoadExtensionSchemaUpdates":"MediaWiki\\Extension\\MCBBSWiki\\Hooks::onLoadExtensionSchemaUpdates"
+		"LoadExtensionSchemaUpdates": "MediaWiki\\Extension\\MCBBSWiki\\Hooks::onLoadExtensionSchemaUpdates"
 	},
 	"MessagesDirs": {
 		"MCBBSWikiUtils": [ "i18n" ]
@@ -35,14 +35,14 @@
 	"RestRoutes": [
 		{
 			"path": "/mbwutils/v0/credit/{uid}",
-            "method": "GET",
+			"method": "GET",
 			"class": "MediaWiki\\Extension\\MCBBSWiki\\HandlerCredit",
-			"services":[
+			"services": [
 				"MBWUtils.MCBBSCredit"
 			]
 		}
 	],
-	"ServiceWiringFiles":[
+	"ServiceWiringFiles": [
 		"includes/ServiceWiring.php"
 	],
 	"ExtensionMessagesFiles": {
@@ -98,7 +98,7 @@
 			"targets": [ "desktop", "mobile" ]
 		},
 		"ext.mcbbswikiutils.skinview.icons": {
-			"class":"ResourceLoaderOOUIIconPackModule",
+			"class": "ResourceLoaderOOUIIconPackModule",
 			"icons": [
 				"info",
 				"pause",
@@ -280,10 +280,10 @@
 	"config": {
 		"UCenterURL": "",
 		"UCenterStatic": false,
-		"UCenterDirTemplate":"%dir1/%dir2/%dir3/%dir4_avatar_%size.jpg",
+		"UCenterDirTemplate": "%dir1/%dir2/%dir3/%dir4_avatar_%size.jpg",
 		"ExtImgWhiteList": [],
 		"MBWVER": "eee",
-		"BBSUserUrl":"https://www.mcbbs.net/home.php?mod=space&uid=",
+		"BBSUserUrl": "https://www.mcbbs.net/home.php?mod=space&uid=",
 		"MBWAPIURL": "http://localhost:18080/"
 	}
 }

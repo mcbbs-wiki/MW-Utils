@@ -3,9 +3,9 @@ namespace MediaWiki\Extension\MCBBSWiki;
 
 use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Title\Title;
 use Parser;
 use PPFrame;
-use MediaWiki\Title\Title;
 
 class TagsMedia {
 	public static function renderTagExtimg( $input, array $args, Parser $parser, PPFrame $frame ) {

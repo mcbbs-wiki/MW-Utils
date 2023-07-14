@@ -4,9 +4,9 @@ namespace MediaWiki\Extension\MCBBSWiki;
 use FormatJson;
 use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Title\Title;
 use Parser;
 use PPFrame;
-use MediaWiki\Title\Title;
 
 class TagsMCBBS {
 	public static function renderTagSkinviewLite( $input, array $args, Parser $parser, PPFrame $frame ) {
@@ -144,21 +144,22 @@ class TagsMCBBS {
 		], wfMessage( 'mcbbscredit-loading' )->text() );
 		return $credit;
 	}
+
 	public static function renderTagCardEffect( $input, array $args, Parser $parser, PPFrame $frame ) {
-		$nostyle=$args['nostyle']??'';
-		$class=$args['class']??'';
-		$mode=$args['mode']??'detail';
-		$inner=$parser->recursiveTagParse($input,$frame);
-		if ($nostyle!=='true'){
-			$parser->getOutput()->addModuleStyles(['ext.mcbbswikiutils.cardeffect.styles']);
+		$nostyle = $args['nostyle'] ?? '';
+		$class = $args['class'] ?? '';
+		$mode = $args['mode'] ?? 'detail';
+		$inner = $parser->recursiveTagParse( $input, $frame );
+		if ( $nostyle !== 'true' ) {
+			$parser->getOutput()->addModuleStyles( [ 'ext.mcbbswikiutils.cardeffect.styles' ] );
 		}
-		if ($mode==='overview'){
-			$classList='salt-card-effect-overview ';
+		if ( $mode === 'overview' ) {
+			$classList = 'salt-card-effect-overview ';
 		} else {
-			$classList='salt-card-effect-detail ';
+			$classList = 'salt-card-effect-detail ';
 		}
-		$classList.=$class;
-		$parser->getOutput()->addModules(['ext.mcbbswikiutils.cardeffect']);
+		$classList .= $class;
+		$parser->getOutput()->addModules( [ 'ext.mcbbswikiutils.cardeffect' ] );
 		$div = Html::rawElement( 'div', [
 			'class' => $classList,
 		], $inner );
