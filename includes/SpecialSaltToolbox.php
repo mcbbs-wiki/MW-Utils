@@ -3,9 +3,8 @@ namespace MediaWiki\Extension\MCBBSWiki;
 
 use HtmlArmor;
 use IncludableSpecialPage;
-use TitleValue;
 use MediaWiki\Html\TemplateParser;
-use OutputPage;
+use TitleValue;
 use Xml;
 
 class SpecialSaltToolbox extends IncludableSpecialPage {
@@ -40,12 +39,12 @@ class SpecialSaltToolbox extends IncludableSpecialPage {
 			$toolObj = new SaltToolWelcome();
 			$toolId = 'home';
 		}
-		$tmpl = new TemplateParser(  __DIR__ . '/templates' );
+		$tmpl = new TemplateParser( __DIR__ . '/templates' );
 		if ( !$this->including() ) {
 			$this->addNavigationLinks( $toolId );
-			$toolObj->outHead( $this->getOutput(), $args[1] ?? null ,$tmpl);
+			$toolObj->outHead( $this->getOutput(), $args[1] ?? null, $tmpl );
 		}
-		$toolObj->outBody( $this->getOutput(), $args[1] ?? null,$tmpl );
+		$toolObj->outBody( $this->getOutput(), $args[1] ?? null, $tmpl );
 	}
 
 	protected function addNavigationLinks( $pageType ) {

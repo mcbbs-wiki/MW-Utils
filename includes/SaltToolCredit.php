@@ -10,10 +10,10 @@ use OutputPage;
 use SpecialPage;
 
 class SaltToolCredit implements ISaltTool {
-	public function outHead( OutputPage $out, $arg,TemplateParser $tmpl ) {
+	public function outHead( OutputPage $out, $arg, TemplateParser $tmpl ) {
 	}
 
-	public function outBody( OutputPage $out, $arg,TemplateParser $tmpl ) {
+	public function outBody( OutputPage $out, $arg, TemplateParser $tmpl ) {
 		if ( $arg ) {
 			$out->redirect( SpecialPage::getTitleFor( "SaltToolbox/credit" )->getLinkURL( [
 				'wpUID' => $arg,

@@ -37,8 +37,8 @@ class Hooks implements ParserFirstCallInitHook, SkinAddFooterLinksHook, BeforePa
 	public function onBeforePageDisplay( $out, $skin ): void {
 		global $wgMBWVER;
 		$out->addJsConfigVars( 'wgMBWVER', $wgMBWVER );
-		$out->addModuleStyles( ['ext.mcbbswikiutils.testie.styles'] );
-		$out->addModules( ["ext.mcbbswikiutils.testie"] );
+		$out->addModuleStyles( [ 'ext.mcbbswikiutils.testie.styles' ] );
+		$out->addModules( [ "ext.mcbbswikiutils.testie" ] );
 		$out->addModuleStyles( [ 'ext.mcbbswikiutils.topsign.styles' ] );
 		$out->addModules( [ "ext.mcbbswikiutils.topsign" ] );
 	}
