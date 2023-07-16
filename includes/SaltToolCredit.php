@@ -4,15 +4,16 @@ namespace MediaWiki\Extension\MCBBSWiki;
 use FormatJson;
 use HTMLForm;
 use MediaWiki\Html\Html;
+use MediaWiki\Html\TemplateParser;
 use MediaWiki\MediaWikiServices;
 use OutputPage;
 use SpecialPage;
 
 class SaltToolCredit implements ISaltTool {
-	public function outHead( OutputPage $out, $arg ) {
+	public function outHead( OutputPage $out, $arg,TemplateParser $tmpl ) {
 	}
 
-	public function outBody( OutputPage $out, $arg ) {
+	public function outBody( OutputPage $out, $arg,TemplateParser $tmpl ) {
 		if ( $arg ) {
 			$out->redirect( SpecialPage::getTitleFor( "SaltToolbox/credit" )->getLinkURL( [
 				'wpUID' => $arg,
