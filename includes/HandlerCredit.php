@@ -12,7 +12,15 @@ class HandlerCredit extends SimpleHandler {
 	}
 
 	public function run( $uid ) {
-		return $this->credit->getUserInfo( $uid );
+		$user= $this->credit->getUserInfo( $uid );
+		if($user===null){
+			return $this->getResponseFactory()->createHttpError(500);
+		}
+		if($user['notfound']){
+			return $this->getResponseFactory()->createHttpError(404,$user);
+		} else {
+			return $this->getResponseFactory()->createJson($user);
+		}
 	}
 
 	public function needsWriteAccess() {

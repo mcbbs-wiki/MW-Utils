@@ -5,8 +5,8 @@
 	const defaultOption = {
 		chart: {
 			backgroundColor:
-        document.body.classList.contains( 'skin-vector-legacy' ) ||
-        document.body.classList.contains( 'skin-minerva' ) ? '#fbf2da' : '#ffffff',
+			mw.config.get( 'skin' ) === 'vector' ||
+			mw.config.get( 'skin' ) === 'minerva' ? '#fbf2da' : '#ffffff',
 			plotShadow: false
 		},
 		accessibility: {

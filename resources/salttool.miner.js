@@ -4,21 +4,16 @@
 ( function () {
 	const ore = {
 		chance: [
-			100, 100, 100, 100, 100,
-			55, 55, 55, 55, 55, 55, 55, 55,
-			10, 10, 10, 10, 10,
-			3, 1, 3, 1, 2
+			1058, 1058, 1058, 1058, 1058,
+			582, 582, 582, 582, 582, 582, 582,
+			106, 106, 106, 106, 106,
+			32, 11, 32, 11, 21
 		],
 		reward: [
-			'nugget50.gif|common', 'diamond1.gif|common', 'diamond2.gif|common',
-			'unlock3.gif|common', 'notification2.gif|common',
-			'nugget100.gif|rare', 'diamond4.gif|rare', 'serverbump2.gif|rare',
-			'bump4.gif|rare', 'highlight.gif|rare', 'unlock5.gif|rare',
-			'rename.gif|rare', 'anonymouspost2.gif|rare',
-			'nugget500.gif|epic', 'diamond8.gif|epic', '20off.gif|epic',
-			'bump8.gif|epic', 'serverbump4.gif|epic',
-			'nugget999.gif|legend', 'emerald1.gif|legend', 'diamond20.gif|legend',
-			'40off.gif|legend', 'piglin.gif|legend'
+			'nugget50.gif|common', 'diamond1.gif|common', 'diamond2.gif|common', 'unlock3.gif|common', 'notification2.gif|common',
+			'nugget100.gif|rare', 'diamond4.gif|rare', 'serverbump2.gif|rare', 'bump4.gif|rare', 'highlight.gif|rare', 'unlock5.gif|rare', 'rename.gif|rare',
+			'nugget500.gif|epic', 'diamond8.gif|epic', '20off.gif|epic', 'bump8.gif|epic', 'serverbump4.gif|epic',
+			'nugget999.gif|legend', 'emerald1.gif|legend', 'diamond20.gif|legend', '40off.gif|legend', 'piglin.gif|legend'
 		]
 	};
 	function mineSim() {
