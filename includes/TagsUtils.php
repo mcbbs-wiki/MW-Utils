@@ -23,19 +23,11 @@ class TagsUtils {
 
 	public static function renderTopSign( $input, array $args, Parser $parser, PPFrame $frame ) {
 		$innerHTML = $parser->recursiveTagParse( $input, $frame );
-		$delay = intval( $args['delay'] ?? '5000' );
-		if ( $delay === 0 ) {
-			$delay = 5000;
-		}
 		$html = Html::openElement( 'div', [
 			'class' => 'topsign',
-			'style' => $args['style'] ?? '',
-			'data-delay' => $delay,
-			'data-height' => $args['height'] ?? '-55px'
+			'style' => $args['style'] ?? ''
 		] );
-		$html .= Html::openElement( 'div', [ 'class' => 'topsignitem' ] );
 		$html .= $innerHTML;
-		$html .= Html::closeElement( 'div' );
 		$html .= Html::closeElement( 'div' );
 		return $html;
 	}
