@@ -50,6 +50,7 @@
 			}
 			const { height, current, next } = init;
 			requestAnimationFrame( () => animation( { startTime: Date.now(), height, current, next } ) );
+			setTimeout(() => setView(), interval);
 		};
 		setTimeout( () => setView(), interval );
 		initView();
